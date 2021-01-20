@@ -12,9 +12,12 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  touch-action: manipulation;
 }
 
 body {
+
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #555;
   background-color: #f7f7f7;
@@ -23,6 +26,16 @@ body {
   justify-content: center;
   overflow: hidden;
   margin: 0;
+  
+ 
+}
+
+.container-box {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
 /*************************************** Progress bar ***************************************/
@@ -32,8 +45,7 @@ body {
   display: flex;
   justify-content: space-between;
   position: relative;
-  min-width: 400px;
-  width: 60vw; 
+  width: 100%;
 }
 
 .progress-container::before {
@@ -64,8 +76,9 @@ body {
   background-color: #fff;
   color: #999;
   border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  height: 4rem;
+  width: 4rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

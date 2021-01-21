@@ -13,6 +13,12 @@
 
 
   <main class="container-box">
+    <div class="result-box">
+      
+    </div>
+    <div class="title-text">
+      <p>PLEASE SELECT REGION</p>
+    </div>
     <div class="progress-container">
       <div class="progress" id="progress"></div>
       <div class="circle">1</div>
@@ -26,7 +32,7 @@
       <div class="circle">9</div>
       <div class="circle">10</div>
     </div>
-    <div class="container ">
+    <div class="container">
       <div class="countries">
         <article class="country-div">
           <img class="country__img" id="flag" src="">
@@ -57,12 +63,15 @@
           </div>
         </article>
       </div>
+
       <select id="region-name" name="region" class="form-control">
-        <option value="Europe">Europe</option>
-        <option value="Asia">Asia</option>
-        <option value="Oceania">Oceania</option>
-        <option value="Africa">Africa</option>
-        <option value="Americas">North & South America</option>
+
+        <option value="0" class="regions">Europe</option>
+        <option value="1" class="regions">Asia</option>
+        <option value="2" class="regions">Africa</option>
+        <option value="3" class="regions">North America</option>
+        <option value="4" class="regions">South America</option>
+        <option value="5" class="regions">Oceania</option>
 
       </select>
       <select id="country-name" name="con" class="form-control">
@@ -181,7 +190,7 @@
         <option value="Kazakhstan" class="asia">Kazakhstan</option>
         <option value="Kenya" class="africa">Kenya</option>
         <option value="Kiribati" class="oceania">Kiribati</option>
-        <option value="Korea" class="asia">North Korea</option>
+        <option value="North Korea" class="asia">North Korea</option>
         <!-- <option value="Korea S">Korea, Republic of</option> -->
         <option value="Kuwait" class="asia">Kuwait</option>
         <option value="Kyrgyzstan" class="asia">class="asia"Kyrgyzstan</option>

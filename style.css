@@ -1,5 +1,5 @@
 :root {
-  --line-border-fill:#0E99DA;
+  --line-border-fill: #0E99DA;
   --line-border-empty: gray;
 }
 
@@ -16,8 +16,6 @@ html {
 }
 
 body {
-
-
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #555;
   background-color: #f7f7f7;
@@ -26,33 +24,18 @@ body {
   justify-content: center;
   overflow: hidden;
   margin: 0;
-  
- 
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .container-box {
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 
 /*************************************** Progress bar ***************************************/
 
 .progress-container {
-  margin: 5rem auto;
+  margin: 2rem auto;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -107,8 +90,8 @@ body {
 .container {
   display: flex;
   flex-flow: column;
-  width: 45rem; 
-  margin: 1rem auto;
+  width: 45rem;
+  margin: 5rem auto;
 }
 
 .countries {
@@ -166,6 +149,8 @@ body {
   font-size: 2.4rem;
 }
 
+/*************************************** Buttons ***************************************/
+
 .btn-country {
   border: none;
   font-size: 2rem;
@@ -180,6 +165,14 @@ body {
   outline: none;
 }
 
+.btn-country:focus {
+  outline: 0;
+}
+
+.btn-country:active {
+  transform: scale(0.98);
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -192,6 +185,25 @@ ul li {
 
 ul li label {
   cursor: pointer;
+}
+
+.title-text {
+  margin-top: 5rem;
+}
+
+.title-text p {
+  position: relative;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 2em;
+  letter-spacing: 4px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #000, #fff, #000);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animateText 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
 
 /**************************************** Animations ****************************************/
@@ -279,43 +291,33 @@ ul li label {
   }
 }
 
-@media only screen and (max-width: 425px) {
+@keyframes animateText {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
 
+@media only screen and (max-width: 425px) {
   .container-box {
     display: inline-block;
-    
   }
-  
   .progress-container {
-  
-    margin: 7rem auto;
     width: 95%;
-    
-    
   }
   .progress-container::before {
-
     height: 1px;
-    
   }
-
-.circle {
-  
-  height: 2.5rem;
-  width: 2.5rem;
-  font-size: 1rem;
-  border: 1px solid var(--line-border-empty);
-  
-}
-
-.country__img {
- 
-  width: 100%;
-  
-  object-fit:cover;
-  
-}
-
-
-
+  .circle {
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 1rem;
+    border: 1px solid var(--line-border-empty);
+  }
+  .country__img {
+    width: 100%;
+    object-fit: cover;
+  }
 }

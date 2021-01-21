@@ -58,7 +58,7 @@ function shuffle(array) {
 
 }
 
-
+console.log(document.querySelectorAll('.north_america'))
 
 function correct() {
   let userAnswer = getSelected()

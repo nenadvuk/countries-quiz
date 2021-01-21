@@ -30,6 +30,17 @@ body {
  
 }
 
+
+
+
+
+
+
+
+
+
+
+
 .container-box {
 
   display: flex;
@@ -45,7 +56,7 @@ body {
   display: flex;
   justify-content: space-between;
   position: relative;
-  width: 100%;
+  width: 90%;
 }
 
 .progress-container::before {
@@ -76,8 +87,8 @@ body {
   background-color: #fff;
   color: #999;
   border-radius: 50%;
-  height: 4rem;
-  width: 4rem;
+  height: 3.5rem;
+  width: 3.5rem;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -101,7 +112,7 @@ body {
 }
 
 .countries {
-  display: flex;
+  display: inline-flex;
   font-size: 2rem;
 }
 
@@ -266,4 +277,46 @@ ul li label {
   50% {
     opacity: 1;
   }
+}
+
+@media only screen and (max-width: 425px) {
+
+  .container-box {
+    display: inline-block;
+    padding: 20px;
+  }
+  
+  .progress-container {
+  
+    margin: 2rem auto;
+    width: 100%;
+    
+    
+  }
+  .progress-container::before {
+   
+   
+    height: 1px;
+    
+  }
+
+.circle {
+  
+  height: 2.5rem;
+  width: 2.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--line-border-empty);
+  
+}
+
+.country__img {
+ 
+  width: 100%;
+  
+  object-fit:cover;
+  
+}
+
+
+
 }

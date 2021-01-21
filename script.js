@@ -69,7 +69,10 @@ function correct() {
     circles[currentActive].style.border = '3px solid #93C700'
   } else circles[currentActive].style.border = '3px solid #D60000'
   if (ten) {
-    countriesContainer.style.display = "none"
+    setTimeout(function () {
+      countriesContainer.style.display = "none"
+    }, 500);
+    
   } 
     
  

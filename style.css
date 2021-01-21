@@ -283,19 +283,18 @@ ul li label {
 
   .container-box {
     display: inline-block;
-    padding: 20px;
+    
   }
   
   .progress-container {
   
-    margin: 2rem auto;
-    width: 100%;
+    margin: 7rem auto;
+    width: 95%;
     
     
   }
   .progress-container::before {
-   
-   
+
     height: 1px;
     
   }

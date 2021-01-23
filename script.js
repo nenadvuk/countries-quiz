@@ -28,6 +28,7 @@ const africa = document.querySelectorAll('.africa')
 const northAmerica = document.querySelectorAll('.north_america')
 const southAmerica = document.querySelectorAll('.south_america')
 const oceania = document.querySelectorAll('.oceania')
+
 // const world = document.querySelectorAll('#country-name')
 
 
@@ -37,6 +38,7 @@ let correctAnswer
 let score = 0
 let countries = []
 let finished = false
+let S_America = false
 
 // CountriesArray
 let _CARR = []
@@ -50,14 +52,16 @@ countryList.style.display = "none"
 progressBox.style.display = "none"
 
 
-
+// If South American region is chosen number of questions is 5
 regionEl.addEventListener('change', function (e) {
   if (e.target.value == 4) {
-    
-    radios[3].remove()
-    resFour.remove()
-   
+    S_America = true
+    for (let i = 5; i < circles.length; i++) {
+      circles[i].remove()
+      endGame(4)
+    }
   }
+
 });
 
 
@@ -76,7 +80,13 @@ function update() {
   })
 
   let actives = document.querySelectorAll('.active')
-  progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%'
+
+  if (!S_America) {
+    progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%'
+  } else {
+    progress.style.width = (actives.length - 1) / (circles.length - 6) * 100 + '%'
+  }
+
 
 }
 
@@ -109,7 +119,7 @@ function correct() {
 // Buttons
 btn.addEventListener('click', function () {
 
-
+  console.log(circles)
   // Chosen region
   _CHOSEN = regionArr[Number(regionEl.value)]
 
@@ -135,14 +145,26 @@ btn.addEventListener('click', function () {
 
 })
 
+function endGame(questions) {
+
+  if (_CIRCLE_INDEX === questions) {
+    finished = true
+  }
+}
+
 
 answerBtn.addEventListener('click', function () {
 
+
+
+
   correct()
   _CIRCLE_INDEX++
-  if (_CIRCLE_INDEX === 9) {
-    finished = true
-  }
+
+  // 
+  if (!S_America) {
+    endGame(9)
+  } else endGame(4)
 
   update()
   if (countriesContainer.className == "zoomIn") {
@@ -192,32 +214,32 @@ function getCountryData(country) {
 
   // Getting country name and flag from REST COUNTRIES API 
   const request = new XMLHttpRequest()
-    request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`)
-    request.send()
+  request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`)
+  request.send()
 
-    let rndNmb = [];
-    for (let i = 0; i <= 3; i++) {
-      let number = Math.floor(Math.random() * _CARR.length);
-      let genNumber = rndNmb.indexOf(number);
-      if (genNumber === -1) {
-        rndNmb.push(number);
-      }
+  let rndNmb = [];
+  for (let i = 0; i <= 3; i++) {
+    let number = Math.floor(Math.random() * _CARR.length);
+    let genNumber = rndNmb.indexOf(number);
+    if (genNumber === -1) {
+      rndNmb.push(number);
     }
-    
-    request.addEventListener('load', function () {
+  }
 
-      const [data] = JSON.parse(this.responseText)
-      console.log(data.name)
-      let arr = [country, _CARR[rndNmb[0]], _CARR[rndNmb[1]], _CARR[rndNmb[2]]]
-      shuffle(arr)
-      correctAnswer = arr.indexOf(country)
-      flag.src = data.flag
-      resOne.innerHTML = arr[0]
-      resTwo.innerHTML = arr[1]
-      resThree.innerHTML = arr[2]
-      resFour.innerHTML = arr[3]
+  request.addEventListener('load', function () {
 
-    })
+    const [data] = JSON.parse(this.responseText)
+    console.log(data.name)
+    let arr = [country, _CARR[rndNmb[0]], _CARR[rndNmb[1]], _CARR[rndNmb[2]]]
+    shuffle(arr)
+    correctAnswer = arr.indexOf(country)
+    flag.src = data.flag
+    resOne.innerHTML = arr[0]
+    resTwo.innerHTML = arr[1]
+    resThree.innerHTML = arr[2]
+    resFour.innerHTML = arr[3]
+
+  })
 }
 
 

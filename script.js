@@ -207,9 +207,8 @@ function randomCountry() {
 
 function getCountryData(country) {
 
-  if (!finished) {
 
-    const request = new XMLHttpRequest()
+  const request = new XMLHttpRequest()
     request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`)
     request.send()
 
@@ -236,9 +235,6 @@ function getCountryData(country) {
       resFour.innerHTML = arr[3]
 
     })
-  };
-
-
 }
 
 

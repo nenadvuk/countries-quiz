@@ -52,6 +52,7 @@ body {
   height: 4px;
   width: 100%;
   z-index: -1;
+  
 }
 
 .progress {
@@ -79,6 +80,7 @@ body {
   border: 3px solid var(--line-border-empty);
   transition: .5s ease;
   transition-delay: .5s;
+ 
 }
 
 .circle.active {
@@ -205,6 +207,10 @@ ul li label {
   animation: animateText 3s linear infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+.form-control {
+  height: 4rem;
 }
 
 /**************************************** Animations ****************************************/

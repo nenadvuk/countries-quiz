@@ -28,26 +28,38 @@ const africa = document.querySelectorAll('.africa')
 const northAmerica = document.querySelectorAll('.north_america')
 const southAmerica = document.querySelectorAll('.south_america')
 const oceania = document.querySelectorAll('.oceania')
+// const world = document.querySelectorAll('#country-name')
+
 
 const titleText = document.querySelector('.title-text')
-
-regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
-
-
-
-// countriesArray
-let _CARR = []
 
 let correctAnswer
 let score = 0
 let countries = []
 let finished = false
 
+// CountriesArray
+let _CARR = []
+
+
+let regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
 
 
 countriesContainer.style.display = "none"
 countryList.style.display = "none"
 progressBox.style.display = "none"
+
+
+
+regionEl.addEventListener('change', function (e) {
+  if (e.target.value == 4) {
+    
+    radios[3].remove()
+    resFour.remove()
+   
+  }
+});
+
 
 
 //  Progress bar
@@ -63,7 +75,7 @@ function update() {
     }
   })
 
-  const actives = document.querySelectorAll('.active')
+  let actives = document.querySelectorAll('.active')
   progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%'
 
 }
@@ -82,8 +94,8 @@ function correct() {
   if (userAnswer == correctAnswer) {
     score++;
     // result.innerHTML = score.toString()
-    circles[_CIRCLE_INDEX].style.border = '3px solid #93C700'
-  } else circles[_CIRCLE_INDEX].style.border = '3px solid #D60000'
+    circles[_CIRCLE_INDEX].style.border = '3px solid #52E80C'
+  } else circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
   if (finished) {
     setTimeout(function () {
       countriesContainer.style.display = "none"
@@ -96,36 +108,6 @@ function correct() {
 
 // Buttons
 btn.addEventListener('click', function () {
-
-  // if (regionEl.value == !4) {
-
-  //   const html = ` 
-  //   <div class="progress" id="progress"></div>
-  //   <div class="circle">1</div>
-  //   <div class="circle">2</div>
-  //   <div class="circle">3</div>
-  //   <div class="circle">4</div>
-  //   <div class="circle">5</div>
-  //   <div class="circle">6</div>
-  //   <div class="circle">7</div>
-  //   <div class="circle">8</div>
-  //   <div class="circle">9</div>
-  //   <div class="circle">10</div>
-  //     `
-  //     progressBox.insertAdjacentHTML('beforeend', html);
-  // } else {
-  //   const html = ` 
-  //   <div class="progress" id="progress"></div>
-  //   <div class="circle">1</div>
-  //   <div class="circle">2</div>
-  //   <div class="circle">3</div>
-  //   <div class="circle">4</div>
-  //   <div class="circle">5</div>
-  //   `
-  //     progressBox.insertAdjacentHTML('beforeend', html);
-  //     finished = true
-
-  // }
 
 
   // Chosen region
@@ -177,13 +159,13 @@ answerBtn.addEventListener('click', function () {
 
 })
 
-
-
+// Reset cheched field
 function deselectAnswers() {
   radios.forEach(radio => radio.checked = false)
 }
 
 
+// Getting checked field 
 function getSelected() {
   let answer
 
@@ -196,6 +178,7 @@ function getSelected() {
   return answer
 }
 
+
 function randomCountry() {
 
   randC = _CARR[Math.floor(Math.random() * _CARR.length)]
@@ -207,7 +190,7 @@ function randomCountry() {
 
 function getCountryData(country) {
 
-
+  // Getting country name and flag from REST COUNTRIES API 
   const request = new XMLHttpRequest()
     request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`)
     request.send()
@@ -220,7 +203,7 @@ function getCountryData(country) {
         rndNmb.push(number);
       }
     }
-
+    
     request.addEventListener('load', function () {
 
       const [data] = JSON.parse(this.responseText)

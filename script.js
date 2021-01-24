@@ -34,20 +34,17 @@ const oceania = document.querySelectorAll('.oceania')
 const odometer = document.getElementById('odometer')
 /* const worlds = document.querySelectorAll('#country-name') */
 
-
-
-
 let correctAnswer
 let score = 0
 let countries = []
 let finished = false
 let S_America = false
-let world = false
+/* let world = false */
 
 // CountriesArray
 let _CARR = []
 
-
+// Regions array
 let regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
 
 
@@ -69,8 +66,6 @@ regionEl.addEventListener('change', (e) => {
   }
 
 })
-
-
 
 //  Progress bar
 let _CIRCLE_INDEX = 0
@@ -94,9 +89,7 @@ function update() {
     progress.style.width = (actives.length - 1) / (circles.length - 6) * 100 + '%'
   }
 
-
 }
-
 
 // Funcion which puts answers in random order
 const shuffle = (array) => array.sort(() => Math.random() - 0.5)
@@ -124,13 +117,8 @@ function correct() {
 btn.addEventListener('click', () => {
 
   // Chosen region
-  if(!world) {
-    _CHOSEN = regionArr[Number(regionEl.value)]
-
-  } else{
-
-  }
-  console.log(_CHOSEN)
+  _CHOSEN = regionArr[regionEl.value]
+  
   // Creating array of countries
   for (let country of _CHOSEN) {
     countries.push(country.value)

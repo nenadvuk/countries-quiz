@@ -1,5 +1,5 @@
 :root {
-  --line-border-fill:#850DFF;
+  --line-border-fill: #850DFF;
   --line-border-empty: gray;
 }
 
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-image: url(/assets/world.png);
+  background-image: url(/assets/world.jpg);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -29,8 +29,6 @@ body {
   overflow: hidden;
   margin: 0;
 }
-
-
 
 .container-box {
   display: flex;
@@ -58,7 +56,6 @@ body {
   height: 4px;
   width: 100%;
   z-index: -1;
-  
 }
 
 .progress {
@@ -86,7 +83,6 @@ body {
   border: 3px solid var(--line-border-empty);
   transition: .5s ease;
   transition-delay: .5s;
- 
 }
 
 .circle.active {
@@ -131,6 +127,7 @@ body {
   text-align: center;
 }
  */
+
 .country__data {
   padding: 3.5rem 1.75rem 3rem 1.75rem;
 }
@@ -217,6 +214,69 @@ ul li label {
 
 .form-control {
   height: 4rem;
+}
+
+.odometer {
+  font-size: 50px;
+}
+
+/**************************************** Modal ****************************************/
+
+.modalDialog {
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: opacity 600ms ease-in;
+  -moz-transition: opacity 600ms ease-in;
+  transition: opacity 600ms ease-in;
+  /* pointer-events: none; */
+}
+
+/* .modalDialog:target {
+  opacity: 1;
+  pointer-events: auto;
+} 
+ */
+.modalDialog>div {
+  width: 30rem;
+  height: 30rem;
+  position: relative;
+  margin: 30vh auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: #fff;
+  background: -moz-linear-gradient(#fff, #999);
+  background: -webkit-linear-gradient(#fff, #999);
+  background: -o-linear-gradient(#fff, #999);
+}
+
+.close {
+  background: #606061;
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover {
+  background: #00d9ff;
 }
 
 /**************************************** Animations ****************************************/
@@ -333,4 +393,12 @@ ul li label {
     width: 100%;
     object-fit: cover;
   }
+}
+
+.odometer.odometer-auto-theme .odometer-digit:last-child, .odometer.odometer-theme-car .odometer-digit:last-child {
+  background-image: -moz-linear-gradient(top, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
+  background-image: -webkit-linear-gradient(top, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
+  background-image: linear-gradient(to bottom, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
+  background-color: #eee0d3;
+  color: #eee0d3;
 }

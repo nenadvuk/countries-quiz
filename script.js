@@ -1,6 +1,5 @@
 
 
-
 const btn = document.querySelector('#search')
 const rnd = document.querySelector('#random-country')
 
@@ -21,6 +20,7 @@ const result = document.getElementById('res')
 const progress = document.getElementById('progress')
 const progressBox = document.querySelector('.progress-container')
 const circles = document.querySelectorAll('.circle')
+const modal = document.getElementById('openModal')
 
 const europe = document.querySelectorAll('.europe')
 const asia = document.querySelectorAll('.asia')
@@ -29,7 +29,9 @@ const northAmerica = document.querySelectorAll('.north_america')
 const southAmerica = document.querySelectorAll('.south_america')
 const oceania = document.querySelectorAll('.oceania')
 
+const odometer = document.getElementById('odometer')
 // const world = document.querySelectorAll('#country-name')
+
 
 
 const titleText = document.querySelector('.title-text')
@@ -62,7 +64,7 @@ regionEl.addEventListener('change', function (e) {
     }
   }
 
-});
+})
 
 
 
@@ -103,7 +105,6 @@ function correct() {
   console.log(finished)
   if (userAnswer == correctAnswer) {
     score++;
-    // result.innerHTML = score.toString()
     circles[_CIRCLE_INDEX].style.border = '3px solid #52E80C'
   } else circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
   if (finished) {
@@ -119,15 +120,18 @@ function correct() {
 // Buttons
 btn.addEventListener('click', function () {
 
-  console.log(circles)
+  
+ 
   // Chosen region
   _CHOSEN = regionArr[Number(regionEl.value)]
 
-
+  // Creating array of countries
   for (let country of _CHOSEN) {
     countries.push(country.value)
 
   }
+
+  // New array for manipulating
   _CARR = countries
 
 
@@ -145,19 +149,22 @@ btn.addEventListener('click', function () {
 
 })
 
-function endGame(questions) {
 
-  if (_CIRCLE_INDEX === questions) {
-    finished = true
-  }
-}
-
-
+// Answer button
+// Dugme za odgovor
 answerBtn.addEventListener('click', function () {
 
 
+  if(finished) {
 
-
+    modal.style.opacity = "1"
+    modal.style.zIndex=  '99';
+    setTimeout(function(){
+    
+      odometer.innerHTML = score
+      
+    }, 1000);
+  }
   correct()
   _CIRCLE_INDEX++
 
@@ -179,11 +186,24 @@ answerBtn.addEventListener('click', function () {
     countriesContainer.classList.add("zoomIn")
   }, 500);
 
+  
+  
+
 })
 
 // Reset cheched field
+// Resetovanje oznacenog polja
 function deselectAnswers() {
   radios.forEach(radio => radio.checked = false)
+}
+
+// Funkcija za prekid dalje igre nakon 5/10 pitanja
+function endGame(questions) {
+
+  if (_CIRCLE_INDEX === questions) {
+    finished = true
+    
+  }
 }
 
 
@@ -200,6 +220,10 @@ function getSelected() {
   return answer
 }
 
+
+// Generating random country and deleting it from new array
+/* Generisanje nasumicne drzave i uklanjanje iste iz novog niza 
+   da bi se izbeglo ponavljanje istog pitanja */
 
 function randomCountry() {
 
@@ -243,4 +267,4 @@ function getCountryData(country) {
 }
 
 
-
+// element.innerHTML = 123

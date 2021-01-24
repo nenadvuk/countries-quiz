@@ -36,6 +36,17 @@ body {
   align-items: center;
 }
 
+input:checked + label {
+  transition: .1s ease-in;
+  color:orangered;
+  
+}
+/* :checked {
+  transition: .2s ease-in;
+  margin-left: 25px;
+  border: 3px solid blue;
+} */
+
 /*************************************** Progress bar ***************************************/
 
 .progress-container {

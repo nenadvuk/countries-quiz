@@ -118,7 +118,7 @@ btn.addEventListener('click', () => {
 
   // Chosen region
   _CHOSEN = regionArr[regionEl.value]
-  
+
   // Creating array of countries
   for (let country of _CHOSEN) {
     countries.push(country.value)
@@ -175,11 +175,6 @@ answerBtn.addEventListener('click', () => {
 
   countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
     countriesContainer.className = 'zoomOut'
-  /* if (countriesContainer.className == "zoomIn") {
-    countriesContainer.className = "zoomOut";
-  } else countriesContainer.className = "zoomOut"; */
-
-  // let userAnswer = getSelected()
 
   deselectAnswers()
   setTimeout(() => {

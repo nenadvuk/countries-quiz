@@ -10,6 +10,7 @@ const answerBtn = document.getElementById('answer-btn')
 const radios = document.querySelectorAll('.answer')
 const regionEl = document.getElementById('region-name')
 const regions = document.querySelectorAll('.regions')
+const titleText = document.querySelector('.title-text')
 
 const flag = document.getElementById('flag')
 const resOne = document.getElementById('res-1')
@@ -31,17 +32,17 @@ const southAmerica = document.querySelectorAll('.south_america')
 const oceania = document.querySelectorAll('.oceania')
 
 const odometer = document.getElementById('odometer')
-// const world = document.querySelectorAll('#country-name')
+/* const worlds = document.querySelectorAll('#country-name') */
 
 
 
-const titleText = document.querySelector('.title-text')
 
 let correctAnswer
 let score = 0
 let countries = []
 let finished = false
 let S_America = false
+let world = false
 
 // CountriesArray
 let _CARR = []
@@ -56,13 +57,15 @@ progressBox.style.display = "none"
 
 
 // If South American region is chosen number of questions is 5
-regionEl.addEventListener('change', function (e) {
+regionEl.addEventListener('change', (e) => {
   if (e.target.value == 4) {
     S_America = true
     for (let i = 5; i < circles.length; i++) {
       circles[i].remove()
       endGame(4)
     }
+  } else if (e.target.value == 6) {
+    world = true
   }
 
 })
@@ -73,6 +76,7 @@ regionEl.addEventListener('change', function (e) {
 let _CIRCLE_INDEX = 0
 
 
+// funcion which changin style of circles and progress bar
 function update() {
 
   circles.forEach((circle, idx) => {
@@ -94,13 +98,11 @@ function update() {
 }
 
 
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5)
-  return array
-
-}
+// Funcion which puts answers in random order
+const shuffle = (array) => array.sort(() => Math.random() - 0.5)
 
 
+// Fuction which determines if answer is correct an changing styles of circles
 function correct() {
   let userAnswer = getSelected()
   console.log(finished)
@@ -119,13 +121,16 @@ function correct() {
 
 
 // Buttons
-btn.addEventListener('click', function () {
-
-
+btn.addEventListener('click', () => {
 
   // Chosen region
-  _CHOSEN = regionArr[Number(regionEl.value)]
+  if(!world) {
+    _CHOSEN = regionArr[Number(regionEl.value)]
 
+  } else{
+
+  }
+  console.log(_CHOSEN)
   // Creating array of countries
   for (let country of _CHOSEN) {
     countries.push(country.value)
@@ -153,7 +158,7 @@ btn.addEventListener('click', function () {
 
 // Answer button
 // Dugme za odgovor
-answerBtn.addEventListener('click', function () {
+answerBtn.addEventListener('click', () => {
 
 
   if (finished) {
@@ -161,18 +166,14 @@ answerBtn.addEventListener('click', function () {
     setTimeout(() => {
       modal.style.opacity = "1"
       modal.style.zIndex = '99';
+    }, 1000)
+
+    setTimeout(() => {
+      !S_America ? odometer.innerHTML = score * 10 :
+        odometer.innerHTML = score * 20
     }, 1500)
 
-    setTimeout(function () {
-
-      if(! S_America) {
-        odometer.innerHTML = score * 10 
-      } else {
-        odometer.innerHTML = score * 20 
-      }
-
-    }, 2000);
-    newGame.addEventListener('click', ()=>{
+    newGame.addEventListener('click', () => {
       window.location.reload()
     })
   }
@@ -180,46 +181,38 @@ answerBtn.addEventListener('click', function () {
   _CIRCLE_INDEX++
 
   // 
-  if (!S_America) {
-    endGame(9)
-  } else endGame(4)
+  !S_America ? endGame(9) : endGame(4)
 
   update()
-  if (countriesContainer.className == "zoomIn") {
+
+  countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
+    countriesContainer.className = 'zoomOut'
+  /* if (countriesContainer.className == "zoomIn") {
     countriesContainer.className = "zoomOut";
-  } else countriesContainer.className = "zoomOut";
+  } else countriesContainer.className = "zoomOut"; */
 
   // let userAnswer = getSelected()
 
   deselectAnswers()
-  setTimeout(function () {
-    getCountryData(randomCountry());
+  setTimeout(() => {
+    getCountryData(randomCountry())
     countriesContainer.classList.add("zoomIn")
-  }, 500);
-
-
+  }, 500)
 
 
 })
 
 // Reset cheched field
 // Resetovanje oznacenog polja
-function deselectAnswers() {
-  radios.forEach(radio => radio.checked = false)
-}
+const deselectAnswers = () => radios.forEach(radio => radio.checked = false)
 
 // Funkcija za prekid dalje igre nakon 5/10 pitanja
-function endGame(questions) {
+const endGame =(questions) => _CIRCLE_INDEX === questions ? finished = true : false
 
-  if (_CIRCLE_INDEX === questions) {
-    finished = true
-
-  }
-}
 
 
 // Getting checked field 
-function getSelected() {
+const getSelected = () => {
   let answer
 
   radios.forEach(radio => {
@@ -278,4 +271,4 @@ function getCountryData(country) {
 }
 
 
-// element.innerHTML = 123
+

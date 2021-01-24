@@ -123,11 +123,6 @@ body {
   border-top-right-radius: 0.7rem;
 }
 
-/* .header-title {
-  text-align: center;
-}
- */
-
 .country__data {
   padding: 3.5rem 1.75rem 3rem 1.75rem;
 }
@@ -238,7 +233,7 @@ ul li label {
   -webkit-transition: opacity 600ms ease-in;
   -moz-transition: opacity 600ms ease-in;
   transition: opacity 600ms ease-in;
-  /* pointer-events: none; */
+  
 }
 
 .modalDialog:target {
@@ -259,29 +254,6 @@ ul li label {
   background: -o-linear-gradient(#fff, #999);
 }
 
-/* .close {
-  background: #606061;
-  color: #FFFFFF;
-  line-height: 25px;
-  position: absolute;
-  right: -12px;
-  text-align: center;
-  top: -10px;
-  width: 24px;
-  text-decoration: none;
-  font-weight: bold;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  border-radius: 12px;
-  -moz-box-shadow: 1px 1px 3px #000;
-  -webkit-box-shadow: 1px 1px 3px #000;
-  box-shadow: 1px 1px 3px #000;
-}
-
-.close:hover {
-  background: #00d9ff;
-}
- */
 .percent {
   
   font-size: 3rem;

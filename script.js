@@ -2,6 +2,7 @@
 
 const btn = document.querySelector('#search')
 const rnd = document.querySelector('#random-country')
+const newGame = document.getElementById('new-game')
 
 const countriesContainer = document.querySelector('.countries')
 const countryList = document.getElementById('country-name')
@@ -120,8 +121,8 @@ function correct() {
 // Buttons
 btn.addEventListener('click', function () {
 
-  
- 
+
+
   // Chosen region
   _CHOSEN = regionArr[Number(regionEl.value)]
 
@@ -155,15 +156,25 @@ btn.addEventListener('click', function () {
 answerBtn.addEventListener('click', function () {
 
 
-  if(finished) {
+  if (finished) {
 
-    modal.style.opacity = "1"
-    modal.style.zIndex=  '99';
-    setTimeout(function(){
-    
-      odometer.innerHTML = score
-      
-    }, 1000);
+    setTimeout(() => {
+      modal.style.opacity = "1"
+      modal.style.zIndex = '99';
+    }, 1500)
+
+    setTimeout(function () {
+
+      if(! S_America) {
+        odometer.innerHTML = score * 10 
+      } else {
+        odometer.innerHTML = score * 20 
+      }
+
+    }, 2000);
+    newGame.addEventListener('click', ()=>{
+      window.location.reload()
+    })
   }
   correct()
   _CIRCLE_INDEX++
@@ -186,8 +197,8 @@ answerBtn.addEventListener('click', function () {
     countriesContainer.classList.add("zoomIn")
   }, 500);
 
-  
-  
+
+
 
 })
 
@@ -202,7 +213,7 @@ function endGame(questions) {
 
   if (_CIRCLE_INDEX === questions) {
     finished = true
-    
+
   }
 }
 

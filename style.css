@@ -217,13 +217,15 @@ ul li label {
 }
 
 .odometer {
-  margin: 4rem;
-  font-size: 50px;
+  
+  margin: 5rem ;
+  font-size: 4rem;
 }
 
 /**************************************** Modal ****************************************/
 
 .modalDialog {
+  text-align: center;
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;
   top: 0;
@@ -231,7 +233,7 @@ ul li label {
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.8);
-  z-index: -1;
+  z-index: -2;
   opacity: 0;
   -webkit-transition: opacity 600ms ease-in;
   -moz-transition: opacity 600ms ease-in;
@@ -257,7 +259,7 @@ ul li label {
   background: -o-linear-gradient(#fff, #999);
 }
 
-.close {
+/* .close {
   background: #606061;
   color: #FFFFFF;
   line-height: 25px;
@@ -279,7 +281,13 @@ ul li label {
 .close:hover {
   background: #00d9ff;
 }
-
+ */
+.percent {
+  
+  font-size: 3rem;
+  margin-left: -5rem;
+  
+}
 /**************************************** Animations ****************************************/
 
 .bounceInDown {

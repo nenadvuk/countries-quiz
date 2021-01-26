@@ -11,6 +11,7 @@ const radios = document.querySelectorAll('.answer')
 const regionEl = document.getElementById('region-name')
 const regions = document.querySelectorAll('.regions')
 const titleText = document.querySelector('.title-text')
+const goodScore = document.getElementById('good-score')
 
 const flag = document.getElementById('flag')
 const resOne = document.getElementById('res-1')
@@ -51,7 +52,7 @@ let regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
 countriesContainer.style.display = "none"
 countryList.style.display = "none"
 progressBox.style.display = "none"
-
+goodScore.style.display = "none"
 
 // If South American region is chosen number of questions is 5
 regionEl.addEventListener('change', (e) => {
@@ -154,11 +155,23 @@ answerBtn.addEventListener('click', () => {
     setTimeout(() => {
       modal.style.opacity = "1"
       modal.style.zIndex = '99';
+
     }, 1000)
 
     setTimeout(() => {
       !S_America ? odometer.innerHTML = score * 10 :
         odometer.innerHTML = score * 20
+      if (!S_America) {
+        if (score >= 8) {
+          goodScore.style.display = "block"
+        }
+      }
+      if (S_America) {
+        if (score >= 4) {
+          goodScore.style.display = "block"
+        }
+      }
+      
     }, 1500)
 
     newGame.addEventListener('click', () => {
@@ -168,7 +181,7 @@ answerBtn.addEventListener('click', () => {
   correct()
   _CIRCLE_INDEX++
 
-  // 
+  // Finishing the game after 10 or 5 questions
   !S_America ? endGame(9) : endGame(4)
 
   update()
@@ -190,7 +203,7 @@ answerBtn.addEventListener('click', () => {
 const deselectAnswers = () => radios.forEach(radio => radio.checked = false)
 
 // Funkcija za prekid dalje igre nakon 5/10 pitanja
-const endGame =(questions) => _CIRCLE_INDEX === questions ? finished = true : false
+const endGame = (questions) => _CIRCLE_INDEX === questions ? finished = true : false
 
 
 

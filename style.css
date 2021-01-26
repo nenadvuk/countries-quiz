@@ -36,11 +36,11 @@ body {
   align-items: center;
 }
 
-input:checked + label {
+input:checked+label {
   transition: .1s ease-in;
-  color:orangered;
-  
+  color: orangered;
 }
+
 /* :checked {
   transition: .2s ease-in;
   margin-left: 25px;
@@ -198,12 +198,12 @@ ul li label {
   cursor: pointer;
 }
 
-.title-text {
+.title-box {
   margin-top: 5rem;
   text-align: center;
 }
 
-.title-text p {
+.title-text {
   position: relative;
   font-family: sans-serif;
   text-transform: uppercase;
@@ -222,11 +222,6 @@ ul li label {
   height: 4rem;
 }
 
-.odometer {
-  
-  margin: 5rem ;
-  font-size: 4rem;
-}
 
 /**************************************** Modal ****************************************/
 
@@ -244,13 +239,12 @@ ul li label {
   -webkit-transition: opacity 600ms ease-in;
   -moz-transition: opacity 600ms ease-in;
   transition: opacity 600ms ease-in;
-  
 }
 
 .modalDialog:target {
   opacity: 1;
   pointer-events: auto;
-} 
+}
 
 .modalDialog>div {
   width: 30rem;
@@ -266,11 +260,30 @@ ul li label {
 }
 
 .percent {
-  
   font-size: 3rem;
   margin-left: -5rem;
-  
 }
+
+/**************************************** Odometer ****************************************/
+
+.odometer {
+  margin: 5rem;
+  font-size: 4rem;
+}
+
+.odometer.odometer-auto-theme .odometer-digit:last-child, .odometer.odometer-theme-car .odometer-digit:last-child {
+  background-image: -moz-linear-gradient(top, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
+  background-image: -webkit-linear-gradient(top, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
+  background-image: linear-gradient(to bottom, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
+  background-color: #eee0d3;
+  color: #eee0d3;
+}
+
+.odometer.odometer-auto-theme, .odometer.odometer-theme-car {
+  vertical-align: unset;
+}
+
+
 /**************************************** Animations ****************************************/
 
 .bounceInDown {
@@ -385,12 +398,4 @@ ul li label {
     width: 100%;
     object-fit: cover;
   }
-}
-
-.odometer.odometer-auto-theme .odometer-digit:last-child, .odometer.odometer-theme-car .odometer-digit:last-child {
-  background-image: -moz-linear-gradient(top, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
-  background-image: -webkit-linear-gradient(top, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
-  background-image: linear-gradient(to bottom, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
-  background-color: #eee0d3;
-  color: #eee0d3;
 }

@@ -115,7 +115,7 @@ function update() {
 
   setTimeout(function () {
     answerBtn.disabled = true;
-  }, 500);
+  }, 200);
 
   circles.forEach((circle, idx) => {
 

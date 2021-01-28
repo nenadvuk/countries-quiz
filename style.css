@@ -220,7 +220,8 @@ body {
 }
 
 .btn:focus {
-  outline: 0;
+  outline: none;
+  background-color: orangered!important;
 }
 
 .btn:active {
@@ -345,11 +346,11 @@ ul li label {
 .zoomOut {
   -webkit-animation-name: zoomOut;
   animation-name: zoomOut;
-  -webkit-animation-duration: .6s;
-  animation-duration: .6s;
+  -webkit-animation-duration: .8s;
+  animation-duration: .8s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  animation-delay: 3s;
+  animation-delay: 2s;
 }
 
 .zoomIn {
@@ -359,7 +360,7 @@ ul li label {
   animation-duration: .6s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  animation-delay: .4s;
+  animation-delay: .8s;
 }
 
 .fadeInLeftBig {

@@ -115,7 +115,7 @@ function update() {
 
   setTimeout(function () {
     answerBtn.disabled = true;
-  }, 200);
+  }, 100);
 
   circles.forEach((circle, idx) => {
 
@@ -190,11 +190,10 @@ btn.addEventListener('click', () => {
   regionEl.style.display = "none"
   getCountryData(randomCountry())
 
-
 })
 
 
-// If radio is checked answer button is no longer disabled
+// If radio button is checked answer button is no longer disabled
 radios.forEach(radio => radio.addEventListener('click', () =>
   answerBtn.disabled = false))
 

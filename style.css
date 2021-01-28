@@ -38,7 +38,9 @@ body {
 .loading-page {
   width: 30rem;
   margin: 40vh auto;
+  
 }
+
 
 .btn-glow {
   animation: fadeInLeftBig 2s;
@@ -170,7 +172,7 @@ body {
 .country__img {
   border-bottom: 1px solid;
   width: 40rem;
-  height: 23rem;
+  height: 26rem;
   object-fit: cover;
   background-color: #eee;
   border-top-left-radius: 0.7rem;
@@ -211,7 +213,7 @@ body {
   padding: 1rem 5rem;
   border-radius: 0.7rem;
   color: black;
-  background-color: orangered;
+  background-color: orangered!important;;
   cursor: pointer;
   width: 100%;
   font-family: inherit;
@@ -264,6 +266,8 @@ ul li label {
 
 .form-control {
   height: 4rem;
+  overflow: hidden;
+  
 }
 
 .form-control:focus {
@@ -346,11 +350,11 @@ ul li label {
 .zoomOut {
   -webkit-animation-name: zoomOut;
   animation-name: zoomOut;
-  -webkit-animation-duration: .8s;
-  animation-duration: .8s;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  animation-delay: 2s;
+  animation-delay: 2s; 
 }
 
 .zoomIn {
@@ -360,7 +364,7 @@ ul li label {
   animation-duration: .6s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  animation-delay: .8s;
+  animation-delay: 1s;
 }
 
 .fadeInLeftBig {

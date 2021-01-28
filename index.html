@@ -7,13 +7,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link href="https://github.hubspot.com/odometer/themes/odometer-theme-car.css" rel="stylesheet">
   <script src="https://github.hubspot.com/odometer/odometer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="style.css" />
   <title>Countries Quiz</title>
 </head>
 
 <body>
 
-
+  <div class="loading-page">
+    <button class="btn-glow" id="btn-country" >Guess the country <br>
+    <button class="btn-glow" id="btn-capital" style="animation-delay: 200ms;">Guess the capital <br>
+    <button class="btn-glow" id="btn-flag" style="animation-delay: 400ms;">Guess the flag <br>
+  </div>
   <main class="container-box">
     <div class="result-box">
 
@@ -62,7 +67,7 @@
                 <label for="d" id="res-4">Question</label>
               </li>
             </ul>
-            <button id="answer-btn" class="btn-country">Answer
+            <button id="answer-btn" class="btn">Answer
           </div>
         </article>
       </div>
@@ -322,7 +327,7 @@
         <option value="Zambia" class="africa">Zambia</option>
         <option value="Zimbabwe" class="africa">Zimbabwe</option>
       </select>
-      <button id="search" class="btn-country">Play</button><br>
+      <button id="search" class="btn">Play</button><br>
       <a href="#openModal"></a>
 
       <div id="openModal" class="modalDialog">
@@ -330,7 +335,7 @@
           <h1>YOUR SCORE</h1>
           <div id="odometer" class="odometer"></div>
           <span class="percent">%</span><br>
-          <button id="new-game" class="btn-country">New Game</button><br><br>
+          <button id="new-game" class="btn">New Game</button><br><br>
           <h1 id="good-score" class="title-text">Congratulations</h1>
         </div>
       </div>

@@ -1,17 +1,21 @@
 
 
 const btn = document.querySelector('#search')
-const rnd = document.querySelector('#random-country')
 const newGame = document.getElementById('new-game')
+const answerBtn = document.getElementById('answer-btn')
+const btnCountry = document.getElementById('btn-country')
+const btnCapital = document.getElementById('btn-capital')
+const btnFlag = document.getElementById('btn-flag')
 
 const countriesContainer = document.querySelector('.countries')
+const allContent = document.querySelector('.container-box')
 const countryList = document.getElementById('country-name')
-const answerBtn = document.getElementById('answer-btn')
 const radios = document.querySelectorAll('.answer')
 const regionEl = document.getElementById('region-name')
 const regions = document.querySelectorAll('.regions')
 const titleText = document.querySelector('.title-text')
 const goodScore = document.getElementById('good-score')
+const load = document.querySelector('.loading-page')
 
 const flag = document.getElementById('flag')
 const resOne = document.getElementById('res-1')
@@ -33,7 +37,15 @@ const southAmerica = document.querySelectorAll('.south_america')
 const oceania = document.querySelectorAll('.oceania')
 
 const odometer = document.getElementById('odometer')
-/* const worlds = document.querySelectorAll('#country-name') */
+
+/* const worlds = document.querySelectorAll('#country-name') 
+let world = countryList[Math.floor(Math.random() * countryList.length)].value;
+console.log(world)
+for(let c of countryList) {
+  console.log(c.value)
+
+} 
+*/
 
 let correctAnswer
 let score = 0
@@ -53,6 +65,38 @@ countriesContainer.style.display = "none"
 countryList.style.display = "none"
 progressBox.style.display = "none"
 goodScore.style.display = "none"
+allContent.style.display = "none"
+
+
+btnCountry.addEventListener('click', () => {
+
+
+  setTimeout(() => {
+    start()
+  }, 500);
+
+
+})
+
+btnCapital.addEventListener('click', () => {
+
+  setTimeout(() => {
+    start()
+  }, 500);
+
+
+
+
+})
+
+const start = () => {
+
+  load.classList.add("zoomOut")
+  load.style.display = "none"
+  allContent.style.display = "block"
+  allContent.classList.add("zoomIn")
+
+}
 
 // If South American region is chosen number of questions is 5
 regionEl.addEventListener('change', (e) => {
@@ -62,9 +106,9 @@ regionEl.addEventListener('change', (e) => {
       circles[i].remove()
       endGame(4)
     }
-  } else if (e.target.value == 6) {
+  } /* else if (e.target.value == 6) {
     world = true
-  }
+  } */
 
 })
 
@@ -125,10 +169,8 @@ btn.addEventListener('click', () => {
     countries.push(country.value)
 
   }
-
   // New array for manipulating
   _CARR = countries
-
 
   progressBox.style.display = "flex"
   progressBox.classList.add("zoomIn")
@@ -171,7 +213,7 @@ answerBtn.addEventListener('click', () => {
           goodScore.style.display = "block"
         }
       }
-      
+
     }, 1500)
 
     newGame.addEventListener('click', () => {
@@ -237,9 +279,14 @@ function randomCountry() {
 function getCountryData(country) {
 
   // Getting country name and flag from REST COUNTRIES API 
-  const request = new XMLHttpRequest()
-  request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`)
-  request.send()
+  axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
+    .then(res => {
+      flag.src = res.data[0].flag
+
+    })
+    .catch(err => {
+      console.log("error", err)
+    })
 
   let rndNmb = [];
   for (let i = 0; i <= 3; i++) {
@@ -250,20 +297,15 @@ function getCountryData(country) {
     }
   }
 
-  request.addEventListener('load', function () {
+  let arr = [country, _CARR[rndNmb[0]], _CARR[rndNmb[1]], _CARR[rndNmb[2]]]
+  shuffle(arr)
+  correctAnswer = arr.indexOf(country)
+  resOne.innerHTML = arr[0]
+  resTwo.innerHTML = arr[1]
+  resThree.innerHTML = arr[2]
+  resFour.innerHTML = arr[3]
 
-    const [data] = JSON.parse(this.responseText)
-    console.log(data.name)
-    let arr = [country, _CARR[rndNmb[0]], _CARR[rndNmb[1]], _CARR[rndNmb[2]]]
-    shuffle(arr)
-    correctAnswer = arr.indexOf(country)
-    flag.src = data.flag
-    resOne.innerHTML = arr[0]
-    resTwo.innerHTML = arr[1]
-    resThree.innerHTML = arr[2]
-    resFour.innerHTML = arr[3]
 
-  })
 }
 
 

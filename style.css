@@ -40,7 +40,6 @@ body {
   margin: 40vh auto;
 }
 
-
 .btn-glow {
   animation: fadeInLeftBig 2s;
   animation-fill-mode: backwards;
@@ -58,7 +57,6 @@ body {
   z-index: 0;
   border-radius: 10px;
   font-size: 2rem;
-  
 }
 
 .btn-glow:before {
@@ -80,7 +78,6 @@ body {
 
 .btn-glow:active {
   transform: scale(0.98);
-  
 }
 
 .btn-glow:hover:before {
@@ -92,12 +89,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
-input:checked+label {
-  transition: .1s ease-in;
-  color: orangered;
-}
-
 
 /*************************************** Progress bar ***************************************/
 
@@ -274,6 +265,10 @@ ul li label {
   height: 4rem;
 }
 
+.form-control:focus {
+  outline: none;
+}
+
 /**************************************** Modal ****************************************/
 
 .modalDialog {
@@ -350,10 +345,11 @@ ul li label {
 .zoomOut {
   -webkit-animation-name: zoomOut;
   animation-name: zoomOut;
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s;
+  -webkit-animation-duration: .6s;
+  animation-duration: .6s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+  animation-delay: 3s;
 }
 
 .zoomIn {
@@ -461,11 +457,8 @@ ul li label {
     opacity: 1;
     -webkit-transform: none;
     transform: none;
-    
   }
-
 }
-
 
 @keyframes glowing {
   0% {
@@ -478,7 +471,6 @@ ul li label {
     background-position: 0 0;
   }
 }
-
 
 @media only screen and (max-width: 425px) {
   .container-box {

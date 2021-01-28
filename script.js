@@ -22,6 +22,7 @@ const resOne = document.getElementById('res-1')
 const resTwo = document.getElementById('res-2')
 const resThree = document.getElementById('res-3')
 const resFour = document.getElementById('res-4')
+const resArray = [resOne, resTwo, resThree, resFour]
 const result = document.getElementById('res')
 
 const progress = document.getElementById('progress')
@@ -38,20 +39,15 @@ const oceania = document.querySelectorAll('.oceania')
 
 const odometer = document.getElementById('odometer')
 
-/* const worlds = document.querySelectorAll('#country-name') 
-let world = countryList[Math.floor(Math.random() * countryList.length)].value;
-console.log(world)
-for(let c of countryList) {
-  console.log(c.value)
-
-} 
-*/
+// Preventing to go to next question without answer
+answerBtn.disabled = true;
 
 let correctAnswer
 let score = 0
 let countries = []
 let finished = false
 let S_America = false
+let checkedField = false
 /* let world = false */
 
 // CountriesArray
@@ -83,8 +79,6 @@ btnCapital.addEventListener('click', () => {
   setTimeout(() => {
     start()
   }, 500);
-
-
 
 
 })
@@ -119,6 +113,10 @@ let _CIRCLE_INDEX = 0
 // funcion which changin style of circles and progress bar
 function update() {
 
+  setTimeout(function () {
+    answerBtn.disabled = true;
+  }, 500);
+
   circles.forEach((circle, idx) => {
 
     if (idx < _CIRCLE_INDEX) {
@@ -140,14 +138,22 @@ function update() {
 const shuffle = (array) => array.sort(() => Math.random() - 0.5)
 
 
-// Fuction which determines if answer is correct an changing styles of circles
+// Function which determines if answer is correct and changing styles of circles
 function correct() {
+
   let userAnswer = getSelected()
-  console.log(finished)
   if (userAnswer == correctAnswer) {
     score++;
     circles[_CIRCLE_INDEX].style.border = '3px solid #52E80C'
-  } else circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
+    resArray[correctAnswer].style.color = 'green'
+    resArray[correctAnswer].innerHTML += '✔️'
+  } else {
+    circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
+    resArray[correctAnswer].style.color = 'green'
+    resArray[userAnswer].style.color = 'red'
+    resArray[userAnswer].innerHTML += '❌'
+  }
+
   if (finished) {
     setTimeout(function () {
       countriesContainer.style.display = "none"
@@ -160,6 +166,7 @@ function correct() {
 
 // Buttons
 btn.addEventListener('click', () => {
+
 
   // Chosen region
   _CHOSEN = regionArr[regionEl.value]
@@ -187,17 +194,20 @@ btn.addEventListener('click', () => {
 })
 
 
+// If radio is checked answer button is no longer disabled
+radios.forEach(radio => radio.addEventListener('click', () =>
+  answerBtn.disabled = false))
+
+
 // Answer button
 // Dugme za odgovor
+
 answerBtn.addEventListener('click', () => {
 
-
   if (finished) {
-
     setTimeout(() => {
       modal.style.opacity = "1"
       modal.style.zIndex = '99';
-
     }, 1000)
 
     setTimeout(() => {
@@ -231,9 +241,10 @@ answerBtn.addEventListener('click', () => {
   countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
     countriesContainer.className = 'zoomOut'
 
-  deselectAnswers()
+
   setTimeout(() => {
     getCountryData(randomCountry())
+    deselectAnswers()
     countriesContainer.classList.add("zoomIn")
   }, 500)
 
@@ -242,11 +253,13 @@ answerBtn.addEventListener('click', () => {
 
 // Reset cheched field
 // Resetovanje oznacenog polja
-const deselectAnswers = () => radios.forEach(radio => radio.checked = false)
+const deselectAnswers = () => {
+  radios.forEach(radio => radio.checked = false)
+  resArray.forEach(res => res.style.color = '#555')
+}
 
 // Funkcija za prekid dalje igre nakon 5/10 pitanja
 const endGame = (questions) => _CIRCLE_INDEX === questions ? finished = true : false
-
 
 
 // Getting checked field 

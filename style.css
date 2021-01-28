@@ -15,6 +15,11 @@ html {
   touch-action: manipulation;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
 body {
   background-image: url(./assets/world.jpg);
   background-size: cover;

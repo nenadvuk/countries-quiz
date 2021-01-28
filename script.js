@@ -145,12 +145,12 @@ function correct() {
   if (userAnswer == correctAnswer) {
     score++;
     circles[_CIRCLE_INDEX].style.border = '3px solid #52E80C'
-    resArray[correctAnswer].style.color = 'green'
+    resArray[correctAnswer].style.color = '#52E80C'
     resArray[correctAnswer].innerHTML += '✔️'
   } else {
     circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
-    resArray[correctAnswer].style.color = 'green'
-    resArray[userAnswer].style.color = 'red'
+    resArray[correctAnswer].style.color = '#52E80C'
+    resArray[userAnswer].style.color = '#FF0000'
     resArray[userAnswer].innerHTML += '❌'
   }
 
@@ -245,7 +245,7 @@ answerBtn.addEventListener('click', () => {
     getCountryData(randomCountry())
     deselectAnswers()
     countriesContainer.classList.add("zoomIn")
-  }, 500)
+  }, 700)
 
 
 })

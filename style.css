@@ -172,7 +172,7 @@ body {
 
 .country__img {
   border-bottom: 1px solid;
-  width: 40rem;
+  width: 100%;
   height: 26rem;
   object-fit: cover;
   background-color: #eee;

@@ -38,9 +38,7 @@ body {
 .loading-page {
   width: 30rem;
   margin: 40vh auto;
-  
 }
-
 
 .btn-glow {
   animation: fadeInLeftBig 2s;
@@ -215,7 +213,8 @@ body {
   padding: 1rem 5rem;
   border-radius: 0.7rem;
   color: black;
-  background-color: orangered!important;;
+  background-color: orangered!important;
+  ;
   cursor: pointer;
   width: 100%;
   font-family: inherit;
@@ -233,6 +232,8 @@ body {
 }
 
 ul {
+  outline: none;
+  border: none;
   list-style-type: none;
   padding: 0;
 }
@@ -243,6 +244,7 @@ ul li {
 }
 
 ul li label {
+  user-select: none;
   cursor: pointer;
 }
 
@@ -269,7 +271,6 @@ ul li label {
 .form-control {
   height: 4rem;
   overflow: hidden;
-  
 }
 
 .form-control:focus {
@@ -356,7 +357,7 @@ ul li label {
   animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  animation-delay: 2s; 
+  animation-delay: 2s;
 }
 
 .zoomIn {

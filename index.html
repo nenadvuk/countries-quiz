@@ -16,7 +16,7 @@
 
   <div class="loading-page">
     <button class="btn-glow" id="btn-country" >Guess the country <br>
-    <button class="btn-glow" disabled id="btn-capital" style="animation-delay: 200ms;">Guess the capital <br>
+    <button class="btn-glow" id="btn-capital" style="animation-delay: 200ms;">Guess the capital <br>
     <button class="btn-glow" disabled id="btn-flag" style="animation-delay: 400ms;">Guess the flag <br>
   </div>
   <main class="container-box">
@@ -45,7 +45,7 @@
         <article class="country-div">
           <img class="country__img" id="flag" src="">
           <div class="country__data">
-            <h2>Guess the country</h2><br>
+            <h2 id="game-mode"></h2><br>
             <ul>
               <li>
                 <input type="radio" name="answer" id="0" class="answer">
@@ -73,13 +73,12 @@
       </div>
 
       <select id="region-name" name="region" class="form-control">
-
-        <option value="0" class="regions">Europe</option>
-        <option value="1" class="regions">Asia</option>
-        <option value="2" class="regions">Africa</option>
-        <option value="3" class="regions">North America</option>
-        <option value="4" class="regions" id="south-am">South America</option>
-        <option value="5" class="regions">Oceania</option>
+        <option value="0" class="regions">★✩✩ Europe </option>
+        <option value="1" class="regions">★★☆ Asia </option>
+        <option value="2" class="regions">★★★ Africa</option>
+        <option value="3" class="regions">★★☆ North America</option>
+        <option value="4" class="regions" id="south-am">★☆☆ South America</option>
+        <option value="5" class="regions">★★★ Oceania</option>
        <!--  <option value="6" class="regions">The Whole World</option> -->
 
       </select>

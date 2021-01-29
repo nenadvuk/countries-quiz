@@ -16,6 +16,7 @@ const regions = document.querySelectorAll('.regions')
 const titleText = document.querySelector('.title-text')
 const goodScore = document.getElementById('good-score')
 const load = document.querySelector('.loading-page')
+const gameMode = document.getElementById('game-mode')
 
 const flag = document.getElementById('flag')
 const resOne = document.getElementById('res-1')
@@ -40,23 +41,29 @@ const oceania = document.querySelectorAll('.oceania')
 const odometer = document.getElementById('odometer')
 
 // Preventing to go to next question without answer
-answerBtn.disabled = true;
+answerBtn.style.pointerEvents = 'none'
+
+
+let _GAME_COUNTRIES = false
+let _GAME_CAPITALS = false
+
 
 let correctAnswer
 let score = 0
-let countries = []
 let finished = false
 let S_America = false
 let checkedField = false
 /* let world = false */
 
-// CountriesArray
-let _CARR = []
-
+let countries = []
+let capitals = []
+let _COUNTRIES_ARRAY = []
+let _CAPITALS_ARRAY = []
 // Regions array
 let regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
 
 
+// On start
 countriesContainer.style.display = "none"
 countryList.style.display = "none"
 progressBox.style.display = "none"
@@ -66,20 +73,20 @@ allContent.style.display = "none"
 
 btnCountry.addEventListener('click', () => {
 
-
+  _GAME_COUNTRIES = true
   setTimeout(() => {
     start()
   }, 500);
-
 
 })
 
 btnCapital.addEventListener('click', () => {
 
+  _GAME_COUNTRIES = true
+  _GAME_CAPITALS = true
   setTimeout(() => {
     start()
   }, 500);
-
 
 })
 
@@ -94,6 +101,7 @@ const start = () => {
 
 // If South American region is chosen number of questions is 5
 regionEl.addEventListener('change', (e) => {
+
   if (e.target.value == 4) {
     S_America = true
     for (let i = 5; i < circles.length; i++) {
@@ -113,19 +121,14 @@ let _CIRCLE_INDEX = 0
 // funcion which changin style of circles and progress bar
 function update() {
 
-  setTimeout(function () {
-    answerBtn.disabled = true;
-  }, 100);
-
+  answerBtn.style.pointerEvents = 'none'
   circles.forEach((circle, idx) => {
 
     if (idx < _CIRCLE_INDEX) {
       circle.classList.add('active')
     }
   })
-
   let actives = document.querySelectorAll('.active')
-
   if (!S_America) {
     progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%'
   } else {
@@ -153,7 +156,6 @@ function correct() {
     resArray[userAnswer].style.color = '#FF0000'
     resArray[userAnswer].innerHTML += '❌'
   }
-
   if (finished) {
     setTimeout(function () {
       countriesContainer.style.display = "none"
@@ -167,17 +169,20 @@ function correct() {
 // Buttons
 btn.addEventListener('click', () => {
 
-
   // Chosen region
   _CHOSEN = regionArr[regionEl.value]
-
-  // Creating array of countries
+  // Creating an array of countries
   for (let country of _CHOSEN) {
     countries.push(country.value)
 
   }
-  // New array for manipulating
-  _CARR = countries
+  // Creating an array of capitals
+  for (let country of _CHOSEN) {
+    capitals.push(country.id)
+  }
+  // New arrays for manipulating
+  _COUNTRIES_ARRAY = countries
+  _CAPITALS_ARRAY = capitals
 
   progressBox.style.display = "flex"
   progressBox.classList.add("zoomIn")
@@ -195,7 +200,7 @@ btn.addEventListener('click', () => {
 
 // If radio button is checked answer button is no longer disabled
 radios.forEach(radio => radio.addEventListener('click', () =>
-  answerBtn.disabled = false))
+  answerBtn.style.pointerEvents = 'all'))
 
 
 // Answer button
@@ -231,7 +236,6 @@ answerBtn.addEventListener('click', () => {
   }
   correct()
   _CIRCLE_INDEX++
-
   // Finishing the game after 10 or 5 questions
   !S_America ? endGame(9) : endGame(4)
 
@@ -240,21 +244,21 @@ answerBtn.addEventListener('click', () => {
   countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
     countriesContainer.className = 'zoomOut'
 
-
   setTimeout(() => {
     getCountryData(randomCountry())
     deselectAnswers()
     countriesContainer.classList.add("zoomIn")
   }, 700)
 
-
 })
 
 // Reset cheched field
 // Resetovanje oznacenog polja
 const deselectAnswers = () => {
+
   radios.forEach(radio => radio.checked = false)
   resArray.forEach(res => res.style.color = '#555')
+
 }
 
 // Funkcija za prekid dalje igre nakon 5/10 pitanja
@@ -263,15 +267,15 @@ const endGame = (questions) => _CIRCLE_INDEX === questions ? finished = true : f
 
 // Getting checked field 
 const getSelected = () => {
-  let answer
 
+  let answer
   radios.forEach(radio => {
     if (radio.checked) {
       answer = radio.id
     }
   })
-
   return answer
+
 }
 
 
@@ -280,43 +284,51 @@ const getSelected = () => {
    da bi se izbeglo ponavljanje istog pitanja */
 
 function randomCountry() {
-
-  randC = _CARR[Math.floor(Math.random() * _CARR.length)]
-  index = _CARR.indexOf(randC)
-  _CARR.splice(index, 1)
+  
+  randC = _COUNTRIES_ARRAY[Math.floor(Math.random() * _COUNTRIES_ARRAY.length)]
+  index = _COUNTRIES_ARRAY.indexOf(randC)
+  _COUNTRIES_ARRAY.splice(index, 1)
   return randC
 
 }
 
 function getCountryData(country) {
 
-  // Getting country name and flag from REST COUNTRIES API 
-  axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
-    .then(res => {
-      flag.src = res.data[0].flag
-
-    })
-    .catch(err => {
-      console.log("error", err)
-    })
-
   let rndNmb = [];
   for (let i = 0; i <= 3; i++) {
-    let number = Math.floor(Math.random() * _CARR.length);
+    let number = Math.floor(Math.random() * _COUNTRIES_ARRAY.length);
     let genNumber = rndNmb.indexOf(number);
     if (genNumber === -1) {
       rndNmb.push(number);
     }
   }
 
-  let arr = [country, _CARR[rndNmb[0]], _CARR[rndNmb[1]], _CARR[rndNmb[2]]]
-  shuffle(arr)
-  correctAnswer = arr.indexOf(country)
-  resOne.innerHTML = arr[0]
-  resTwo.innerHTML = arr[1]
-  resThree.innerHTML = arr[2]
-  resFour.innerHTML = arr[3]
+  // Getting country name and flag from REST COUNTRIES API 
+  axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
+    .then(res => {
+      flag.src = res.data[0].flag
+      capital = res.data[0].capital
+      if (_GAME_CAPITALS) {
+        gameMode.innerHTML = `Capital of ${country}?`
+        _CORRECT = capital
+        _RANDOM = _CAPITALS_ARRAY
+      } else {
+        gameMode.innerHTML = 'Guess the country'
+        _CORRECT = country
+        _RANDOM = _COUNTRIES_ARRAY
+      }
 
+      let arr = [_CORRECT, _RANDOM[rndNmb[0]], _RANDOM[rndNmb[1]], _RANDOM[rndNmb[2]]]
+      shuffle(arr)
+      correctAnswer = arr.indexOf(_CORRECT)
+      resOne.innerHTML = arr[0]
+      resTwo.innerHTML = arr[1]
+      resThree.innerHTML = arr[2]
+      resFour.innerHTML = arr[3]
+    })
+    .catch(err => {
+      console.log("error", err)
+    })
 
 }
 

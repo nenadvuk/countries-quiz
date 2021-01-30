@@ -284,16 +284,19 @@ const getSelected = () => {
    da bi se izbeglo ponavljanje istog pitanja */
 
 function randomCountry() {
-  
+
   randC = _COUNTRIES_ARRAY[Math.floor(Math.random() * _COUNTRIES_ARRAY.length)]
   index = _COUNTRIES_ARRAY.indexOf(randC)
   _COUNTRIES_ARRAY.splice(index, 1)
+  _CAPITALS_ARRAY.splice(index, 1)
   return randC
 
 }
 
 function getCountryData(country) {
 
+  // Niz od 4 nasumicna broja koja korisitim za nasumicne odgovore iz niza _COUNTRIES_ARRAY
+  // koji se svakim klikom smanjuje za jednu drzavu koja je bila u prethodnom pitanju
   let rndNmb = [];
   for (let i = 0; i <= 3; i++) {
     let number = Math.floor(Math.random() * _COUNTRIES_ARRAY.length);
@@ -302,6 +305,9 @@ function getCountryData(country) {
       rndNmb.push(number);
     }
   }
+  console.log(rndNmb)
+  console.log(_COUNTRIES_ARRAY.length)
+  console.log(_CAPITALS_ARRAY.length)
 
   // Getting country name and flag from REST COUNTRIES API 
   axios.get(`https://restcountries.eu/rest/v2/name/${country}`)

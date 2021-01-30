@@ -95,7 +95,7 @@ const start = () => {
   load.classList.add("zoomOut")
   load.style.display = "none"
   allContent.style.display = "block"
-  allContent.classList.add("zoomIn")
+  allContent.classList.add("bounceInDown")
 
 }
 

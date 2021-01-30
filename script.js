@@ -37,6 +37,8 @@ const africa = document.querySelectorAll('.africa')
 const northAmerica = document.querySelectorAll('.north_america')
 const southAmerica = document.querySelectorAll('.south_america')
 const oceania = document.querySelectorAll('.oceania')
+// Regions array
+let regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
 
 const odometer = document.getElementById('odometer')
 
@@ -59,8 +61,7 @@ let countries = []
 let capitals = []
 let _COUNTRIES_ARRAY = []
 let _CAPITALS_ARRAY = []
-// Regions array
-let regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
+
 
 
 // On start
@@ -149,7 +150,7 @@ function correct() {
     score++;
     circles[_CIRCLE_INDEX].style.border = '3px solid #52E80C'
     resArray[correctAnswer].style.color = '#52E80C'
-    resArray[correctAnswer].innerHTML += '✔️'
+    resArray[correctAnswer].innerHTML += '✅'
   } else {
     circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
     resArray[correctAnswer].style.color = '#52E80C'

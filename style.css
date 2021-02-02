@@ -105,7 +105,7 @@ img.pin {
   left: 0;
   height: 100%;
   width: auto;
-  z-index: -1;
+  z-index: -100;
   opacity: .5;
   overflow: hidden;
   text-align: center;
@@ -638,16 +638,6 @@ ul li label {
 /**************************************** Mobile *******************************************/
 
 
-@media only screen and (max-width:50em) {
-  .bg-video {
-    width: 70%;
-    height: 100%;
-    object-fit: cover;
-    min-height: 60vh;
-  }
-}
-
-
 @media only screen and (max-width: 425px) {
   .container-box {
     display: inline-block;
@@ -684,5 +674,11 @@ ul li label {
     
   }
 
+  .bg-video {
+    width: 70%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 60vh;
+  }
   
 }

@@ -56,7 +56,7 @@ body {
 
 /*************************************** Pins ***************************************/
 
-body.pins-container{
+/* body.pins-container{
   position: relative;
   z-index: -100;
 }
@@ -94,7 +94,30 @@ img.pin {
       opacity: 1;
   }
 }
+ */
 
+/*************************************** Video ***************************************/
+
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  z-index: -1;
+  opacity: .6;
+  overflow: hidden;
+  text-align: center;
+  justify-content: center;
+  min-width: 100%;
+}
+
+.bg-video-content {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 
 /*************************************** Progress bar ***************************************/
 
@@ -610,6 +633,8 @@ ul li label {
   }
 }
 
+/**************************************** Mobile *******************************************/
+
 @media only screen and (max-width: 425px) {
   .container-box {
     display: inline-block;
@@ -645,4 +670,6 @@ ul li label {
     top: 12rem;
     
   }
+
+  
 }

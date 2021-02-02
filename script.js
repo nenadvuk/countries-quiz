@@ -83,7 +83,7 @@ counter.style.display = 'none'
 
 
 // Random pins in background
-const pins = document.querySelector('.pins-container')
+/* const pins = document.querySelector('.pins-container')
 const min = 15
 const max = 85
 const randomPins = () => {
@@ -106,7 +106,7 @@ for (let i = 0; i < 30; i++) {
   pins.appendChild(el)
 }
 
-
+*/
 
 btnCountry.addEventListener('click', () => {
 

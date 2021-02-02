@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
-
-
 :root {
   --line-border-fill: #850DFF;
   --line-border-empty: gray;
@@ -98,9 +96,8 @@ img.pin {
 
 /*************************************** Video ***************************************/
 
-
 .bg-video {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   height: 100%;
@@ -110,7 +107,13 @@ img.pin {
   overflow: hidden;
   text-align: center;
   justify-content: center;
-  min-width: 100%;
+  min-width: 100%; */
+  opacity: .5;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .bg-video-content {
@@ -118,8 +121,6 @@ img.pin {
   width: 100%;
   object-fit: cover;
 }
-
-
 
 /*************************************** Progress bar ***************************************/
 
@@ -218,7 +219,6 @@ img.pin {
 
 .country__name {
   font-size: 3rem;
-  
 }
 
 .country__region {
@@ -637,48 +637,40 @@ ul li label {
 
 /**************************************** Mobile *******************************************/
 
-
 @media only screen and (max-width: 425px) {
   .container-box {
     display: inline-block;
   }
-
   .progress-container {
     margin-left: 5px;
     width: 45rem;
   }
-
   .progress-container::before {
     height: 1px;
   }
-
   .circle {
     height: 2.5rem;
     width: 2.5rem;
     font-size: 1rem;
     border: 1px solid var(--line-border-empty);
   }
-
   .country__img {
     width: 100%;
     object-fit: cover;
   }
-
   .loading-page {
     width: 30rem;
     margin: 35vh auto;
   }
-  
   .counter {
     top: 12rem;
-    
   }
-
   .bg-video {
-    width: 70%;
+    width: 100%;
     height: 100%;
-    object-fit: cover;
-    min-height: 60vh;
+    /* min-height: 60vh; */
   }
-  
+  .form-control {
+    height: 4rem;
+  }
 }

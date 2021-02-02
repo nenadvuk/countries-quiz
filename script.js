@@ -132,7 +132,7 @@ const start = () => {
   load.classList.add("zoomOut")
   load.style.display = "none"
   allContent.style.display = "block"
-  
+  allContent.classList.add("bounceInDown")
 }
 
 // If South American region is chosen number of questions is 5

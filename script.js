@@ -1,5 +1,6 @@
 
 
+// Buttons
 const btn = document.querySelector('#search')
 const newGame = document.getElementById('new-game')
 const answerBtn = document.getElementById('answer-btn')
@@ -26,11 +27,14 @@ const resFour = document.getElementById('res-4')
 const resArray = [resOne, resTwo, resThree, resFour]
 const result = document.getElementById('res')
 
+
+// Progress bar
 const progress = document.getElementById('progress')
 const progressBox = document.querySelector('.progress-container')
 const circles = document.querySelectorAll('.circle')
 const modal = document.getElementById('openModal')
 
+// Regions
 const europe = document.querySelectorAll('.europe')
 const asia = document.querySelectorAll('.asia')
 const africa = document.querySelectorAll('.africa')
@@ -45,23 +49,28 @@ const odometer = document.getElementById('odometer')
 // Preventing to go to next question without answer
 answerBtn.style.pointerEvents = 'none'
 
+// Counter variables
+const nums = document.querySelectorAll('.nums span')
+const counter = document.querySelector('.counter')
 
 let _GAME_COUNTRIES = false
 let _GAME_CAPITALS = false
 
-
+let timer
 let correctAnswer
 let score = 0
 let finished = false
 let S_America = false
 let checkedField = false
+
 /* let world = false */
 
 let countries = []
 let capitals = []
 let _COUNTRIES_ARRAY = []
 let _CAPITALS_ARRAY = []
-
+//  Progress bar
+let _CIRCLE_INDEX = 0
 
 
 // On start
@@ -70,6 +79,8 @@ countryList.style.display = "none"
 progressBox.style.display = "none"
 goodScore.style.display = "none"
 allContent.style.display = "none"
+counter.style.display = 'none'
+
 
 
 btnCountry.addEventListener('click', () => {
@@ -115,11 +126,39 @@ regionEl.addEventListener('change', (e) => {
 
 })
 
-//  Progress bar
-let _CIRCLE_INDEX = 0
+
+// Reseting counter after click event on answer button or autoamticly
+function resetCounter() {
+
+  counter.classList.remove('hide')
+  nums.forEach((num) => {
+    num.classList.value = ''
+  })
+  nums[0].classList.add('in')
+
+}
 
 
-// funcion which changin style of circles and progress bar
+function runCounter() {
+
+  nums.forEach((num, idx) => {
+    const nextToLast = nums.length - 1
+    num.addEventListener('animationend', (e) => {
+      if (e.animationName === 'goIn' && idx !== nextToLast) {
+        num.classList.remove('in')
+        num.classList.add('out')
+      } else if (e.animationName === 'goOut' && num.nextElementSibling) {
+        num.nextElementSibling.classList.add('in')
+      } else {
+        counter.classList.add('hide')
+
+      }
+    })
+  })
+}
+
+
+// funcion which changing style of circles and progress bar
 function update() {
 
   answerBtn.style.pointerEvents = 'none'
@@ -163,13 +202,15 @@ function correct() {
     }, 500);
 
   }
-
 }
-
 
 // Buttons
 btn.addEventListener('click', () => {
 
+  runCounter()
+  setTimeout(function () {
+    counter.style.display = 'block'
+  }, 2000);
   // Chosen region
   _CHOSEN = regionArr[regionEl.value]
   // Creating an array of countries
@@ -195,8 +236,81 @@ btn.addEventListener('click', () => {
   btn.style.display = "none"
   regionEl.style.display = "none"
   getCountryData(randomCountry())
-
+  // Counter is running until the end if player doesn't answer any question
+  timer = setInterval(() => {
+    if (!finished) {
+      noAnswer()
+    }
+  }, 14000)
+  
 })
+
+
+// Function which automaticly goes to the next question if player doesn't answer 
+// Timer is set to 10 seconds
+// 
+function noAnswer() {
+  
+  countriesContainer.className = 'zoomOut'
+  if (!finished) {
+    circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
+   
+  }
+  counter.style.display = 'none'
+  resetCounter()
+  !S_America ? endGame(9) : endGame(4)
+  _CIRCLE_INDEX++
+  update()
+  if (finished) {
+    clearInterval(timer)
+    gameOver()
+  }
+  setTimeout(function () {
+    if (!finished) {
+      countriesContainer.classList.add("zoomIn")
+      getCountryData(randomCountry())
+    }
+  }, 2000)
+  setTimeout(() => {
+    if (!finished) {
+      runCounter()
+      counter.style.display = 'block'
+    }
+  }, 4000)
+  
+}
+
+// Activating modal with score and percent of accuracy
+function gameOver() {
+ 
+  clearInterval(timer)
+  setTimeout(() => {
+    modal.style.opacity = "1"
+    modal.style.zIndex = '99'
+  }, 1000)
+
+  setTimeout(() => {
+
+    !S_America ? odometer.innerHTML = score * 10 :
+      odometer.innerHTML = score * 20
+    if (!S_America) {
+      if (score >= 8) {
+        goodScore.style.display = "block"
+      }
+    }
+    if (S_America) {
+      if (score >= 4) {
+        goodScore.style.display = "block"
+      }
+    }
+
+  }, 1500)
+
+  newGame.addEventListener('click', () => {
+    window.location.reload()
+  })
+
+}
 
 
 // If radio button is checked answer button is no longer disabled
@@ -206,50 +320,45 @@ radios.forEach(radio => radio.addEventListener('click', () =>
 
 // Answer button
 // Dugme za odgovor
-
 answerBtn.addEventListener('click', () => {
+  // On every click, timer is reset to default value(10s)
+  clearInterval(timer)
+  
+  setTimeout(function () {
+    counter.style.display = 'block'
+  }, 3000)
 
-  if (finished) {
-    setTimeout(() => {
-      modal.style.opacity = "1"
-      modal.style.zIndex = '99';
-    }, 1000)
-
-    setTimeout(() => {
-      !S_America ? odometer.innerHTML = score * 10 :
-        odometer.innerHTML = score * 20
-      if (!S_America) {
-        if (score >= 8) {
-          goodScore.style.display = "block"
-        }
-      }
-      if (S_America) {
-        if (score >= 4) {
-          goodScore.style.display = "block"
-        }
-      }
-
-    }, 1500)
-
-    newGame.addEventListener('click', () => {
-      window.location.reload()
-    })
-  }
+  !S_America ? endGame(9) : endGame(4)
   correct()
   _CIRCLE_INDEX++
-  // Finishing the game after 10 or 5 questions
-  !S_America ? endGame(9) : endGame(4)
+  console.log(finished)
+  if (!finished) {
+    counter.style.display = 'none'
+    resetCounter()
+    runCounter()
+    timer = setInterval(() => {
 
+      noAnswer()
+    }, 14000)
+
+  }
+  if (finished) {
+    clearInterval(timer)
+    gameOver()
+  }
+  
   update()
 
   countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
     countriesContainer.className = 'zoomOut'
+  if (!finished) {
+    setTimeout(() => {
+      getCountryData(randomCountry())
+      deselectAnswers()
+      countriesContainer.classList.add("zoomIn")
+    }, 700)
 
-  setTimeout(() => {
-    getCountryData(randomCountry())
-    deselectAnswers()
-    countriesContainer.classList.add("zoomIn")
-  }, 700)
+  }
 
 })
 
@@ -279,13 +388,16 @@ const getSelected = () => {
 
 }
 
-
 // Generating random country and deleting it from new array
 /* Generisanje nasumicne drzave i uklanjanje iste iz novog niza 
    da bi se izbeglo ponavljanje istog pitanja */
 
 function randomCountry() {
 
+  if (finished) {
+    clearInterval(timer)
+
+  }
   randC = _COUNTRIES_ARRAY[Math.floor(Math.random() * _COUNTRIES_ARRAY.length)]
   index = _COUNTRIES_ARRAY.indexOf(randC)
   _COUNTRIES_ARRAY.splice(index, 1)
@@ -295,6 +407,13 @@ function randomCountry() {
 }
 
 function getCountryData(country) {
+
+  if (finished) {
+    setTimeout(function () {
+      countriesContainer.style.display = "none"
+    }, 500);
+
+  }
 
   // Niz od 4 nasumicna broja koja korisitim za nasumicne odgovore iz niza _COUNTRIES_ARRAY
   // koji se svakim klikom smanjuje za jednu drzavu koja je bila u prethodnom pitanju
@@ -306,9 +425,9 @@ function getCountryData(country) {
       rndNmb.push(number);
     }
   }
-  console.log(rndNmb)
-  console.log(_COUNTRIES_ARRAY.length)
-  console.log(_CAPITALS_ARRAY.length)
+  // console.log(rndNmb)
+  // console.log(_COUNTRIES_ARRAY.length)
+  // console.log(_CAPITALS_ARRAY.length)
 
   // Getting country name and flag from REST COUNTRIES API 
   axios.get(`https://restcountries.eu/rest/v2/name/${country}`)

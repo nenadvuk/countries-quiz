@@ -24,6 +24,7 @@ button:disabled {
 }
 
 body {
+  -webkit-tap-highlight-color: transparent;
   background-image: url(./assets/world.jpg);
   background-size: cover;
   background-position: center;
@@ -64,11 +65,11 @@ img.pin {
   position: absolute;
   height: 2rem;
   width: 2rem;
-  animation: pinsWorld 2s linear 0s infinite normal;
-  -webkit-animation: pinsWorld 2s linear 0s infinite normal;
-  -moz-animation: pinsWorld 2s linear 0s infinite normal;
-  -ms-animation: pinsWorld 2s linear 0s infinite normal;
-  -o-animation: pinsWorld 2s linear 0s infinite normal;
+  animation: pinsWorld 3s linear 0s infinite normal;
+  -webkit-animation: pinsWorld 3s linear 0s infinite normal;
+  -moz-animation: pinsWorld 3s linear 0s infinite normal;
+  -ms-animation: pinsWorld 3s linear 0s infinite normal;
+  -o-animation: pinsWorld 3s linear 0s infinite normal;
 }
 
 @keyframes pinsWorld {
@@ -93,9 +94,6 @@ img.pin {
       opacity: 1;
   }
 }
-
-
-
 
 
 /*************************************** Progress bar ***************************************/
@@ -190,12 +188,12 @@ img.pin {
 }
 
 .country__data {
-  padding: 3.5rem 1.75rem 3rem 1.75rem;
+  padding: 1.5rem 2.75rem 2rem 2.75rem;
 }
 
 .country__name {
-  font-size: 2.7rem;
-  margin-bottom: 0.7rem;
+  font-size: 3rem;
+  
 }
 
 .country__region {

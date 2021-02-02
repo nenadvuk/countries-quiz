@@ -562,29 +562,42 @@ ul li label {
   }
 }
 
+/**************************************** Mobile /****************************************/
 @media only screen and (max-width: 425px) {
+
   .container-box {
     display: inline-block;
   }
+
   .progress-container {
     margin-left: 5px;
     width: 45rem;
   }
+
   .progress-container::before {
     height: 1px;
   }
+
   .circle {
     height: 2.5rem;
     width: 2.5rem;
     font-size: 1rem;
     border: 1px solid var(--line-border-empty);
   }
+
   .country__img {
     width: 100%;
     object-fit: cover;
   }
+
   .loading-page {
     width: 30rem;
     margin: 35vh auto;
   }
+  .counter {
+    top: 12rem;
+    
+  }
+  
+
 }

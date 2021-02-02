@@ -39,19 +39,69 @@ body {
 }
 
 .loading-page {
+  position: relative;
   width: 30rem;
   margin: 40vh auto;
+  z-index: 20;
 }
 
 .container-box {
+  position: relative;
+  z-index: 21;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/*************************************** Pins ***************************************/
+
+body.pins-container{
+  position: relative;
+  z-index: -100;
+}
+
+img.pin {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  animation: pinsWorld 2s linear 0s infinite normal;
+  -webkit-animation: pinsWorld 2s linear 0s infinite normal;
+  -moz-animation: pinsWorld 2s linear 0s infinite normal;
+  -ms-animation: pinsWorld 2s linear 0s infinite normal;
+  -o-animation: pinsWorld 2s linear 0s infinite normal;
+}
+
+@keyframes pinsWorld {
+  0% {
+      -webkit-transform: scale(1.0);
+      opacity: 1;
+  }
+  25% {
+      -webkit-transform: scale(0.5);
+      opacity: 0;
+  }
+  50% {
+      -webkit-transform: scale(1.0);
+      opacity: 1;
+  }
+  75% {
+      -webkit-transform: scale(0.5);
+      opacity: 0;
+  }
+  100% {
+      -webkit-transform: scale(1.0);
+      opacity: 1;
+  }
+}
+
+
+
+
+
 /*************************************** Progress bar ***************************************/
 
 .progress-container {
+  z-index: 1;
   margin: 2rem auto;
   display: flex;
   justify-content: space-between;
@@ -283,7 +333,7 @@ body {
   color: #000;
   cursor: pointer;
   position: relative;
-  z-index: 0;
+  z-index: 1000;
   border-radius: 10px;
   font-size: 2rem;
 }
@@ -562,9 +612,7 @@ ul li label {
   }
 }
 
-/**************************************** Mobile /****************************************/
 @media only screen and (max-width: 425px) {
-
   .container-box {
     display: inline-block;
   }
@@ -594,10 +642,9 @@ ul li label {
     width: 30rem;
     margin: 35vh auto;
   }
+  
   .counter {
     top: 12rem;
     
   }
-  
-
 }

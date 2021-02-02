@@ -82,6 +82,32 @@ allContent.style.display = "none"
 counter.style.display = 'none'
 
 
+// Random pins in background
+const pins = document.querySelector('.pins-container')
+const min = 15
+const max = 85
+const randomPins = () => {
+  
+  r = Math.floor(Math.random() * (max - min + 1)) + min;
+  console.log(r)
+  return r
+}
+
+for (let i = 0; i < 30; i++) {
+  const delay = Math.random() + 's';
+  const el = document.createElement('img')
+  el.src            = 'assets/map-pin.svg'
+  el.className      = 'pin'
+  el.style.top      = randomPins() + '%' 
+  el.style.left     = randomPins() + '%'
+  el.style.animationDelay       = delay
+  el.style.msAnimationDelay     = delay
+  el.style.webkitAnimationDelay = delay
+  el.style.monAnimationDelay    = delay
+  pins.appendChild(el)
+}
+
+
 
 btnCountry.addEventListener('click', () => {
 

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <!-- <div class="pins-container"></div> -->
+
   <div class="bg-video">
     <video class="bg-video-content" autoplay muted loop>
       <source src="assets/video-earth.mp4" type="video/mp4">
@@ -47,7 +47,9 @@
       <div class="circle">9</div>
       <div class="circle">10</div>
     </div>
-
+    <div class="current-score">
+      <div id="odometer" class="odometer"></div>
+    </div>
     <div class="container">
       <div class="countries">
         <article class="country-div">
@@ -94,268 +96,269 @@
           </div>
         </article>
       </div>
+      <div class="region-container">
+        <select id="region-name" name="region" class="form-control">
+          <option value="0" class="regions">★✩✩ Europe </option>
+          <option value="1" class="regions">★★☆ Asia </option>
+          <option value="2" class="regions">★★★ Africa</option>
+          <option value="3" class="regions">★★☆ North America</option>
+          <option value="4" class="regions" id="south-am">★☆☆ South America</option>
+          <option value="5" class="regions">★★★ Oceania</option>
+          <!--  <option value="6" class="regions">The Whole World</option> -->
 
-      <select id="region-name" name="region" class="form-control">
-        <option value="0" class="regions">★✩✩ Europe </option>
-        <option value="1" class="regions">★★☆ Asia </option>
-        <option value="2" class="regions">★★★ Africa</option>
-        <option value="3" class="regions">★★☆ North America</option>
-        <option value="4" class="regions" id="south-am">★☆☆ South America</option>
-        <option value="5" class="regions">★★★ Oceania</option>
-        <!--  <option value="6" class="regions">The Whole World</option> -->
-
-      </select>
-      <select id="country-name" name="con" class="form-control">
-        <option value="Afghanistan" class="asia" id="Kabul">Afghanistan</option>
-        <option value="Åland Islands">Åland Islands</option>
-        <option value="Albania" class="europe" id="Tirana">Albania</option>
-        <option value="Algeria" class="africa" id="Algiers">Algeria</option>
-        <option value="American Samoa" class="oceania" id="Pago Pago">American Samoa</option>
-        <option value="Andorra" class="europe" id="Andorra la Vella">Andorra</option>
-        <option value="Angola" class="africa" id="Luanda">Angola</option>
-        <option value="Anguilla" class="north_america" id="The Valley">Anguilla</option>
-        <option value="Antarctica">Antarctica</option>
-        <option value="Antigua and Barbuda" class="north_america" id="Saint John's">Antigua and Barbuda</option>
-        <option value="Argentina" class="south_america" id="Buenos Aires">Argentina</option>
-        <option value="Armenia" class="asia" id="Yerevan">Armenia</option>
-        <option value="Aruba" class="north_america" id="Oranjestad">Aruba</option>
-        <option value="Australia" class="oceania" id="Canberra">Australia</option>
-        <option value="Austria" class="europe" id="Vienna">Austria</option>
-        <option value="Azerbaijan" class="asia" id="Baku">Azerbaijan</option>
-        <option value="Bahamas" class="north_america" id="Nassau">Bahamas</option>
-        <option value="Bahrain" class="asia" id="Manama">Bahrain</option>
-        <option value="Bangladesh" class="asia" id="Dhaka">Bangladesh</option>
-        <option value="Barbados" class="north_america" id="Bridgetown">Barbados</option>
-        <option value="Belarus" class="europe" id="Minsk">Belarus</option>
-        <option value="Belgium" class="europe" id="Brussels">Belgium</option>
-        <option value="Belize" class="north_america" id="Belmopan">Belize</option>
-        <option value="Benin" class="africa" id="Porto-Novo">Benin</option>
-        <option value="Bermuda" class="north_america" id="Hamilton">Bermuda</option>
-        <option value="Bhutan" class="asia" id="Thimphu">Bhutan</option>
-        <option value="Bolivia" class="south_america" id="Sucre">Bolivia</option>
-        <option value="Bosnia and Herzegovina" class="europe" id="Sarajevo">Bosnia and Herzegovina</option>
-        <option value="Botswana" class="africa" id="Gaborone">Botswana</option>
-        <option value="Bouvet Island">Bouvet Island</option>
-        <option value="Brazil" class="south_america" id="Brasília">Brazil</option>
-        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
-        <option value="Brunei Darussalam" class="asia" id="Bandar Seri Begawan">Brunei Darussalam</option>
-        <option value="Bulgaria" class="europe" id="Sofia">Bulgaria</option>
-        <option value="Burkina Faso" class="africa" id="Ouagadougou">Burkina Faso</option>
-        <option value="Burundi" class="africa" id="Bujumbura">Burundi</option>
-        <option value="Cambodia" class="asia" id="Phnom Penh">Cambodia</option>
-        <option value="Cameroon" class="africa" id="Yaoundé">Cameroon</option>
-        <option value="Canada" class="north_america" id="Ottawa">Canada</option>
-        <option value="Cabo Verde" class="africa" id="Praia">Cape Verde</option>
-        <option value="Cayman Islands" class="north_america" id="George Town">Cayman Islands</option>
-        <option value="Central African Republic" class="africa" id="Bangui">Central African Republic</option>
-        <option value="Chad" class="africa" id="N'Djamena">Chad</option>
-        <option value="Chile" class="south_america" id="Santiago">Chile</option>
-        <option value="China" class="asia" id="Beijing">China</option>
-        <option value="Christmas Island" class="oceania" id="Flying Fish Cove">Christmas Island</option>
-        <option value="Cocos (Keeling) Islands" class="oceania" id="West Island">Cocos (Keeling) Islands</option>
-        <option value="Colombia" class="south_america" id="Bogotá">Colombia</option>
-        <option value="Comoros" class="africa" id="Moroni">Comoros</option>
-        <option value="Congo" class="africa" id="Brazzaville">Congo</option>
-        <option value="Democratic Republic" class="africa" id="Kinshasa">Democratic Republic of Congo</option>
-        <option value="Cook Islands" class="oceania" id="Avarua">Cook Islands</option>
-        <option value="Costa Rica" class="north_america" id="San José">Costa Rica</option>
-        <option value="Cote D'ivoire" class="africa" id="Yamoussoukro">Cote D'ivoire</option>
-        <option value="Croatia" class="europe" id="Zagreb">Croatia</option>
-        <option value="Cuba" class="north_america" id="Havana">Cuba</option>
-        <option value="Cyprus" class="europe" id="Nicosia">Cyprus</option>
-        <option value="Czech Republic" class="europe" id="Prague">Czech Republic</option>
-        <option value="Denmark" class="europe" id="Copenhagen">Denmark</option>
-        <option value="Djibouti" class="africa" id="Djibouti">Djibouti</option>
-        <option value="Dominica" class="north_america" id="Roseau">Dominica</option>
-        <option value="Dominican Republic" class="north_america" id="Santo Domingo">Dominican Republic</option>
-        <option value="Ecuador" class="south_america" id="Quito">Ecuador</option>
-        <option value="Egypt" class="africa" id="Cairo">Egypt</option>
-        <option value="El Salvador" class="north_america" id="San Salvador">El Salvador</option>
-        <option value="Equatorial Guinea" class="africa" id="Malabo">Equatorial Guinea</option>
-        <option value="Eritrea" class="africa" id="Asmara">Eritrea</option>
-        <option value="Estonia" class="europe" id="Tallinn">Estonia</option>
-        <option value="Ethiopia" class="africa" id="Addis Ababa">Ethiopia</option>
-        <option value="Falkland Islands (Malvinas)">Falkland Islands </option> <!--  -->
-        <option value="Faroe Islands" class="europe" id="Tórshavn">Faroe Islands</option>
-        <option value="Fiji" class="oceania" id="Suva">Fiji</option>
-        <option value="Finland" class="europe" id="Helsinki">Finland</option>
-        <option value="France" class="europe" id="Paris">France</option>
-        <option value="French Guiana" class="south_america" id="Cayenne">French Guiana</option>
-        <option value="French Polynesia" class="oceania" id="Papeetē">French Polynesia</option>
-        <option value="French Southern Territories">French Southern Territories</option><!--  -->
-        <option value="Gabon" class="africa" id="Libreville">Gabon</option>
-        <option value="Gambia" class="africa" id="Banjul">Gambia</option>
-        <option value="Georgia" class="asia" id="Tbilisi">Georgia</option>
-        <option value="Germany" class="europe" id="Berlin">Germany</option>
-        <option value="Ghana" class="africa" id="Accra">Ghana</option>
-        <option value="Gibraltar" class="europe" id="Gibraltar">Gibraltar</option>
-        <option value="Greece" class="europe" id="Athens">Greece</option>
-        <option value="Greenland">Greenland</option> <!--  -->
-        <option value="Grenada" class="north_america" id="St. George's">Grenada</option>
-        <option value="Guadeloupe" class="north_america" id="Basse-Terre">Guadeloupe</option>
-        <option value="Guam" class="oceania" id="Hagåtña">Guam</option>
-        <option value="Guatemala" class="north_america" id="Guatemala City">Guatemala</option>
-        <option value="Guernsey">Guernsey</option> <!--  -->
-        <!-- <option value="Guinea" class="africa">Guinea</option> -->
-        <option value="Guinea-bissau" class="africa" id="Bissau">Guinea-bissau</option>
-        <option value="Guyana" class="south_america" id="Georgetown">Guyana</option>
-        <option value="Haiti" class="north_america" id="Port-au-Prince">Haiti</option>
-        <option value="Heard Island and Mcdonald Islands">Heard and Mcdonald Islands</option>
-        <option value="Vatican" class="europe" id="Rome">Vatican City State</option>
-        <option value="Honduras" class="north_america" id="Tegucigalpa">Honduras</option>
-        <option value="Hong Kong" class="asia" id="City of Victoria">Hong Kong</option>
-        <option value="Hungary" class="europe" id="Budapest">Hungary</option>
-        <option value="Iceland" class="europe" id="Reykjavík">Iceland</option>
-        <option value="Republic of India" class="asia" id="New Delhi">India</option>
-        <option value="Indonesia" class="asia" id="Jakarta">Indonesia</option>
-        <option value="Iran" class="asia" id="Tehran">Iran</option>
-        <option value="Iraq" class="asia" id="Baghdad">Iraq</option>
-        <option value="Ireland" class="europe" id="Dublin">Ireland</option>
-        <option value="Isle of Man">Isle of Man</option>
-        <option value="Israel" class="asia" id="Jerusalem">Israel</option>
-        <option value="Italy" class="europe" id="Rome">Italy</option>
-        <option value="Jamaica" class="north_america" id="Kingston">Jamaica</option>
-        <option value="Japan" class="asia" id="Tokyo">Japan</option>
-        <option value="Jersey">Jersey</option> <!--  -->
-        <option value="Jordan" class="asia" id="Amman">Jordan</option>
-        <option value="Kazakhstan" class="asia" id="Astana">Kazakhstan</option>
-        <option value="Kenya" class="africa" id="Nairobi">Kenya</option>
-        <option value="Kiribati" class="oceania" id="South Tarawa">Kiribati</option>
-        <option value="KOR" class="asia" id="Pyongyang">North Korea</option>
-        <option value="Korea (Republic of)" class="asia" id="Seoul">South Korea</option>
-        <option value="Kuwait" class="asia" id="Kuwait City">Kuwait</option>
-        <option value="Kyrgyzstan" class="asia" id="Bishkek">class="asia"Kyrgyzstan</option>
-        <option value="Lao People's Democratic Republic" class="asia" id="Vientiane">Lao Republic</option>
-        <option value="Latvia" class="europe" id="Riga">Latvia</option>
-        <option value="Lebanon" class="asia" class="africa" id="Beirut">Lebanon</option>
-        <option value="Lesotho" class="africa" id="Maseru">Lesotho</option>
-        <option value="Liberia" class="africa" id="Monrovia">Liberia</option>
-        <option value="Libya" class="africa" id="Tripoli">Libya</option>
-        <option value="Liechtenstein" class="europe" id="Vaduz">Liechtenstein</option>
-        <option value="Lithuania" class="europe" id="Vilnius">Lithuania</option>
-        <option value="Luxembourg" class="europe" id="Luxembourg">Luxembourg</option>
-        <!--  <option value="Macao" class="asia" >Macao</option> -->
-        <option value="Macedonia" class="europe" id="Skopje">North Macedonia</option>
-        <option value="Madagascar" class="africa" id="Antananarivo">Madagascar</option>
-        <option value="Malawi" class="africa" id="Lilongwe">Malawi</option>
-        <option value="Malaysia" class="asia" id="Kuala Lumpur">Malaysia</option>
-        <option value="Maldives" class="asia" id="Malé">Maldives</option>
-        <option value="Mali" class="africa" id="Bamako">Mali</option>
-        <option value="Malta" class="europe" id="Valletta">Malta</option>
-        <option value="Marshall Islands" class="oceania" id="Majuro">Marshall Islands</option>
-        <option value="Martinique" class="north_america" id="Fort-de-France">Martinique</option>
-        <option value="Mauritania" class="africa" id="Nouakchott">Mauritania</option>
-        <option value="Mauritius" class="africa" id="Port Louis">Mauritius</option>
-        <option value="Mayotte" class="africa" id="Mamoudzou">Mayotte</option>
-        <option value="Mexico" class="north_america" id="Mexico City">Mexico</option>
-        <option value="Micronesia" class="oceania" id="Palikir">Micronesia</option>
-        <option value="Moldova" class="europe" id="Chișinău">Moldova</option>
-        <option value="Monaco" class="europe" id="Monaco">Monaco</option>
-        <option value="Mongolia" class="asia" id="Ulan Bator">Mongolia</option>
-        <option value="Montenegro" class="europe" id="Podgorica">Montenegro</option>
-        <option value="Montserrat" class="north_america" id="Plymouth">Montserrat</option>
-        <option value="Morocco" class="africa" id="Rabat">Morocco</option>
-        <option value="Mozambique" class="africa" id="Maputo">Mozambique</option>
-        <option value="Myanmar" class="asia" id="Naypyidaw">Myanmar</option>
-        <option value="Namibia" class="africa" id="Windhoek">Namibia</option>
-        <option value="Nauru" class="oceania" id="Yaren">Nauru</option>
-        <option value="Nepal" class="asia" id="Kathmandu">Nepal</option>
-        <option value="Netherlands" class="europe" id="Amsterdam">Netherlands</option>
-        <option value="Netherlands Antilles">Netherlands Antilles</option><!--  -->
-        <option value="New Caledonia" class="oceania" id="Nouméa">New Caledonia</option>
-        <option value="New Zealand" class="oceania" id="Wellington">New Zealand</option>
-        <option value="Nicaragua" class="north_america" id="Managua">Nicaragua</option>
-        <option value="Niger" class="africa" id="Niamey">Niger</option>
-        <option value="Nigeria" class="africa" id="Abuja">Nigeria</option>
-        <option value="Niue" class="oceania" id="Alofi">Niue</option>
-        <option value="Norfolk Island" class="oceania" id="Kingston">Norfolk Island</option>
-        <option value="Northern Mariana Islands" class="oceania" id="Saipan">Northern Mariana Islands</option>
-        <option value="Norway" class="europe" id="Oslo">Norway</option>
-        <option value="Oman" class="asia" id="Muscat">Oman</option>
-        <option value="Pakistan" class="asia" id="Islamabad">Pakistan</option>
-        <option value="Palau" class="oceania" id="Ngerulmud">Palau</option>
-        <option value="Palestine" class="asia" id="Ramallah">Palestine</option>
-        <option value="Panama" class="north_america" id="Panama City">Panama</option>
-        <option value="Papua New Guinea" class="oceania" id="Port Moresby">Papua New Guinea</option>
-        <option value="Paraguay" class="south_america" id="Asunción">Paraguay</option>
-        <option value="Peru" class="south_america" id="Lima">Peru</option>
-        <option value="Philippines" class="asia" id="Manila">Philippines</option>
-        <option value="Pitcairn">Pitcairn</option> <!--  -->
-        <option value="Poland" class="europe" id="Warsaw">Poland</option>
-        <option value="Portugal" class="europe" id="Lisbon">Portugal</option>
-        <option value="Puerto Rico" class="north_america" id="San Juan">Puerto Rico</option>
-        <option value="Qatar" class="asia" id="Doha">Qatar</option>
-        <option value="Reunion" class="africa" id="Saint-Denis">Reunion</option>
-        <option value="Romania" class="europe" id="Bucharest">Romania</option>
-        <option value="Russian Federation" class="europe" id="Moscow">Russian Federation</option>
-        <option value="Rwanda" class="africa" id="Kigali">Rwanda</option>
-        <option value="Saint Helena">Saint Helena</option><!--  -->
-        <option value="Saint Kitts and Nevis" class="north_america" id="Basseterre">Saint Kitts and Nevis</option>
-        <option value="Saint Lucia" class="north_america" id="Castries"> Saint Lucia</option>
-        <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option> <!--  -->
-        <option value="Saint Vincent and The Grenadines" class="north_america" id="Kingstown">Grenadines</option>
-        <option value="Samoa" class="oceania" id="Pago Pago">Samoa</option>
-        <option value="San Marino" class="europe" id="City of San Marino">San Marino</option>
-        <option value="Sao Tome and Principe" class="africa" id="São Tomé">Sao Tome and Principe</option>
-        <option value="Saudi Arabia" class="asia" id="Riyadh">Saudi Arabia</option>
-        <option value="Senegal" class="africa" id="Dakar">Senegal</option>
-        <option value="Serbia" class="europe" id="Belgrade">Serbia</option>
-        <option value="Seychelles" class="africa" id="Victoria">Seychelles</option>
-        <option value="Sierra Leone" class="africa" id="Freetown">Sierra Leone</option>
-        <option value="Singapore" class="asia" id="Singapore">Singapore</option>
-        <option value="Slovakia" class="europe" id="Bratislava">Slovakia</option>
-        <option value="Slovenia" class="europe" id="Ljubljana">Slovenia</option>
-        <option value="Solomon Islands" class="oceania" id="Honiara">Solomon Islands</option>
-        <option value="Somalia" class="africa" id="Mogadishu">Somalia</option>
-        <option value="South Africa" class="africa" id="Pretoria">South Africa</option>
-        <option value="South Georgia and The South Sandwich Islands">South Sandwich Islands</option> <!--  -->
-        <option value="Spain" class="europe" id="Madrid">Spain</option>
-        <option value="Sri Lanka" class="asia" id="Colombo">Sri Lanka</option>
-        <option value="Sudan" class="africa" id="Juba">Sudan</option>
-        <option value="Suriname" class="south_america" id="Paramaribo">Suriname</option>
-        <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option><!--  -->
-        <option value="Swaziland" class="africa" id="Lobamba"> Swaziland</option>
-        <option value="Sweden" class="europe" id="Stockholm">Sweden</option>
-        <option value="Switzerland" class="europe" id="Bern">Switzerland</option>
-        <option value="Syrian Arab Republic" class="asia" id="Damascus">Syria</option>
-        <option value="Taiwan" class="asia" id="Taipei">Taiwan, Province of China</option>
-        <option value="Tajikistan" class="asia" id="Dushanbe">Tajikistan</option>
-        <option value="Tanzania" class="africa" id="Dodoma">Tanzania</option>
-        <option value="Thailand" class="asia" id="Bangkok">Thailand</option>
-        <option value="Timor-leste" class="asia" id="Dili">Timor-leste</option>
-        <option value="Togo" class="africa" id="Lomé">Togo</option>
-        <option value="Tokelau" class="oceania" id="Fakaofo">Tokelau</option>
-        <option value="Tonga" class="oceania" id="Nuku'alofa">Tonga</option>
-        <option value="Trinidad and Tobago" class="north_america" id="Port of Spain">Trinidad and Tobago</option>
-        <option value="Tunisia" class="africa" id="Tunis">Tunisia</option>
-        <option value="Turkey" class="europe" id="Ankara">Turkey</option>
-        <option value="Turkmenistan" class="asia" id="Ashgabat">Turkmenistan</option>
-        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option><!--  -->
-        <option value="Tuvalu" class="oceania" id="Funafuti">Tuvalu</option>
-        <option value="Uganda" class="africa" id="Kampala">Uganda</option>
-        <option value="Ukraine" class="europe" id="Kiev">Ukraine</option>
-        <option value="United Arab Emirates" class="asia" id="Abu Dhabi">United Arab Emirates</option>
-        <option value="United Kingdom" class="europe" id="London">United Kingdom</option>
-        <option value="USA" class="north_america" id="Washington, D.C.">United States</option>
-        <option value="Uruguay" class="south_america" id="Montevideo">Uruguay</option>
-        <option value="Uzbekistan" class="asia" id="Tashkent">Uzbekistan</option>
-        <option value="Vanuatu" class="oceania" id="Port Vila">Vanuatu</option>
-        <option value="Venezuela" class="south_america" id="Caracas">Venezuela</option>
-        <option value="Viet Nam" class="asia" id="Hanoi">Viet Nam</option>
-        <option value="Virgin Islands" class="north_america" id="Road Town">Virgin Islands, British</option>
-        <option value="Wallis and Futuna" class="oceania" id="Mata-Utu">Wallis and Futuna</option>
-        <option value="Western Sahara" class="africa" id="El Aaiún">Western Sahara</option>
-        <option value="Yemen" class="asia" id="Sana'a">Yemen</option>
-        <option value="Zambia" class="africa" id="Lusaka">Zambia</option>
-        <option value="Zimbabwe" class="africa" id="Harare">Zimbabwe</option>
-      </select>
-      <button id="search" class="btn">Play</button><br>
+        </select>
+        <select id="country-name" name="con" class="form-control">
+          <option value="Afghanistan" class="asia" id="Kabul">Afghanistan</option>
+          <option value="Åland Islands">Åland Islands</option>
+          <option value="Albania" class="europe" id="Tirana">Albania</option>
+          <option value="Algeria" class="africa" id="Algiers">Algeria</option>
+          <option value="American Samoa" class="oceania" id="Pago Pago">American Samoa</option>
+          <option value="Andorra" class="europe" id="Andorra la Vella">Andorra</option>
+          <option value="Angola" class="africa" id="Luanda">Angola</option>
+          <option value="Anguilla" class="north_america" id="The Valley">Anguilla</option>
+          <option value="Antarctica">Antarctica</option>
+          <option value="Antigua and Barbuda" class="north_america" id="Saint John's">Antigua and Barbuda</option>
+          <option value="Argentina" class="south_america" id="Buenos Aires">Argentina</option>
+          <option value="Armenia" class="asia" id="Yerevan">Armenia</option>
+          <option value="Aruba" class="north_america" id="Oranjestad">Aruba</option>
+          <option value="Australia" class="oceania" id="Canberra">Australia</option>
+          <option value="Austria" class="europe" id="Vienna">Austria</option>
+          <option value="Azerbaijan" class="asia" id="Baku">Azerbaijan</option>
+          <option value="Bahamas" class="north_america" id="Nassau">Bahamas</option>
+          <option value="Bahrain" class="asia" id="Manama">Bahrain</option>
+          <option value="Bangladesh" class="asia" id="Dhaka">Bangladesh</option>
+          <option value="Barbados" class="north_america" id="Bridgetown">Barbados</option>
+          <option value="Belarus" class="europe" id="Minsk">Belarus</option>
+          <option value="Belgium" class="europe" id="Brussels">Belgium</option>
+          <option value="Belize" class="north_america" id="Belmopan">Belize</option>
+          <option value="Benin" class="africa" id="Porto-Novo">Benin</option>
+          <option value="Bermuda" class="north_america" id="Hamilton">Bermuda</option>
+          <option value="Bhutan" class="asia" id="Thimphu">Bhutan</option>
+          <option value="Bolivia" class="south_america" id="Sucre">Bolivia</option>
+          <option value="Bosnia and Herzegovina" class="europe" id="Sarajevo">Bosnia and Herzegovina</option>
+          <option value="Botswana" class="africa" id="Gaborone">Botswana</option>
+          <option value="Bouvet Island">Bouvet Island</option>
+          <option value="Brazil" class="south_america" id="Brasília">Brazil</option>
+          <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+          <option value="Brunei Darussalam" class="asia" id="Bandar Seri Begawan">Brunei Darussalam</option>
+          <option value="Bulgaria" class="europe" id="Sofia">Bulgaria</option>
+          <option value="Burkina Faso" class="africa" id="Ouagadougou">Burkina Faso</option>
+          <option value="Burundi" class="africa" id="Bujumbura">Burundi</option>
+          <option value="Cambodia" class="asia" id="Phnom Penh">Cambodia</option>
+          <option value="Cameroon" class="africa" id="Yaoundé">Cameroon</option>
+          <option value="Canada" class="north_america" id="Ottawa">Canada</option>
+          <option value="Cabo Verde" class="africa" id="Praia">Cape Verde</option>
+          <option value="Cayman Islands" class="north_america" id="George Town">Cayman Islands</option>
+          <option value="Central African Republic" class="africa" id="Bangui">Central African Republic</option>
+          <option value="Chad" class="africa" id="N'Djamena">Chad</option>
+          <option value="Chile" class="south_america" id="Santiago">Chile</option>
+          <option value="China" class="asia" id="Beijing">China</option>
+          <option value="Christmas Island" class="oceania" id="Flying Fish Cove">Christmas Island</option>
+          <option value="Cocos (Keeling) Islands" class="oceania" id="West Island">Cocos (Keeling) Islands</option>
+          <option value="Colombia" class="south_america" id="Bogotá">Colombia</option>
+          <option value="Comoros" class="africa" id="Moroni">Comoros</option>
+          <option value="Congo" class="africa" id="Brazzaville">Congo</option>
+          <option value="Democratic Republic" class="africa" id="Kinshasa">Democratic Republic of Congo</option>
+          <option value="Cook Islands" class="oceania" id="Avarua">Cook Islands</option>
+          <option value="Costa Rica" class="north_america" id="San José">Costa Rica</option>
+          <option value="Cote D'ivoire" class="africa" id="Yamoussoukro">Cote D'ivoire</option>
+          <option value="Croatia" class="europe" id="Zagreb">Croatia</option>
+          <option value="Cuba" class="north_america" id="Havana">Cuba</option>
+          <option value="Cyprus" class="europe" id="Nicosia">Cyprus</option>
+          <option value="Czech Republic" class="europe" id="Prague">Czech Republic</option>
+          <option value="Denmark" class="europe" id="Copenhagen">Denmark</option>
+          <option value="Djibouti" class="africa" id="Djibouti">Djibouti</option>
+          <option value="Dominica" class="north_america" id="Roseau">Dominica</option>
+          <option value="Dominican Republic" class="north_america" id="Santo Domingo">Dominican Republic</option>
+          <option value="Ecuador" class="south_america" id="Quito">Ecuador</option>
+          <option value="Egypt" class="africa" id="Cairo">Egypt</option>
+          <option value="El Salvador" class="north_america" id="San Salvador">El Salvador</option>
+          <option value="Equatorial Guinea" class="africa" id="Malabo">Equatorial Guinea</option>
+          <option value="Eritrea" class="africa" id="Asmara">Eritrea</option>
+          <option value="Estonia" class="europe" id="Tallinn">Estonia</option>
+          <option value="Ethiopia" class="africa" id="Addis Ababa">Ethiopia</option>
+          <option value="Falkland Islands (Malvinas)">Falkland Islands </option> <!--  -->
+          <option value="Faroe Islands" class="europe" id="Tórshavn">Faroe Islands</option>
+          <option value="Fiji" class="oceania" id="Suva">Fiji</option>
+          <option value="Finland" class="europe" id="Helsinki">Finland</option>
+          <option value="France" class="europe" id="Paris">France</option>
+          <option value="French Guiana" class="south_america" id="Cayenne">French Guiana</option>
+          <option value="French Polynesia" class="oceania" id="Papeetē">French Polynesia</option>
+          <option value="French Southern Territories">French Southern Territories</option><!--  -->
+          <option value="Gabon" class="africa" id="Libreville">Gabon</option>
+          <option value="Gambia" class="africa" id="Banjul">Gambia</option>
+          <option value="Georgia" class="asia" id="Tbilisi">Georgia</option>
+          <option value="Germany" class="europe" id="Berlin">Germany</option>
+          <option value="Ghana" class="africa" id="Accra">Ghana</option>
+          <option value="Gibraltar" class="europe" id="Gibraltar">Gibraltar</option>
+          <option value="Greece" class="europe" id="Athens">Greece</option>
+          <option value="Greenland">Greenland</option> <!--  -->
+          <option value="Grenada" class="north_america" id="St. George's">Grenada</option>
+          <option value="Guadeloupe" class="north_america" id="Basse-Terre">Guadeloupe</option>
+          <option value="Guam" class="oceania" id="Hagåtña">Guam</option>
+          <option value="Guatemala" class="north_america" id="Guatemala City">Guatemala</option>
+          <option value="Guernsey">Guernsey</option> <!--  -->
+          <!-- <option value="Guinea" class="africa">Guinea</option> -->
+          <option value="Guinea-bissau" class="africa" id="Bissau">Guinea-bissau</option>
+          <option value="Guyana" class="south_america" id="Georgetown">Guyana</option>
+          <option value="Haiti" class="north_america" id="Port-au-Prince">Haiti</option>
+          <option value="Heard Island and Mcdonald Islands">Heard and Mcdonald Islands</option>
+          <option value="Vatican" class="europe" id="Rome">Vatican City State</option>
+          <option value="Honduras" class="north_america" id="Tegucigalpa">Honduras</option>
+          <option value="Hong Kong" class="asia" id="City of Victoria">Hong Kong</option>
+          <option value="Hungary" class="europe" id="Budapest">Hungary</option>
+          <option value="Iceland" class="europe" id="Reykjavík">Iceland</option>
+          <option value="Republic of India" class="asia" id="New Delhi">India</option>
+          <option value="Indonesia" class="asia" id="Jakarta">Indonesia</option>
+          <option value="Iran" class="asia" id="Tehran">Iran</option>
+          <option value="Iraq" class="asia" id="Baghdad">Iraq</option>
+          <option value="Ireland" class="europe" id="Dublin">Ireland</option>
+          <option value="Isle of Man">Isle of Man</option>
+          <option value="Israel" class="asia" id="Jerusalem">Israel</option>
+          <option value="Italy" class="europe" id="Rome">Italy</option>
+          <option value="Jamaica" class="north_america" id="Kingston">Jamaica</option>
+          <option value="Japan" class="asia" id="Tokyo">Japan</option>
+          <option value="Jersey">Jersey</option> <!--  -->
+          <option value="Jordan" class="asia" id="Amman">Jordan</option>
+          <option value="Kazakhstan" class="asia" id="Astana">Kazakhstan</option>
+          <option value="Kenya" class="africa" id="Nairobi">Kenya</option>
+          <option value="Kiribati" class="oceania" id="South Tarawa">Kiribati</option>
+          <option value="KOR" class="asia" id="Pyongyang">North Korea</option>
+          <option value="Korea (Republic of)" class="asia" id="Seoul">South Korea</option>
+          <option value="Kuwait" class="asia" id="Kuwait City">Kuwait</option>
+          <option value="Kyrgyzstan" class="asia" id="Bishkek">class="asia"Kyrgyzstan</option>
+          <option value="Lao People's Democratic Republic" class="asia" id="Vientiane">Lao Republic</option>
+          <option value="Latvia" class="europe" id="Riga">Latvia</option>
+          <option value="Lebanon" class="asia" class="africa" id="Beirut">Lebanon</option>
+          <option value="Lesotho" class="africa" id="Maseru">Lesotho</option>
+          <option value="Liberia" class="africa" id="Monrovia">Liberia</option>
+          <option value="Libya" class="africa" id="Tripoli">Libya</option>
+          <option value="Liechtenstein" class="europe" id="Vaduz">Liechtenstein</option>
+          <option value="Lithuania" class="europe" id="Vilnius">Lithuania</option>
+          <option value="Luxembourg" class="europe" id="Luxembourg">Luxembourg</option>
+          <!--  <option value="Macao" class="asia" >Macao</option> -->
+          <option value="Macedonia" class="europe" id="Skopje">North Macedonia</option>
+          <option value="Madagascar" class="africa" id="Antananarivo">Madagascar</option>
+          <option value="Malawi" class="africa" id="Lilongwe">Malawi</option>
+          <option value="Malaysia" class="asia" id="Kuala Lumpur">Malaysia</option>
+          <option value="Maldives" class="asia" id="Malé">Maldives</option>
+          <option value="Mali" class="africa" id="Bamako">Mali</option>
+          <option value="Malta" class="europe" id="Valletta">Malta</option>
+          <option value="Marshall Islands" class="oceania" id="Majuro">Marshall Islands</option>
+          <option value="Martinique" class="north_america" id="Fort-de-France">Martinique</option>
+          <option value="Mauritania" class="africa" id="Nouakchott">Mauritania</option>
+          <option value="Mauritius" class="africa" id="Port Louis">Mauritius</option>
+          <option value="Mayotte" class="africa" id="Mamoudzou">Mayotte</option>
+          <option value="Mexico" class="north_america" id="Mexico City">Mexico</option>
+          <option value="Micronesia" class="oceania" id="Palikir">Micronesia</option>
+          <option value="Moldova" class="europe" id="Chișinău">Moldova</option>
+          <option value="Monaco" class="europe" id="Monaco">Monaco</option>
+          <option value="Mongolia" class="asia" id="Ulan Bator">Mongolia</option>
+          <option value="Montenegro" class="europe" id="Podgorica">Montenegro</option>
+          <option value="Montserrat" class="north_america" id="Plymouth">Montserrat</option>
+          <option value="Morocco" class="africa" id="Rabat">Morocco</option>
+          <option value="Mozambique" class="africa" id="Maputo">Mozambique</option>
+          <option value="Myanmar" class="asia" id="Naypyidaw">Myanmar</option>
+          <option value="Namibia" class="africa" id="Windhoek">Namibia</option>
+          <option value="Nauru" class="oceania" id="Yaren">Nauru</option>
+          <option value="Nepal" class="asia" id="Kathmandu">Nepal</option>
+          <option value="Netherlands" class="europe" id="Amsterdam">Netherlands</option>
+          <option value="Netherlands Antilles">Netherlands Antilles</option><!--  -->
+          <option value="New Caledonia" class="oceania" id="Nouméa">New Caledonia</option>
+          <option value="New Zealand" class="oceania" id="Wellington">New Zealand</option>
+          <option value="Nicaragua" class="north_america" id="Managua">Nicaragua</option>
+          <option value="Niger" class="africa" id="Niamey">Niger</option>
+          <option value="Nigeria" class="africa" id="Abuja">Nigeria</option>
+          <option value="Niue" class="oceania" id="Alofi">Niue</option>
+          <option value="Norfolk Island" class="oceania" id="Kingston">Norfolk Island</option>
+          <option value="Northern Mariana Islands" class="oceania" id="Saipan">Northern Mariana Islands</option>
+          <option value="Norway" class="europe" id="Oslo">Norway</option>
+          <option value="Oman" class="asia" id="Muscat">Oman</option>
+          <option value="Pakistan" class="asia" id="Islamabad">Pakistan</option>
+          <option value="Palau" class="oceania" id="Ngerulmud">Palau</option>
+          <option value="Palestine" class="asia" id="Ramallah">Palestine</option>
+          <option value="Panama" class="north_america" id="Panama City">Panama</option>
+          <option value="Papua New Guinea" class="oceania" id="Port Moresby">Papua New Guinea</option>
+          <option value="Paraguay" class="south_america" id="Asunción">Paraguay</option>
+          <option value="Peru" class="south_america" id="Lima">Peru</option>
+          <option value="Philippines" class="asia" id="Manila">Philippines</option>
+          <option value="Pitcairn">Pitcairn</option> <!--  -->
+          <option value="Poland" class="europe" id="Warsaw">Poland</option>
+          <option value="Portugal" class="europe" id="Lisbon">Portugal</option>
+          <option value="Puerto Rico" class="north_america" id="San Juan">Puerto Rico</option>
+          <option value="Qatar" class="asia" id="Doha">Qatar</option>
+          <option value="Reunion" class="africa" id="Saint-Denis">Reunion</option>
+          <option value="Romania" class="europe" id="Bucharest">Romania</option>
+          <option value="Russian Federation" class="europe" id="Moscow">Russian Federation</option>
+          <option value="Rwanda" class="africa" id="Kigali">Rwanda</option>
+          <option value="Saint Helena">Saint Helena</option><!--  -->
+          <option value="Saint Kitts and Nevis" class="north_america" id="Basseterre">Saint Kitts and Nevis</option>
+          <option value="Saint Lucia" class="north_america" id="Castries"> Saint Lucia</option>
+          <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option> <!--  -->
+          <option value="Saint Vincent and The Grenadines" class="north_america" id="Kingstown">Grenadines</option>
+          <option value="Samoa" class="oceania" id="Pago Pago">Samoa</option>
+          <option value="San Marino" class="europe" id="City of San Marino">San Marino</option>
+          <option value="Sao Tome and Principe" class="africa" id="São Tomé">Sao Tome and Principe</option>
+          <option value="Saudi Arabia" class="asia" id="Riyadh">Saudi Arabia</option>
+          <option value="Senegal" class="africa" id="Dakar">Senegal</option>
+          <option value="Serbia" class="europe" id="Belgrade">Serbia</option>
+          <option value="Seychelles" class="africa" id="Victoria">Seychelles</option>
+          <option value="Sierra Leone" class="africa" id="Freetown">Sierra Leone</option>
+          <option value="Singapore" class="asia" id="Singapore">Singapore</option>
+          <option value="Slovakia" class="europe" id="Bratislava">Slovakia</option>
+          <option value="Slovenia" class="europe" id="Ljubljana">Slovenia</option>
+          <option value="Solomon Islands" class="oceania" id="Honiara">Solomon Islands</option>
+          <option value="Somalia" class="africa" id="Mogadishu">Somalia</option>
+          <option value="South Africa" class="africa" id="Pretoria">South Africa</option>
+          <option value="South Georgia and The South Sandwich Islands">South Sandwich Islands</option> <!--  -->
+          <option value="Spain" class="europe" id="Madrid">Spain</option>
+          <option value="Sri Lanka" class="asia" id="Colombo">Sri Lanka</option>
+          <option value="Sudan" class="africa" id="Juba">Sudan</option>
+          <option value="Suriname" class="south_america" id="Paramaribo">Suriname</option>
+          <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option><!--  -->
+          <option value="Swaziland" class="africa" id="Lobamba"> Swaziland</option>
+          <option value="Sweden" class="europe" id="Stockholm">Sweden</option>
+          <option value="Switzerland" class="europe" id="Bern">Switzerland</option>
+          <option value="Syrian Arab Republic" class="asia" id="Damascus">Syria</option>
+          <option value="Taiwan" class="asia" id="Taipei">Taiwan, Province of China</option>
+          <option value="Tajikistan" class="asia" id="Dushanbe">Tajikistan</option>
+          <option value="Tanzania" class="africa" id="Dodoma">Tanzania</option>
+          <option value="Thailand" class="asia" id="Bangkok">Thailand</option>
+          <option value="Timor-leste" class="asia" id="Dili">Timor-leste</option>
+          <option value="Togo" class="africa" id="Lomé">Togo</option>
+          <option value="Tokelau" class="oceania" id="Fakaofo">Tokelau</option>
+          <option value="Tonga" class="oceania" id="Nuku'alofa">Tonga</option>
+          <option value="Trinidad and Tobago" class="north_america" id="Port of Spain">Trinidad and Tobago</option>
+          <option value="Tunisia" class="africa" id="Tunis">Tunisia</option>
+          <option value="Turkey" class="europe" id="Ankara">Turkey</option>
+          <option value="Turkmenistan" class="asia" id="Ashgabat">Turkmenistan</option>
+          <option value="Turks and Caicos Islands">Turks and Caicos Islands</option><!--  -->
+          <option value="Tuvalu" class="oceania" id="Funafuti">Tuvalu</option>
+          <option value="Uganda" class="africa" id="Kampala">Uganda</option>
+          <option value="Ukraine" class="europe" id="Kiev">Ukraine</option>
+          <option value="United Arab Emirates" class="asia" id="Abu Dhabi">United Arab Emirates</option>
+          <option value="United Kingdom" class="europe" id="London">United Kingdom</option>
+          <option value="USA" class="north_america" id="Washington, D.C.">United States</option>
+          <option value="Uruguay" class="south_america" id="Montevideo">Uruguay</option>
+          <option value="Uzbekistan" class="asia" id="Tashkent">Uzbekistan</option>
+          <option value="Vanuatu" class="oceania" id="Port Vila">Vanuatu</option>
+          <option value="Venezuela" class="south_america" id="Caracas">Venezuela</option>
+          <option value="Viet Nam" class="asia" id="Hanoi">Viet Nam</option>
+          <option value="Virgin Islands" class="north_america" id="Road Town">Virgin Islands, British</option>
+          <option value="Wallis and Futuna" class="oceania" id="Mata-Utu">Wallis and Futuna</option>
+          <option value="Western Sahara" class="africa" id="El Aaiún">Western Sahara</option>
+          <option value="Yemen" class="asia" id="Sana'a">Yemen</option>
+          <option value="Zambia" class="africa" id="Lusaka">Zambia</option>
+          <option value="Zimbabwe" class="africa" id="Harare">Zimbabwe</option>
+        </select>
+        <button id="search" class="btn">Play</button><br>
+      </div>
       <a href="#openModal"></a>
 
       <div id="openModal" class="modalDialog">
         <div> <a href="#"></a>
           <h1>YOUR SCORE</h1>
-          <div id="odometer" class="odometer"></div>
+          <!-- <div id="odometer" class="odometer"></div> -->
           <span class="percent">%</span><br>
           <button id="new-game" class="btn">New Game</button><br><br>
           <h1 id="good-score" class="title-text">Congratulations</h1>

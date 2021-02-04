@@ -80,6 +80,7 @@ progressBox.style.display = "none"
 goodScore.style.display = "none"
 allContent.style.display = "none"
 counter.style.display = 'none'
+odometer.style.display = 'none'
 
 
 // Random pins in background
@@ -211,6 +212,7 @@ function correct() {
   let userAnswer = getSelected()
   if (userAnswer == correctAnswer) {
     score++;
+    odometer.innerHTML = score
     circles[_CIRCLE_INDEX].style.border = '3px solid #52E80C'
     resArray[correctAnswer].style.color = '#52E80C'
     resArray[correctAnswer].innerHTML += '✅'
@@ -230,7 +232,8 @@ function correct() {
 
 // Buttons
 btn.addEventListener('click', () => {
-
+  odometer.style.display = 'inline-block'
+  odometer.classList.add("zoomIn")
   runCounter()
   setTimeout(function () {
     counter.style.display = 'block'
@@ -315,8 +318,8 @@ function gameOver() {
 
   setTimeout(() => {
 
-    !S_America ? odometer.innerHTML = score * 10 :
-      odometer.innerHTML = score * 20
+    /* !S_America ? odometer.innerHTML = score * 10 :
+      odometer.innerHTML = score * 20 */
     if (!S_America) {
       if (score >= 8) {
         goodScore.style.display = "block"

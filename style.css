@@ -52,63 +52,9 @@ body {
   align-items: center;
 }
 
-/*************************************** Pins ***************************************/
-
-/* body.pins-container{
-  position: relative;
-  z-index: -100;
-}
-
-img.pin {
-  position: absolute;
-  height: 2rem;
-  width: 2rem;
-  animation: pinsWorld 3s linear 0s infinite normal;
-  -webkit-animation: pinsWorld 3s linear 0s infinite normal;
-  -moz-animation: pinsWorld 3s linear 0s infinite normal;
-  -ms-animation: pinsWorld 3s linear 0s infinite normal;
-  -o-animation: pinsWorld 3s linear 0s infinite normal;
-}
-
-@keyframes pinsWorld {
-  0% {
-      -webkit-transform: scale(1.0);
-      opacity: 1;
-  }
-  25% {
-      -webkit-transform: scale(0.5);
-      opacity: 0;
-  }
-  50% {
-      -webkit-transform: scale(1.0);
-      opacity: 1;
-  }
-  75% {
-      -webkit-transform: scale(0.5);
-      opacity: 0;
-  }
-  100% {
-      -webkit-transform: scale(1.0);
-      opacity: 1;
-  }
-}
- */
-
-/*************************************** Video ***************************************/
-
 .bg-video {
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: auto;
-  z-index: -100;
-  opacity: .5;
-  overflow: hidden;
-  text-align: center;
-  justify-content: center;
-  min-width: 100%; */
-  opacity: .5;
+ 
+  opacity: .8;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -183,7 +129,7 @@ img.pin {
   display: flex;
   flex-flow: column;
   width: 46rem;
-  margin: 7rem auto 0 auto;
+  margin: auto;
 }
 
 .countries {
@@ -206,7 +152,6 @@ img.pin {
   border-bottom: 1px solid;
   width: 40rem;
   max-height: 24rem;
-  /* height: 23rem; */
   object-fit: cover;
   background-color: #eee;
   border-top-left-radius: 0.7rem;
@@ -214,7 +159,7 @@ img.pin {
 }
 
 .country__data {
-  padding: 1.5rem 2.75rem 2rem 2.75rem;
+  padding: 2.5rem 2.75rem 2.5rem 2.75rem;
 }
 
 .country__name {
@@ -242,7 +187,7 @@ img.pin {
 
 .counter {
   position: fixed;
-  top: 13rem;
+  top: 16rem;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -289,32 +234,6 @@ img.pin {
   animation: goOut 0.5s ease-in-out;
 }
 
-@keyframes goIn {
-  0% {
-    transform: translate(-50%, -50%) rotate(120deg);
-  }
-  30% {
-    transform: translate(-50%, -50%) rotate(-20deg);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(10deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-}
-
-@keyframes goOut {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(20deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-120deg);
-  }
-}
 
 /*************************************** Buttons ***************************************/
 
@@ -343,12 +262,13 @@ img.pin {
 }
 
 .btn-glow {
+  
   animation: fadeInLeftBig 2s;
   animation-fill-mode: backwards;
   box-shadow: 1rem 2rem 3rem 1rem rgba(0, 0, 0, 0.5);
   margin: 1rem;
   width: 100%;
-  height: 50px;
+  height: 4.5rem;
   border: none;
   outline: none;
   color: #fff;
@@ -424,12 +344,19 @@ ul li label {
 }
 
 .form-control {
+  margin-bottom: 1rem;
+  width: 100%;
   height: 4rem;
   overflow: hidden;
 }
 
 .form-control:focus {
   outline: none;
+}
+
+.region-container{
+  width: 40rem;
+  margin: auto;
 }
 
 /**************************************** Modal ****************************************/
@@ -477,8 +404,14 @@ ul li label {
 /**************************************** Odometer ****************************************/
 
 .odometer {
+  outline: none;
+  display:inline-block;
+  margin: 0 !important;
+  position: fixed;
+  left: 70%;
   margin: 5rem;
-  font-size: 4rem;
+  font-size: 5rem;
+  z-index: 100;
 }
 
 .odometer.odometer-auto-theme .odometer-digit:last-child, .odometer.odometer-theme-car .odometer-digit:last-child {
@@ -487,6 +420,14 @@ ul li label {
   background-image: linear-gradient(to bottom, #333333 0%, #333333 40%, #101010 60%, #333333 80%, #333333 100%);
   background-color: #eee0d3;
   color: #eee0d3;
+}
+
+.odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-car.odometer-animating-up .odometer-ribbon-inner {
+  -webkit-transition: -webkit-transform .2s;
+  -moz-transition: -moz-transform .2s;
+  -ms-transition: -ms-transform .2s;
+  -o-transition: -o-transform .2s;
+  transition: transform .2s;
 }
 
 .odometer.odometer-auto-theme, .odometer.odometer-theme-car {
@@ -623,6 +564,7 @@ ul li label {
   }
 }
 
+/* Button-glow */
 @keyframes glowing {
   0% {
     background-position: 0 0;
@@ -635,7 +577,43 @@ ul li label {
   }
 }
 
+/* Progress */
+@keyframes goIn {
+  0% {
+    transform: translate(-50%, -50%) rotate(120deg);
+  }
+  30% {
+    transform: translate(-50%, -50%) rotate(-20deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(10deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+@keyframes goOut {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(20deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-120deg);
+  }
+}
+
 /**************************************** Mobile *******************************************/
+
+@media only screen and (max-width: 1024px) {
+
+  .odometer {
+    left: 80%;
+  }
+
+}
 
 @media only screen and (max-width: 425px) {
   .container-box {
@@ -663,14 +641,28 @@ ul li label {
     margin: 35vh auto;
   }
   .counter {
-    top: 12rem;
+    top: 14rem;
   }
   .bg-video {
     width: 100%;
     height: 100%;
-    /* min-height: 60vh; */
+    
   }
-  .form-control {
-    height: 4rem;
+  .odometer {
+    left: 90%;
+    font-size: 4rem;
+    z-index: 100;
   }
+  .current-score{
+    margin-bottom: 1rem;
+  }
+  
+}
+
+@media only screen and (max-width: 375px) {
+
+  .odometer {
+    left: 100%;
+  }
+
 }

@@ -1,12 +1,16 @@
 
 
 // Buttons
-const btn = document.querySelector('#search')
+const play = document.querySelector('#play')
 const newGame = document.getElementById('new-game')
 const answerBtn = document.getElementById('answer-btn')
 const btnCountry = document.getElementById('btn-country')
 const btnCapital = document.getElementById('btn-capital')
-const btnFlag = document.getElementById('btn-flag')
+const btnHard = document.getElementById('btn-hard')
+const btnExplore = document.getElementById('btn-explore')
+const search = document.querySelector('#search')
+const rnd = document.querySelector('#random-country')
+
 
 const countriesContainer = document.querySelector('.countries')
 const allContent = document.querySelector('.container-box')
@@ -18,6 +22,8 @@ const titleText = document.querySelector('.title-text')
 const goodScore = document.getElementById('good-score')
 const load = document.querySelector('.loading-page')
 const gameMode = document.getElementById('game-mode')
+const searchTerm = document.getElementById('search-term')
+
 
 const flag = document.getElementById('flag')
 const resOne = document.getElementById('res-1')
@@ -26,7 +32,7 @@ const resThree = document.getElementById('res-3')
 const resFour = document.getElementById('res-4')
 const resArray = [resOne, resTwo, resThree, resFour]
 const result = document.getElementById('res')
-
+const video = document.querySelector('.bg-video')
 
 // Progress bar
 const progress = document.getElementById('progress')
@@ -45,6 +51,11 @@ const oceania = document.querySelectorAll('.oceania')
 let regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
 
 const odometer = document.getElementById('odometer')
+
+// Explore countries
+const explore = document.querySelector('.explore-container')
+const card = document.querySelector('.country-card')
+const exploreBtns = document.querySelector('.explore-btns')
 
 // Preventing to go to next question without answer
 answerBtn.style.pointerEvents = 'none'
@@ -81,36 +92,21 @@ goodScore.style.display = "none"
 allContent.style.display = "none"
 counter.style.display = 'none'
 odometer.style.display = 'none'
+video.style.display = 'none'
+exploreBtns.style.display = 'none'
+searchTerm.innerHTML = 'REGION'
+card.style.display = 'none'
 
 
-// Random pins in background
-/* const pins = document.querySelector('.pins-container')
-const min = 15
-const max = 85
-const randomPins = () => {
-  
-  r = Math.floor(Math.random() * (max - min + 1)) + min;
-  return r
-}
 
-for (let i = 0; i < 30; i++) {
-  const delay = Math.random() + 's';
-  const el = document.createElement('img')
-  el.src            = 'assets/map-pin.svg'
-  el.className      = 'pin'
-  el.style.top      = randomPins() + '%' 
-  el.style.left     = randomPins() + '%'
-  el.style.animationDelay       = delay
-  el.style.msAnimationDelay     = delay
-  el.style.webkitAnimationDelay = delay
-  el.style.monAnimationDelay    = delay
-  pins.appendChild(el)
-}
+setTimeout(() => {
+  video.style.display = 'block'
+  video.classList.add("fadeIn")
+}, 2000)
 
-*/
 
 btnCountry.addEventListener('click', () => {
-
+  
   _GAME_COUNTRIES = true
   setTimeout(() => {
     start()
@@ -119,7 +115,7 @@ btnCountry.addEventListener('click', () => {
 })
 
 btnCapital.addEventListener('click', () => {
-
+ 
   _GAME_COUNTRIES = true
   _GAME_CAPITALS = true
   setTimeout(() => {
@@ -127,6 +123,70 @@ btnCapital.addEventListener('click', () => {
   }, 500);
 
 })
+
+
+btnExplore.addEventListener('click', () => {
+  searchTerm.innerHTML = 'COUNTRY'
+  exploreBtns.style.display = 'block'
+  start()
+  countryList.style.display = 'block'
+  regionEl.style.display = 'none'
+  play.style.display = 'none'
+  card.style.display = 'flex'
+  const getMeRandomCountry = countryList[Math.floor(Math.random() * countryList.length)].value;
+
+  function getCountry(country) {
+    axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
+      .then(res => {
+        console.log(res.data)
+        const html = `
+          <article class="country-div">
+           <img class="country__img" src="${res.data[0].flag}" />
+            <div class="country__data">
+             <h2 class="country__name">${res.data[0].name}  (${res.data[0].nativeName})</h2>
+             <h3 class="country__region">${res.data[0].region} (${res.data[0].subregion})</h3>
+             <p class="country__row"><span>👫</span>${(res.data[0].population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))} people</p>
+             <p class="country__row"><span>🏙️</span>${res.data[0].capital}</p>
+             <p class="country__row"><span>📏</span>${res.data[0].area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2</p>
+             <p class="country__row"><span>💰</span>${res.data[0].currencies[0].name} (${res.data[0].currencies[0].code})</p>
+            
+             <p class="country__row"><span>☎️</span>+${res.data[0].callingCodes}</p>
+             <p class="country__row"><span>🌐</span>${res.data[0].topLevelDomain[0]}</p>
+           </div>
+          </article>`
+        card.insertAdjacentHTML('beforeend', html);
+      })
+      .catch(err => {
+        console.log("error", err)
+      })
+
+  }
+  function removeEl() {
+    card.classList.add("zoomIn")
+    countryList.style.display = 'none'
+    search.style.display = 'none'
+    rnd.style.display = 'none'
+  }
+
+//  <p class="country__row"><span>🕒</span>+${res.data[0].timezones}</p>
+  search.addEventListener('click', () => {
+
+    titleText.style.display = "none"
+    const countryName = countryList.value.toLowerCase();
+    getCountry(countryName)
+    removeEl()
+    
+  })
+
+  rnd.addEventListener('click', ()=>{
+    titleText.style.display = "none"
+    removeEl()
+    getCountry(getMeRandomCountry)
+  })
+
+})
+
+
 
 const start = () => {
 
@@ -231,7 +291,7 @@ function correct() {
 }
 
 // Buttons
-btn.addEventListener('click', () => {
+play.addEventListener('click', () => {
   odometer.style.display = 'inline-block'
   odometer.classList.add("zoomIn")
   runCounter()
@@ -260,7 +320,7 @@ btn.addEventListener('click', () => {
   countriesContainer.classList.add("bounceInDown")
   titleText.style.display = "none"
   countryList.style.display = "none"
-  btn.style.display = "none"
+  play.style.display = "none"
   regionEl.style.display = "none"
   getCountryData(randomCountry())
   // Counter is running until the end if player doesn't answer any question
@@ -269,7 +329,7 @@ btn.addEventListener('click', () => {
       noAnswer()
     }
   }, 14000)
-  
+
 })
 
 
@@ -277,11 +337,11 @@ btn.addEventListener('click', () => {
 // Timer is set to 10 seconds
 // 
 function noAnswer() {
-  
+
   countriesContainer.className = 'zoomOut'
   if (!finished) {
     circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
-   
+
   }
   counter.style.display = 'none'
   resetCounter()
@@ -304,12 +364,12 @@ function noAnswer() {
       counter.style.display = 'block'
     }
   }, 4000)
-  
+
 }
 
 // Activating modal with score and percent of accuracy
 function gameOver() {
- 
+
   clearInterval(timer)
   setTimeout(() => {
     modal.style.opacity = "1"
@@ -350,7 +410,7 @@ radios.forEach(radio => radio.addEventListener('click', () =>
 answerBtn.addEventListener('click', () => {
   // On every click, timer is reset to default value(10s)
   clearInterval(timer)
-  
+
   setTimeout(function () {
     counter.style.display = 'block'
   }, 3000)
@@ -373,7 +433,7 @@ answerBtn.addEventListener('click', () => {
     clearInterval(timer)
     gameOver()
   }
-  
+
   update()
 
   countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
@@ -487,3 +547,30 @@ function getCountryData(country) {
 
 
 
+
+
+// Random pins in background
+/* const pins = document.querySelector('.pins-container')
+const min = 15
+const max = 85
+const randomPins = () => {
+
+  r = Math.floor(Math.random() * (max - min + 1)) + min;
+  return r
+}
+
+for (let i = 0; i < 30; i++) {
+  const delay = Math.random() + 's';
+  const el = document.createElement('img')
+  el.src            = 'assets/map-pin.svg'
+  el.className      = 'pin'
+  el.style.top      = randomPins() + '%'
+  el.style.left     = randomPins() + '%'
+  el.style.animationDelay       = delay
+  el.style.msAnimationDelay     = delay
+  el.style.webkitAnimationDelay = delay
+  el.style.monAnimationDelay    = delay
+  pins.appendChild(el)
+}
+
+*/

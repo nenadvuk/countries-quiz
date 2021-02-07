@@ -24,7 +24,8 @@
   <div class="loading-page">
     <button class="btn-glow" id="btn-country">Guess the country <br>
       <button class="btn-glow" id="btn-capital" style="animation-delay: 200ms;">Guess the capital <br>
-        <button class="btn-glow" disabled id="btn-flag" style="animation-delay: 400ms;">Guess the flag <br>
+        <button class="btn-glow" disabled id="btn-hard" style="animation-delay: 400ms;">Hard mode<br>
+          <button class="btn-glow" id="btn-explore" style="animation-delay: 600ms;">Explore countries<br>
   </div>
 
   <main class="container-box">
@@ -32,7 +33,7 @@
 
     </div>
     <div class="title-box">
-      <p class="title-text">PLEASE SELECT REGION</p>
+      <p class="title-text">PLEASE SELECT <span id="search-term"></span></p>
     </div>
     <div class="progress-container">
       <div class="progress" id="progress"></div>
@@ -351,7 +352,16 @@
           <option value="Zambia" class="africa" id="Lusaka">Zambia</option>
           <option value="Zimbabwe" class="africa" id="Harare">Zimbabwe</option>
         </select>
-        <button id="search" class="btn">Play</button><br>
+        <div class="explore-container" id="">
+          <div class="country-card">
+          </div>
+          <div class="explore-btns">
+            <button id="search" class="btn">Search</button><br>
+            <button id="random-country" class="btn">Random</button><br>
+          </div>
+
+        </div>
+        <button id="play" class="btn">Play</button><br>
       </div>
       <a href="#openModal"></a>
 

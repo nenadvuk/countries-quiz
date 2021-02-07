@@ -102,7 +102,7 @@ card.style.display = 'none'
 setTimeout(() => {
   video.style.display = 'block'
   video.classList.add("fadeIn")
-}, 2000)
+}, 500)
 
 
 btnCountry.addEventListener('click', () => {
@@ -143,15 +143,28 @@ btnExplore.addEventListener('click', () => {
           <article class="country-div">
            <img class="country__img" src="${res.data[0].flag}" />
             <div class="country__data">
-             <h2 class="country__name">${res.data[0].name}  (${res.data[0].nativeName})</h2>
-             <h3 class="country__region">${res.data[0].region} (${res.data[0].subregion})</h3>
-             <p class="country__row"><span>👫</span>${(res.data[0].population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))} people</p>
-             <p class="country__row"><span>🏙️</span>${res.data[0].capital}</p>
-             <p class="country__row"><span>📏</span>${res.data[0].area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2</p>
-             <p class="country__row"><span>💰</span>${res.data[0].currencies[0].name} (${res.data[0].currencies[0].code})</p>
-            
-             <p class="country__row"><span>☎️</span>+${res.data[0].callingCodes}</p>
-             <p class="country__row"><span>🌐</span>${res.data[0].topLevelDomain[0]}</p>
+             <div class="flip-card">
+              <div class="flip-card-inner">
+               <div class="flip-card-front">
+                <h2 class="country__name">${res.data[0].name}</h2>
+                <h3 class="country__region">${res.data[0].region}</h3>
+                <p class="country__row"><span>👫</span>${(res.data[0].population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))} people</p>
+                <p class="country__row"><span>🏙️</span>${res.data[0].capital}</p>
+                <p class="country__row"><span>📏</span>${res.data[0].area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2</p>
+                <p class="country__row"><span>☎️</span>+${res.data[0].callingCodes}</p>
+                <p class="country__row"><span>🌐</span>${res.data[0].topLevelDomain[0]}</p>
+               </div>
+              <div class="flip-card-back">
+               <h2 class="country__name">${res.data[0].nativeName}</h2>
+               <h3 class="country__region">${res.data[0].subregion}</h3>
+               <p class="country__row"><span>💰</span>${res.data[0].currencies[0].name} (${res.data[0].currencies[0].code})</p>
+               <p class="country__row"><span>🗣️</span>${res.data[0].languages[0].nativeName}</p>
+               <p class="country__row"><span>🧍</span>${res.data[0].demonym}</p>
+               <p class="country__row"><span>🇫🇷</span>${res.data[0].translations.fr}</p>
+               <p class="country__row"><span>🇪🇸</span>${res.data[0].translations.es}</p>
+              </div>
+             </div>
+            </div>
            </div>
           </article>`
         card.insertAdjacentHTML('beforeend', html);
@@ -167,8 +180,14 @@ btnExplore.addEventListener('click', () => {
     search.style.display = 'none'
     rnd.style.display = 'none'
   }
-
+// [0].demonym
 //  <p class="country__row"><span>🕒</span>+${res.data[0].timezones}</p>
+// <p class="country__row"><span>🕒</span>+${res.data[0].timezones[0]} - ${res.data[0].timezones[res.data[0].timezones.length-1]}</p>
+// <p class="country__row"><span>🇩🇪</span>${res.data[0].translations.de}</p>
+// <p class="country__row"><span>🇯🇵</span>${res.data[0].translations.ja}</p>
+// <p class="country__row"><span>🇮🇹</span>${res.data[0].translations.it}</p> 
+
+
   search.addEventListener('click', () => {
 
     titleText.style.display = "none"
@@ -574,3 +593,5 @@ for (let i = 0; i < 30; i++) {
 }
 
 */
+
+

@@ -154,10 +154,6 @@ body {
 }
 
 .first-page {
-  height: 35rem;
-}
-
-.next-page {
   min-height: 35rem;
 }
 
@@ -194,10 +190,13 @@ body {
   display: inline-block;
   margin-right: 2rem;
   font-size: 1.8rem;
+  
+  
 }
 
+
 .country-card {
-  margin-top: 3rem;
+  margin-top: 2rem;
   width: 46rem;
 }
 
@@ -327,20 +326,12 @@ body {
   opacity: 1;
 }
 
-.next-prev {
-  animation: zoomIn .3s;
-  z-index: 100;
-  position: relative;
-  top: -5rem;
-  left: 80%;
-}
 
 .new-s {
   animation: zoomIn 1s;
   animation-delay: 1s;
   animation-fill-mode: backwards;
-  position: absolute;
-  /*  top: -70rem; */
+  position: relative;
   left: 15%;
 }
 
@@ -348,8 +339,7 @@ body {
   animation: zoomIn 1s;
   animation-delay: 1.2s;
   animation-fill-mode: backwards;
-  position: absolute;
-  /* top: -70rem; */
+  position: relative;
   left: 50%;
 }
 

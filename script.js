@@ -1,5 +1,4 @@
 
-
 // Buttons
 const play = document.querySelector('#play')
 const newGame = document.getElementById('new-game')
@@ -10,7 +9,6 @@ const btnHard = document.getElementById('btn-hard')
 const btnExplore = document.getElementById('btn-explore')
 const search = document.querySelector('#search')
 const rnd = document.querySelector('#random-country')
-const nextBtn = document.getElementById('next-btn')
 const newSearch = document.getElementById('new-search')
 const newRandom = document.getElementById('new-random')
 
@@ -40,9 +38,6 @@ const internet = document.getElementById('internet')
 const nativeName = document.getElementById('native-name')
 const subregion = document.getElementById('subregion')
 const language = document.getElementById('language')
-const demonym = document.getElementById('demonym')
-const french = document.getElementById('french')
-const timeZones = document.getElementById('time-zones')
 const exploreImg = document.getElementById('explore-img')
 
 
@@ -117,7 +112,6 @@ video.style.display = 'none'
 exploreBtns.style.display = 'none'
 searchTerm.innerHTML = 'REGION'
 card.style.display = 'none'
-nextBtn.style.display = 'none'
 newSearch.style.display = 'none'
 newRandom.style.display = 'none'
 
@@ -155,67 +149,35 @@ btnExplore.addEventListener('click', () => {
   regionEl.style.display = 'none'
   play.style.display = 'none'
   // card.style.display = 'flex'
-  const getMeRandomCountry = countryList[Math.floor(Math.random() * countryList.length)].value;
-  console.log(getMeRandomCountry)
+  const getMeRandomCountry = () => countryList[Math.floor(Math.random() * countryList.length)].value;
+  console.log(getMeRandomCountry())
   const getCountry = (country) => {
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
+
         card.style.display = 'flex'
-        // countryData.style.padding = '1rem'
         console.log(res.data)
         exploreImg.src = res.data[0].flag
-        countryName.innerHTML = res.data[0].name
-        countryRegion.innerHTML = res.data[0].region
-        population.innerHTML += `     
+        countryName.innerHTML = `${res.data[0].name} - (${res.data[0].nativeName})`
+        countryRegion.innerHTML = `${res.data[0].region} - (${res.data[0].subregion})`
+        population.innerHTML = `👫   
            ${res.data[0].population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} people`
-        capitalCity.textContent += `${res.data[0].capital}`
-        currencie.innerHTML += `${res.data[0].currencies[0].name} (${res.data[0].currencies[0].code})`
-        area.innerHTML += `${res.data[0].area} Km2`
-        callCode.innerHTML += `+${res.data[0].callingCodes}`
-        internet.innerHTML += `${res.data[0].topLevelDomain[0]}`
-        nativeName.innerHTML += res.data[0].nativeName
-        subregion.innerHTML += res.data[0].subregion
-        language.innerHTML += `${res.data[0].languages[0].nativeName}`
-        demonym.innerHTML += `${res.data[0].demonym}`
-        french.innerHTML += `${res.data[0].translations.fr}`
-        timeZones.innerHTML += `${res.data[0].timezones}`
-        const firstPage = document.querySelector('.first-page')
-        const nextPage = document.querySelector('.next-page')
-        nextPage.style.display = 'none'
-        const nextToggle = document.getElementById('next-toggle')
+        capitalCity.textContent = `🏙️  ${res.data[0].capital}`
+        currencie.innerHTML = `💶 ${res.data[0].currencies[0].name} (${res.data[0].currencies[0].code})`
+        area.innerHTML = `📏 ${res.data[0].area} Km2`
+        callCode.innerHTML = `☎️ +${res.data[0].callingCodes}`
+        language.innerHTML = `🗣️ ${res.data[0].languages[0].nativeName}`
+        internet.innerHTML = `🌐 ${res.data[0].topLevelDomain[0]}`
+
         
-        const toggle = () => {
-
-          if (nextPage.style.display == 'none') {
-            firstPage.style.display = 'none'
-            nextPage.style.animation = 'fadeInSmall 1s'
-            nextPage.style.display = 'block'
-            nextToggle.innerHTML = 'BACK'
-          }
-          else {
-            firstPage.style.display = 'block'
-            firstPage.style.animation = 'fadeInSmall 1s'
-            nextPage.style.display = 'none'
-            nextToggle.innerHTML = 'MORE'
-          }
-        }
-        newRandom.addEventListener('click', () => {
-
-
-          card.style.display = 'none'
-
-          getCountry(getMeRandomCountry)
-
-        })
-        nextBtn.addEventListener('click', () => {
-          toggle()
-        })
       })
       .catch(err => {
         console.log("error", err)
       })
-
+      
+      
   }
+
   const removeEl = () => {
 
     card.classList.add("zoomIn")
@@ -223,7 +185,17 @@ btnExplore.addEventListener('click', () => {
     search.style.display = 'none'
     rnd.style.display = 'none'
   }
+  newRandom.addEventListener('click', () => {
+          
+    card.style.display = 'none'
+    newSearch.style.display = 'none'
+    newRandom.style.display = 'none'
+    setTimeout(() => {
+      getCountry(getMeRandomCountry())
+      btnAppear()
+    }, 1000);
 
+  })
   // newSearch.addEventListener('click', () => {
   //   console.log('clicked')
   //   html = ''
@@ -233,7 +205,6 @@ btnExplore.addEventListener('click', () => {
   const btnAppear = () => {
 
     setTimeout(() => {
-      nextBtn.style.display = 'block'
       newSearch.style.display = 'inline-block'
       newRandom.style.display = 'inline-block'
     }, 2500);
@@ -253,7 +224,7 @@ btnExplore.addEventListener('click', () => {
 
     titleText.style.display = "none"
     removeEl()
-    getCountry(getMeRandomCountry)
+    getCountry(getMeRandomCountry())
     btnAppear()
   })
 
@@ -615,3 +586,4 @@ const getCountryData = (country) => {
     })
 
 }
+

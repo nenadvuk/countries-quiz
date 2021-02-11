@@ -10,8 +10,11 @@ const btnHard = document.getElementById('btn-hard')
 const btnExplore = document.getElementById('btn-explore')
 const search = document.querySelector('#search')
 const rnd = document.querySelector('#random-country')
+const nextBtn = document.getElementById('next-btn')
+const newSearch = document.getElementById('new-search')
+const newRandom = document.getElementById('new-random')
 
-
+// Containers
 const countriesContainer = document.querySelector('.countries')
 const allContent = document.querySelector('.container-box')
 const countryList = document.getElementById('country-name')
@@ -23,6 +26,24 @@ const goodScore = document.getElementById('good-score')
 const load = document.querySelector('.loading-page')
 const gameMode = document.getElementById('game-mode')
 const searchTerm = document.getElementById('search-term')
+
+// Country data
+const countryData = document.querySelector('.country__data')
+const countryName = document.getElementById('country____name')
+const countryRegion = document.getElementById('country-region')
+const population = document.getElementById('population')
+const capitalCity = document.getElementById('capital')
+const currencie = document.getElementById('currencie')
+const area = document.getElementById('area')
+const callCode = document.getElementById('calling-code')
+const internet = document.getElementById('internet')
+const nativeName = document.getElementById('native-name')
+const subregion = document.getElementById('subregion')
+const language = document.getElementById('language')
+const demonym = document.getElementById('demonym')
+const french = document.getElementById('french')
+const timeZones = document.getElementById('time-zones')
+const exploreImg = document.getElementById('explore-img')
 
 
 const flag = document.getElementById('flag')
@@ -96,8 +117,9 @@ video.style.display = 'none'
 exploreBtns.style.display = 'none'
 searchTerm.innerHTML = 'REGION'
 card.style.display = 'none'
-
-
+nextBtn.style.display = 'none'
+newSearch.style.display = 'none'
+newRandom.style.display = 'none'
 
 setTimeout(() => {
   video.style.display = 'block'
@@ -106,7 +128,7 @@ setTimeout(() => {
 
 
 btnCountry.addEventListener('click', () => {
-  
+
   _GAME_COUNTRIES = true
   setTimeout(() => {
     start()
@@ -115,7 +137,7 @@ btnCountry.addEventListener('click', () => {
 })
 
 btnCapital.addEventListener('click', () => {
- 
+
   _GAME_COUNTRIES = true
   _GAME_CAPITALS = true
   setTimeout(() => {
@@ -124,88 +146,118 @@ btnCapital.addEventListener('click', () => {
 
 })
 
-
 btnExplore.addEventListener('click', () => {
+
   searchTerm.innerHTML = 'COUNTRY'
   exploreBtns.style.display = 'block'
   start()
   countryList.style.display = 'block'
   regionEl.style.display = 'none'
   play.style.display = 'none'
-  card.style.display = 'flex'
+  // card.style.display = 'flex'
   const getMeRandomCountry = countryList[Math.floor(Math.random() * countryList.length)].value;
-
-  function getCountry(country) {
+  console.log(getMeRandomCountry)
+  const getCountry = (country) => {
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
+        card.style.display = 'flex'
+        // countryData.style.padding = '1rem'
         console.log(res.data)
-        const html = `
-          <article class="country-div">
-           <img class="country__img" src="${res.data[0].flag}" />
-            <div class="country__data">
-             <div class="flip-card">
-              <div class="flip-card-inner">
-               <div class="flip-card-front">
-                <h2 class="country__name">${res.data[0].name}</h2>
-                <h3 class="country__region">${res.data[0].region}</h3>
-                <p class="country__row"><span>👫</span>${(res.data[0].population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))} people</p>
-                <p class="country__row"><span>🏙️</span>${res.data[0].capital}</p>
-                <p class="country__row"><span>📏</span>${res.data[0].area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2</p>
-                <p class="country__row"><span>☎️</span>+${res.data[0].callingCodes}</p>
-                <p class="country__row"><span>🌐</span>${res.data[0].topLevelDomain[0]}</p>
-               </div>
-              <div class="flip-card-back">
-               <h2 class="country__name">${res.data[0].nativeName}</h2>
-               <h3 class="country__region">${res.data[0].subregion}</h3>
-               <p class="country__row"><span>💰</span>${res.data[0].currencies[0].name} (${res.data[0].currencies[0].code})</p>
-               <p class="country__row"><span>🗣️</span>${res.data[0].languages[0].nativeName}</p>
-               <p class="country__row"><span>🧍</span>${res.data[0].demonym}</p>
-               <p class="country__row"><span>🇫🇷</span>${res.data[0].translations.fr}</p>
-               <p class="country__row"><span>🇪🇸</span>${res.data[0].translations.es}</p>
-              </div>
-             </div>
-            </div>
-           </div>
-          </article>`
-        card.insertAdjacentHTML('beforeend', html);
+        exploreImg.src = res.data[0].flag
+        countryName.innerHTML = res.data[0].name
+        countryRegion.innerHTML = res.data[0].region
+        population.innerHTML += `     
+           ${res.data[0].population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} people`
+        capitalCity.textContent += `${res.data[0].capital}`
+        currencie.innerHTML += `${res.data[0].currencies[0].name} (${res.data[0].currencies[0].code})`
+        area.innerHTML += `${res.data[0].area} Km2`
+        callCode.innerHTML += `+${res.data[0].callingCodes}`
+        internet.innerHTML += `${res.data[0].topLevelDomain[0]}`
+        nativeName.innerHTML += res.data[0].nativeName
+        subregion.innerHTML += res.data[0].subregion
+        language.innerHTML += `${res.data[0].languages[0].nativeName}`
+        demonym.innerHTML += `${res.data[0].demonym}`
+        french.innerHTML += `${res.data[0].translations.fr}`
+        timeZones.innerHTML += `${res.data[0].timezones}`
+        const firstPage = document.querySelector('.first-page')
+        const nextPage = document.querySelector('.next-page')
+        nextPage.style.display = 'none'
+        const nextToggle = document.getElementById('next-toggle')
+        
+        const toggle = () => {
+
+          if (nextPage.style.display == 'none') {
+            firstPage.style.display = 'none'
+            nextPage.style.animation = 'fadeInSmall 1s'
+            nextPage.style.display = 'block'
+            nextToggle.innerHTML = 'BACK'
+          }
+          else {
+            firstPage.style.display = 'block'
+            firstPage.style.animation = 'fadeInSmall 1s'
+            nextPage.style.display = 'none'
+            nextToggle.innerHTML = 'MORE'
+          }
+        }
+        newRandom.addEventListener('click', () => {
+
+
+          card.style.display = 'none'
+
+          getCountry(getMeRandomCountry)
+
+        })
+        nextBtn.addEventListener('click', () => {
+          toggle()
+        })
       })
       .catch(err => {
         console.log("error", err)
       })
 
   }
-  function removeEl() {
+  const removeEl = () => {
+
     card.classList.add("zoomIn")
     countryList.style.display = 'none'
     search.style.display = 'none'
     rnd.style.display = 'none'
   }
-// [0].demonym
-//  <p class="country__row"><span>🕒</span>+${res.data[0].timezones}</p>
-// <p class="country__row"><span>🕒</span>+${res.data[0].timezones[0]} - ${res.data[0].timezones[res.data[0].timezones.length-1]}</p>
-// <p class="country__row"><span>🇩🇪</span>${res.data[0].translations.de}</p>
-// <p class="country__row"><span>🇯🇵</span>${res.data[0].translations.ja}</p>
-// <p class="country__row"><span>🇮🇹</span>${res.data[0].translations.it}</p> 
 
+  // newSearch.addEventListener('click', () => {
+  //   console.log('clicked')
+  //   html = ''
+  //   card.classList.add("zoomOut")
+  // })
+
+  const btnAppear = () => {
+
+    setTimeout(() => {
+      nextBtn.style.display = 'block'
+      newSearch.style.display = 'inline-block'
+      newRandom.style.display = 'inline-block'
+    }, 2500);
+  }
 
   search.addEventListener('click', () => {
 
     titleText.style.display = "none"
-    const countryName = countryList.value.toLowerCase();
-    getCountry(countryName)
+    const userCountry = countryList.value.toLowerCase();
+    getCountry(userCountry)
     removeEl()
-    
+    btnAppear()
+
   })
 
-  rnd.addEventListener('click', ()=>{
+  rnd.addEventListener('click', () => {
+
     titleText.style.display = "none"
     removeEl()
     getCountry(getMeRandomCountry)
+    btnAppear()
   })
 
 })
-
-
 
 const start = () => {
 
@@ -232,7 +284,7 @@ regionEl.addEventListener('change', (e) => {
 
 
 // Reseting counter after click event on answer button or autoamticly
-function resetCounter() {
+const resetCounter = () => {
 
   counter.classList.remove('hide')
   nums.forEach((num) => {
@@ -243,7 +295,7 @@ function resetCounter() {
 }
 
 
-function runCounter() {
+const runCounter = () => {
 
   nums.forEach((num, idx) => {
     const nextToLast = nums.length - 1
@@ -263,7 +315,7 @@ function runCounter() {
 
 
 // funcion which changing style of circles and progress bar
-function update() {
+const update = () => {
 
   answerBtn.style.pointerEvents = 'none'
   circles.forEach((circle, idx) => {
@@ -286,7 +338,7 @@ const shuffle = (array) => array.sort(() => Math.random() - 0.5)
 
 
 // Function which determines if answer is correct and changing styles of circles
-function correct() {
+const correct = () => {
 
   let userAnswer = getSelected()
   if (userAnswer == correctAnswer) {
@@ -302,7 +354,7 @@ function correct() {
     resArray[userAnswer].innerHTML += '❌'
   }
   if (finished) {
-    setTimeout(function () {
+    setTimeout(() => {
       countriesContainer.style.display = "none"
     }, 500);
 
@@ -314,7 +366,7 @@ play.addEventListener('click', () => {
   odometer.style.display = 'inline-block'
   odometer.classList.add("zoomIn")
   runCounter()
-  setTimeout(function () {
+  setTimeout(() => {
     counter.style.display = 'block'
   }, 2000);
   // Chosen region
@@ -355,7 +407,7 @@ play.addEventListener('click', () => {
 // Function which automaticly goes to the next question if player doesn't answer 
 // Timer is set to 10 seconds
 // 
-function noAnswer() {
+const noAnswer = () => {
 
   countriesContainer.className = 'zoomOut'
   if (!finished) {
@@ -371,7 +423,7 @@ function noAnswer() {
     clearInterval(timer)
     gameOver()
   }
-  setTimeout(function () {
+  setTimeout(() => {
     if (!finished) {
       countriesContainer.classList.add("zoomIn")
       getCountryData(randomCountry())
@@ -387,7 +439,7 @@ function noAnswer() {
 }
 
 // Activating modal with score and percent of accuracy
-function gameOver() {
+const gameOver = () => {
 
   clearInterval(timer)
   setTimeout(() => {
@@ -430,7 +482,7 @@ answerBtn.addEventListener('click', () => {
   // On every click, timer is reset to default value(10s)
   clearInterval(timer)
 
-  setTimeout(function () {
+  setTimeout(() => {
     counter.style.display = 'block'
   }, 3000)
 
@@ -498,7 +550,7 @@ const getSelected = () => {
 /* Generisanje nasumicne drzave i uklanjanje iste iz novog niza 
    da bi se izbeglo ponavljanje istog pitanja */
 
-function randomCountry() {
+const randomCountry = () => {
 
   if (finished) {
     clearInterval(timer)
@@ -512,10 +564,10 @@ function randomCountry() {
 
 }
 
-function getCountryData(country) {
+const getCountryData = (country) => {
 
   if (finished) {
-    setTimeout(function () {
+    setTimeout(() => {
       countriesContainer.style.display = "none"
     }, 500);
 
@@ -563,35 +615,3 @@ function getCountryData(country) {
     })
 
 }
-
-
-
-
-
-// Random pins in background
-/* const pins = document.querySelector('.pins-container')
-const min = 15
-const max = 85
-const randomPins = () => {
-
-  r = Math.floor(Math.random() * (max - min + 1)) + min;
-  return r
-}
-
-for (let i = 0; i < 30; i++) {
-  const delay = Math.random() + 's';
-  const el = document.createElement('img')
-  el.src            = 'assets/map-pin.svg'
-  el.className      = 'pin'
-  el.style.top      = randomPins() + '%'
-  el.style.left     = randomPins() + '%'
-  el.style.animationDelay       = delay
-  el.style.msAnimationDelay     = delay
-  el.style.webkitAnimationDelay = delay
-  el.style.monAnimationDelay    = delay
-  pins.appendChild(el)
-}
-
-*/
-
-

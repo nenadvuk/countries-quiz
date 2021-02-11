@@ -228,7 +228,7 @@
           <option value="Korea (Republic of)" class="asia" id="Seoul">South Korea</option>
           <option value="Kuwait" class="asia" id="Kuwait City">Kuwait</option>
           <option value="Kyrgyzstan" class="asia" id="Bishkek">Kyrgyzstan</option>
-          <option value="Lao People's Democratic Republic" class="asia" id="Vientiane">Lao Republic</option>
+          <option value="Laos" class="asia" id="Vientiane">Laos</option>
           <option value="Latvia" class="europe" id="Riga">Latvia</option>
           <option value="Lebanon" class="asia" class="africa" id="Beirut">Lebanon</option>
           <option value="Lesotho" class="africa" id="Maseru">Lesotho</option>
@@ -264,7 +264,6 @@
           <option value="Nauru" class="oceania" id="Yaren">Nauru</option>
           <option value="Nepal" class="asia" id="Kathmandu">Nepal</option>
           <option value="Netherlands" class="europe" id="Amsterdam">Netherlands</option>
-          <option value="Netherlands Antilles">Netherlands Antilles</option><!--  -->
           <option value="New Caledonia" class="oceania" id="Nouméa">New Caledonia</option>
           <option value="New Zealand" class="oceania" id="Wellington">New Zealand</option>
           <option value="Nicaragua" class="north_america" id="Managua">Nicaragua</option>
@@ -352,9 +351,35 @@
           <option value="Zambia" class="africa" id="Lusaka">Zambia</option>
           <option value="Zimbabwe" class="africa" id="Harare">Zimbabwe</option>
         </select>
-        <div class="explore-container" id="">
+        <div class="explore-container">
           <div class="country-card">
+            <article class="country-div">
+              <img class="country__img" id="explore-img" src="" />
+              <div class="country__data">
+                <div class="first-page">
+                  <h2 class="country__name" id="country____name"></h2>
+                  <h3 class="country__region" id="country-region"></h3>
+                  <p class="country__row" title="Population"><span id="population">👫</span></p>
+                  <p class="country__row" title="Capital city"><span id="capital">🏙️&nbsp</span></p>
+                  <p class="country__row" title="Currencie"><span id="currencie">💰&nbsp&nbsp</span></p>
+                  <p class="country__row" title="Area"><span id="area">📏&nbsp</span></p>
+                  <p class="country__row" title="Calling codes"><span id="calling-code">☎️&nbsp</span></p>
+                  <p class="country__row" title="Internet domain"><span id="internet">🌐&nbsp</span></p>
+                </div>
+                <div class="next-page">
+                  <h2 class="country__name" id="native-name"></h2>
+                  <h3 class="country__region" id="subregion"></h3>
+                  <p class="country__row" title="Languages"><span id="language">🗣️&nbsp</span></p>
+                  <p class="country__row" title="Demonym"><span id="demonym">🧍&nbsp&nbsp</span></p>
+                  <p class="country__row"><span id="french">🇫🇷&nbsp&nbsp</span></p>
+                  <p class="country__row exceed" title="Time zones"><span id="time-zones" id="exceed">🕒&nbsp</span></p>
+                </div>
+              </div>
+            </article>
           </div>
+          <button id="next-btn" class="next-prev explore-btn"><span id="next-toggle">MORE</span></button>
+          <button id="new-search" class="new-s explore-btn">SEARCH</button>
+          <button id="new-random" class="new-r explore-btn">RANDOM</button>
           <div class="explore-btns">
             <button id="search" class="btn">Search</button><br>
             <button id="random-country" class="btn">Random</button><br>
@@ -377,9 +402,9 @@
 
     </div>
     <script src="script.js"></script>
+
     </div>
   </main>
 </body>
 
 </html>
-

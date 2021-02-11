@@ -44,6 +44,12 @@ body {
   z-index: 20;
 }
 
+/* .country__row{
+  word-spacing: 30px;
+  text-decoration: underline;
+}
+ */
+
 .container-box {
   position: relative;
   z-index: 21;
@@ -53,7 +59,7 @@ body {
 }
 
 .bg-video {
-  opacity: .8;
+  opacity: .7;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -147,6 +153,14 @@ body {
   overflow: hidden;
 }
 
+.first-page {
+  height: 35rem;
+}
+
+.next-page {
+  min-height: 35rem;
+}
+
 .country__img {
   border-bottom: 1px solid;
   width: 40rem;
@@ -158,7 +172,7 @@ body {
 }
 
 .country__data {
-  padding: 2.5rem 2.75rem 2.5rem 2.75rem;
+  padding: .5rem 1.75rem .5rem 1.75rem;
 }
 
 .country__name {
@@ -179,11 +193,16 @@ body {
 .country__row span {
   display: inline-block;
   margin-right: 2rem;
-  font-size: 2.4rem;
+  font-size: 1.8rem;
 }
 
 .country-card {
+  margin-top: 3rem;
   width: 46rem;
+}
+
+#exceed {
+  word-wrap: break-word;
 }
 
 /*************************************** Counter ***************************************/
@@ -308,6 +327,50 @@ body {
   opacity: 1;
 }
 
+.next-prev {
+  animation: zoomIn .3s;
+  z-index: 100;
+  position: relative;
+  top: -5rem;
+  left: 80%;
+}
+
+.new-s {
+  animation: zoomIn 1s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+  position: absolute;
+  /*  top: -70rem; */
+  left: 15%;
+}
+
+.new-r {
+  animation: zoomIn 1s;
+  animation-delay: 1.2s;
+  animation-fill-mode: backwards;
+  position: absolute;
+  /* top: -70rem; */
+  left: 50%;
+}
+
+.explore-btn {
+  border: none;
+  font-size: 1rem;
+  padding: 1rem 1rem;
+  border-radius: 0.7rem;
+  color: black;
+  background-color: orangered!important;
+  user-select: none;
+  cursor: pointer;
+  width: 10rem;
+  overflow: hidden;
+  outline: none;
+}
+
+.explore-btn:active {
+  transform: scale(0.95);
+}
+
 ul {
   outline: none;
   border: none;
@@ -347,10 +410,12 @@ ul li label {
 }
 
 .form-control {
+  animation: rubberBand 1s;
   margin-bottom: 2rem;
   width: 100%;
   height: 4rem;
   overflow: hidden;
+  animation-delay: 2s;
 }
 
 .form-control:focus {
@@ -488,6 +553,22 @@ ul li label {
   animation-delay: 2s;
 }
 
+.fadeInSmall {
+  -webkit-animation-name: fadeInSmall;
+  animation-name: fadeInSmall;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.rubberBand {
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
 @keyframes bounceInDown {
   0%, 60%, 75%, 90%, 100% {
     -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -560,6 +641,15 @@ ul li label {
   }
 }
 
+@keyframes fadeInSmall {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @-webkit-keyframes fadeInLeftBig {
   0% {
     opacity: 0;
@@ -583,6 +673,37 @@ ul li label {
     opacity: 1;
     -webkit-transform: none;
     transform: none;
+  }
+}
+
+@keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(.95, 1.05, 1);
+    transform: scale3d(.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, .95, 1);
+    transform: scale3d(1.05, .95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
 }
 
@@ -680,6 +801,13 @@ ul li label {
   .country-card {
     width: 40rem;
   }
+  .next-prev {
+    top: -5rem;
+    left: 65%;
+  }
+  .new-r {
+    left: 35%;
+  }
 }
 
 @media only screen and (max-width: 375px) {
@@ -689,97 +817,3 @@ ul li label {
 }
 
 
-
-
-
-
-
-/****************************************************************************************/
-.flip-card {
-  outline: none;
-  background-color: transparent;
-  width: 100%;
-  height: 32rem;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
-}
-
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  /* text-align: center; */
-  transition: transform 1s;
-  transform-style: preserve-3d;
-}
-
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
-}
-
-
-.flip-card-front {
-  color: black;
-}
-
-
-.flip-card-back {
- /*  background-color: dodgerblue; */
-  color: black;
-  transform: rotateY(180deg);
-}
-
-
-
-
-
-
-/*
-.shake {
-  -webkit-animation-name: shake;
-  animation-name: shake;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  }
-  @-webkit-keyframes shake {
-  0%, 100% {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  }
-  10%, 30%, 50%, 70%, 90% {
-  -webkit-transform: translate3d(-10px, 0, 0);
-  transform: translate3d(-10px, 0, 0);
-  }
-  20%, 40%, 60%, 80% {
-  -webkit-transform: translate3d(10px, 0, 0);
-  transform: translate3d(10px, 0, 0);
-  }
-  }
-  @keyframes shake {
-  0%, 100% {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  }
-  10%, 30%, 50%, 70%, 90% {
-  -webkit-transform: translate3d(-10px, 0, 0);
-  transform: translate3d(-10px, 0, 0);
-  }
-  20%, 40%, 60%, 80% {
-  -webkit-transform: translate3d(10px, 0, 0);
-  transform: translate3d(10px, 0, 0);
-  }
-  } 
-
-  */

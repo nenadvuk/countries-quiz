@@ -39,6 +39,7 @@ const nativeName = document.getElementById('native-name')
 const subregion = document.getElementById('subregion')
 const language = document.getElementById('language')
 const exploreImg = document.getElementById('explore-img')
+const regionalBlock = document.getElementById('regional-blocks')
 
 
 const flag = document.getElementById('flag')
@@ -148,9 +149,7 @@ btnExplore.addEventListener('click', () => {
   countryList.style.display = 'block'
   regionEl.style.display = 'none'
   play.style.display = 'none'
-  // card.style.display = 'flex'
-  const getMeRandomCountry = () => countryList[Math.floor(Math.random() * countryList.length)].value;
-  console.log(getMeRandomCountry())
+  const getMeRandomCountry = () => countryList[Math.floor(Math.random() * countryList.length)].value
   const getCountry = (country) => {
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
@@ -161,12 +160,18 @@ btnExplore.addEventListener('click', () => {
         console.log(res.data)
         exploreImg.src = DATA.flag
         countryName.innerHTML = `${DATA.name} - (${DATA.nativeName})`
+        if(DATA.regionalBlocs.length == 0) {
+          regionalBlock.innerHTML = ''
+        } else {
+          regionalBlock.innerHTML = DATA.regionalBlocs[0].name
+        
+        }
         countryRegion.innerHTML = `${DATA.region} - (${DATA.subregion})`
         population.innerHTML = `👫 >   
            ${DATA.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} people`
         capitalCity.textContent = `🏙️ >  ${DATA.capital}`
         currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code})`
-        if(DATA.area < 1000) {
+        if (DATA.area < 1000) {
           area.innerHTML = `📏 > ${DATA.area} Km2`
 
         } else {
@@ -175,7 +180,7 @@ btnExplore.addEventListener('click', () => {
         callCode.innerHTML = `☎️ >+${DATA.callingCodes}`
         for (let i = 0; i < DATA.languages.length; i++) {
           langArr.push(DATA.languages[i].name)
-          
+
         }
         language.innerHTML = `🗣️ > ${langArr}`
         internet.innerHTML = `🌐 > ${DATA.topLevelDomain[0]}`
@@ -188,14 +193,7 @@ btnExplore.addEventListener('click', () => {
 
 
   }
-  // name  [0].languages[0]
-  const removeEl = () => {
 
-    card.classList.add("zoomIn")
-    countryList.style.display = 'none'
-    search.style.display = 'none'
-    rnd.style.display = 'none'
-  }
   newRandom.addEventListener('click', () => {
 
     card.style.display = 'none'
@@ -205,12 +203,17 @@ btnExplore.addEventListener('click', () => {
       getCountry(getMeRandomCountry())
       btnAppear()
     }, 1000);
-
+  
   })
-  // newSearch.addEventListener('click', () => {
-  //   console.log('clicked')
-  //   card.classList.add("zoomOut")
-  // })
+
+  const removeEl = () => {
+
+    card.classList.add("zoomIn")
+    countryList.style.display = 'none'
+    search.style.display = 'none'
+    rnd.style.display = 'none'
+  }
+
 
   const btnAppear = () => {
 
@@ -230,6 +233,28 @@ btnExplore.addEventListener('click', () => {
 
   })
 
+
+  newSearch.addEventListener('click', () => {
+
+    card.style.display = 'none'
+    newSearch.style.display = 'none'
+    newRandom.style.display = 'none'
+    countryList.classList.add("zoomIn")
+    search.classList.add("zoomIn")
+    rnd.classList.add("zoomIn")
+    setTimeout(() => {
+
+      titleText.style.display = "block"
+      countryList.style.display = 'block'
+      search.style.display = 'inline-block'
+      
+      rnd.style.display = 'inline-block'
+     
+    }, 500)
+
+  })
+
+  
   rnd.addEventListener('click', () => {
 
     titleText.style.display = "none"
@@ -239,6 +264,11 @@ btnExplore.addEventListener('click', () => {
   })
 
 })
+
+
+
+
+
 
 const start = () => {
 

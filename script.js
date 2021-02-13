@@ -181,7 +181,7 @@ btnExplore.addEventListener('click', () => {
         if (DATA.regionalBlocs.length == 0) {
           regionalBlock.innerHTML = ''
         } else {
-          regionalBlock.innerHTML = DATA.regionalBlocs[0].name
+          regionalBlock.innerHTML = `${DATA.regionalBlocs[0].name} - "${DATA.regionalBlocs[0].acronym}"`
 
         }
         countryRegion.innerHTML = `${DATA.region} - (${DATA.subregion})`

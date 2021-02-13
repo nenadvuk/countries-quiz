@@ -116,12 +116,24 @@ card.style.display = 'none'
 newSearch.style.display = 'none'
 newRandom.style.display = 'none'
 
+// Video load
 setTimeout(() => {
   video.style.display = 'block'
   video.classList.add("fadeIn")
 }, 500)
 
 
+const start = () => {
+
+  load.classList.add("zoomOut")
+  load.style.display = "none"
+  allContent.style.display = "block"
+  allContent.classList.add("bounceInDown")
+
+}
+
+
+// Guess the country
 btnCountry.addEventListener('click', () => {
 
   _GAME_COUNTRIES = true
@@ -131,6 +143,7 @@ btnCountry.addEventListener('click', () => {
 
 })
 
+// Guess the capital city
 btnCapital.addEventListener('click', () => {
 
   _GAME_COUNTRIES = true
@@ -141,6 +154,7 @@ btnCapital.addEventListener('click', () => {
 
 })
 
+// Explore countries
 btnExplore.addEventListener('click', () => {
 
   searchTerm.innerHTML = 'COUNTRY'
@@ -160,11 +174,11 @@ btnExplore.addEventListener('click', () => {
         console.log(res.data)
         exploreImg.src = DATA.flag
         countryName.innerHTML = `${DATA.name} - (${DATA.nativeName})`
-        if(DATA.regionalBlocs.length == 0) {
+        if (DATA.regionalBlocs.length == 0) {
           regionalBlock.innerHTML = ''
         } else {
           regionalBlock.innerHTML = DATA.regionalBlocs[0].name
-        
+
         }
         countryRegion.innerHTML = `${DATA.region} - (${DATA.subregion})`
         population.innerHTML = `👫 >   
@@ -177,7 +191,7 @@ btnExplore.addEventListener('click', () => {
         } else {
           area.innerHTML = `📏 > ${DATA.area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2`
         }
-        callCode.innerHTML = `☎️ >+${DATA.callingCodes}`
+        callCode.innerHTML = `☎️ > +${DATA.callingCodes}`
         for (let i = 0; i < DATA.languages.length; i++) {
           langArr.push(DATA.languages[i].name)
 
@@ -203,7 +217,7 @@ btnExplore.addEventListener('click', () => {
       getCountry(getMeRandomCountry())
       btnAppear()
     }, 1000);
-  
+
   })
 
   const removeEl = () => {
@@ -212,6 +226,7 @@ btnExplore.addEventListener('click', () => {
     countryList.style.display = 'none'
     search.style.display = 'none'
     rnd.style.display = 'none'
+
   }
 
 
@@ -220,7 +235,8 @@ btnExplore.addEventListener('click', () => {
     setTimeout(() => {
       newSearch.style.display = 'inline-block'
       newRandom.style.display = 'inline-block'
-    }, 2500);
+    }, 2500)
+
   }
 
   search.addEventListener('click', () => {
@@ -232,7 +248,6 @@ btnExplore.addEventListener('click', () => {
     btnAppear()
 
   })
-
 
   newSearch.addEventListener('click', () => {
 
@@ -247,36 +262,24 @@ btnExplore.addEventListener('click', () => {
       titleText.style.display = "block"
       countryList.style.display = 'block'
       search.style.display = 'inline-block'
-      
       rnd.style.display = 'inline-block'
-     
+
     }, 500)
 
   })
 
-  
+
   rnd.addEventListener('click', () => {
 
     titleText.style.display = "none"
     removeEl()
     getCountry(getMeRandomCountry())
     btnAppear()
+
   })
 
 })
 
-
-
-
-
-
-const start = () => {
-
-  load.classList.add("zoomOut")
-  load.style.display = "none"
-  allContent.style.display = "block"
-  allContent.classList.add("bounceInDown")
-}
 
 // If South American region is chosen number of questions is 5
 regionEl.addEventListener('change', (e) => {

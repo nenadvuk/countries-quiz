@@ -51,6 +51,9 @@ const resArray = [resOne, resTwo, resThree, resFour]
 const result = document.getElementById('res')
 const video = document.querySelector('.bg-video')
 
+// Score
+const percent = document.querySelector('.percent')
+
 // Progress bar
 const progress = document.getElementById('progress')
 const progressBox = document.querySelector('.progress-container')
@@ -115,6 +118,7 @@ searchTerm.innerHTML = 'REGION'
 card.style.display = 'none'
 newSearch.style.display = 'none'
 newRandom.style.display = 'none'
+newGame.style.display = 'none'
 
 // Video load
 setTimeout(() => {
@@ -463,8 +467,9 @@ const gameOver = () => {
 
   setTimeout(() => {
 
-    /* !S_America ? odometer.innerHTML = score * 10 :
-      odometer.innerHTML = score * 20 */
+    !S_America ? percent.innerHTML = `${score * 10} %` :
+    percent.innerHTML = `${score * 20} %`
+    percent.style.animation = 'flash 2s infinite'
     if (!S_America) {
       if (score >= 8) {
         goodScore.style.display = "block"
@@ -476,6 +481,8 @@ const gameOver = () => {
       }
     }
 
+    newGame.classList.add('zoomIn')
+    newGame.style.display = 'block'
   }, 1500)
 
   newGame.addEventListener('click', () => {

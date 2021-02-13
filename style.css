@@ -344,6 +344,7 @@ body {
   animation-fill-mode: backwards;
   position: relative;
   left: 57%;
+  
 }
 
 .explore-btn {
@@ -362,6 +363,10 @@ body {
 
 .explore-btn:active {
   transform: scale(0.95);
+}
+
+#new-game{
+  margin-top: 4rem;
 }
 
 ul {
@@ -401,6 +406,12 @@ ul li label {
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
+
+#good-score{
+  margin-top: 3rem;
+  padding: 0;
+}
+
 
 .form-control {
   animation: flash 1s;
@@ -457,9 +468,9 @@ ul li label {
 }
 
 .percent {
-  font-weight: bold;
-  font-size: 3rem;
-  margin-left: -5rem;
+  color: #850DFF;
+  font-size: 6rem;
+  text-align: center;
 }
 
 /**************************************** Odometer ****************************************/

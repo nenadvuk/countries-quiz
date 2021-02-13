@@ -155,29 +155,40 @@ btnExplore.addEventListener('click', () => {
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
 
+        let langArr = []
+        const DATA = res.data[0]
         card.style.display = 'flex'
         console.log(res.data)
-        exploreImg.src = res.data[0].flag
-        countryName.innerHTML = `${res.data[0].name} - (${res.data[0].nativeName})`
-        countryRegion.innerHTML = `${res.data[0].region} - (${res.data[0].subregion})`
-        population.innerHTML = `👫   
-           ${res.data[0].population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} people`
-        capitalCity.textContent = `🏙️  ${res.data[0].capital}`
-        currencie.innerHTML = `💶 ${res.data[0].currencies[0].name} (${res.data[0].currencies[0].code})`
-        area.innerHTML = `📏 ${res.data[0].area} Km2`
-        callCode.innerHTML = `☎️ +${res.data[0].callingCodes}`
-        language.innerHTML = `🗣️ ${res.data[0].languages[0].nativeName}`
-        internet.innerHTML = `🌐 ${res.data[0].topLevelDomain[0]}`
+        exploreImg.src = DATA.flag
+        countryName.innerHTML = `${DATA.name} - (${DATA.nativeName})`
+        countryRegion.innerHTML = `${DATA.region} - (${DATA.subregion})`
+        population.innerHTML = `👫 >   
+           ${DATA.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} people`
+        capitalCity.textContent = `🏙️ >  ${DATA.capital}`
+        currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code})`
+        if(DATA.area < 1000) {
+          area.innerHTML = `📏 > ${DATA.area} Km2`
 
-        
+        } else {
+          area.innerHTML = `📏 > ${DATA.area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2`
+        }
+        callCode.innerHTML = `☎️ >+${DATA.callingCodes}`
+        for (let i = 0; i < DATA.languages.length; i++) {
+          langArr.push(DATA.languages[i].name)
+          
+        }
+        language.innerHTML = `🗣️ > ${langArr}`
+        internet.innerHTML = `🌐 > ${DATA.topLevelDomain[0]}`
+
+
       })
       .catch(err => {
         console.log("error", err)
       })
-      
-      
-  }
 
+
+  }
+  // name  [0].languages[0]
   const removeEl = () => {
 
     card.classList.add("zoomIn")
@@ -186,7 +197,7 @@ btnExplore.addEventListener('click', () => {
     rnd.style.display = 'none'
   }
   newRandom.addEventListener('click', () => {
-          
+
     card.style.display = 'none'
     newSearch.style.display = 'none'
     newRandom.style.display = 'none'
@@ -198,7 +209,6 @@ btnExplore.addEventListener('click', () => {
   })
   // newSearch.addEventListener('click', () => {
   //   console.log('clicked')
-  //   html = ''
   //   card.classList.add("zoomOut")
   // })
 

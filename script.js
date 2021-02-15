@@ -40,6 +40,7 @@ const subregion = document.getElementById('subregion')
 const language = document.getElementById('language')
 const exploreImg = document.getElementById('explore-img')
 const regionalBlock = document.getElementById('regional-blocks')
+const density = document.getElementById('density')
 
 
 const flag = document.getElementById('flag')
@@ -181,20 +182,23 @@ btnExplore.addEventListener('click', () => {
         if (DATA.regionalBlocs.length == 0) {
           regionalBlock.innerHTML = ''
         } else {
-          regionalBlock.innerHTML = `${DATA.regionalBlocs[0].name} - "${DATA.regionalBlocs[0].acronym}"`
+          regionalBlock.innerHTML = `${DATA.regionalBlocs[0].name} - 
+          "${DATA.regionalBlocs[0].acronym}"`
 
         }
         countryRegion.innerHTML = `${DATA.region} - (${DATA.subregion})`
         population.innerHTML = `👫 >   
            ${DATA.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} people`
         capitalCity.textContent = `🏙️ >  ${DATA.capital}`
-        currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code})`
+        currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code} - 
+          ${DATA.currencies[0].symbol})`
         if (DATA.area < 1000) {
           area.innerHTML = `📏 > ${DATA.area} Km2`
 
         } else {
           area.innerHTML = `📏 > ${DATA.area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2`
         }
+        density.innerHTML = `👥 > ${(DATA.population / DATA.area).toFixed(1)} 🧍 per Km2 `
         callCode.innerHTML = `☎️ > +${DATA.callingCodes}`
         for (let i = 0; i < DATA.languages.length; i++) {
           langArr.push(DATA.languages[i].name)

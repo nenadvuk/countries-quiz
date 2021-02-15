@@ -192,16 +192,18 @@ btnExplore.addEventListener('click', () => {
         capitalCity.textContent = `🏙️ >  ${DATA.capital}`
         currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code} - 
           ${DATA.currencies[0].symbol})`
-        if (DATA.area < 1000) {
+        if(DATA.area == null) area.innerHTML = '📏 >'
+        else if (DATA.area < 1000) {
           area.innerHTML = `📏 > ${DATA.area} Km2`
 
         } else {
           area.innerHTML = `📏 > ${DATA.area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2`
         }
-        density.innerHTML = `👥 > ${(DATA.population / DATA.area).toFixed(1)} 🧍 per Km2 `
+        if(DATA.area == null || (DATA.population / DATA.area) < 1) density.innerHTML = '👥 >'
+        else density.innerHTML = `👥 > ${Math.round((DATA.population / DATA.area) * 10) / 10}🧍 per Km2 `
         callCode.innerHTML = `☎️ > +${DATA.callingCodes}`
         for (let i = 0; i < DATA.languages.length; i++) {
-          langArr.push(DATA.languages[i].name)
+          langArr.push(` ${DATA.languages[i].name}`)
 
         }
         language.innerHTML = `🗣️ > ${langArr}`
@@ -641,3 +643,22 @@ const getCountryData = (country) => {
 
 }
 
+
+
+
+// API key for Google mmaps
+// AIzaSyBXlnMA1W-LMjHEse9nTJnRpzt_onjgS_0
+
+/* 
+
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+}
+
+
+*/

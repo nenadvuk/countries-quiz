@@ -693,49 +693,49 @@ const getCountryData = (country) => {
         resThree.innerHTML = arr[2]
         resFour.innerHTML = arr[3]
       }
-
-      const getJSON = function (url, errorMsg = 'Something went wrong') {
-        return fetch(url).then(response => {
-          if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
-
-          return response.json();
-        });
-      };
-
-      const get3Countries = async function (fl_1, fl_2, fl_3, fl_4) {
-        try {
-          const [data1] = await getJSON(
-            `https://restcountries.eu/rest/v2/name/${fl_1}`
-          );
-          const [data2] = await getJSON(
-            `https://restcountries.eu/rest/v2/name/${fl_2}`
-          );
-          const [data3] = await getJSON(
-            `https://restcountries.eu/rest/v2/name/${fl_3}`
-          );
-          const [data4] = await getJSON(
-            `https://restcountries.eu/rest/v2/name/${fl_4}`
-          );
-          if (_GAME_FLAG) {
+      if(_GAME_FLAG){
+        const getJSON = function (url, errorMsg = 'Something went wrong') {
+          return fetch(url).then(response => {
+            if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+  
+            return response.json();
+          });
+        };
+  
+        const get3Countries = async function (fl_1, fl_2, fl_3, fl_4) {
+          try {
+            const [data1] = await getJSON(
+              `https://restcountries.eu/rest/v2/name/${fl_1}`
+            );
+            const [data2] = await getJSON(
+              `https://restcountries.eu/rest/v2/name/${fl_2}`
+            );
+            const [data3] = await getJSON(
+              `https://restcountries.eu/rest/v2/name/${fl_3}`
+            );
+            const [data4] = await getJSON(
+              `https://restcountries.eu/rest/v2/name/${fl_4}`
+            );
             flagOne.src = data1.flag
             flagTwo.src = data2.flag
             flagThree.src = data3.flag
             flagFour.src = data4.flag
+  
+            // const data = await Promise.all([
+            //   getJSON(`https://restcountries.eu/rest/v2/name/${fl_1}`),
+            //   getJSON(`https://restcountries.eu/rest/v2/name/${fl_2}`),
+            //   getJSON(`https://restcountries.eu/rest/v2/name/${fl_3}`),
+            //   getJSON(`https://restcountries.eu/rest/v2/name/${fl_4}`)
+            // ])
+  
+          } catch (err) {
+            console.error(err);
           }
-
-          const data = await Promise.all([
-            getJSON(`https://restcountries.eu/rest/v2/name/${fl_1}`),
-            getJSON(`https://restcountries.eu/rest/v2/name/${fl_2}`),
-            getJSON(`https://restcountries.eu/rest/v2/name/${fl_3}`),
-            getJSON(`https://restcountries.eu/rest/v2/name/${fl_4}`)
-          ])
-
-        } catch (err) {
-          console.error(err);
-        }
-      };
-      get3Countries(arr[0], arr[1], arr[2], arr[3]);
-
+        };
+        get3Countries(arr[0], arr[1], arr[2], arr[3]);
+  
+      }
+      
     })
     .catch(err => {
       console.log("error", err)

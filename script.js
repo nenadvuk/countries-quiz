@@ -61,6 +61,16 @@ const flagThree = document.getElementById('fl-3')
 const flagFour = document.getElementById('fl-4')
 const flags = document.querySelectorAll('.flag-image')
 
+// Sounds
+const rigthAnswerSound = new Audio('assets/sounds/right.wav')
+const wrongAnswerSound = new Audio('assets/sounds/wrong.wav')
+const goodScoreSound = new Audio('assets/sounds/success.wav')
+const failure = new Audio('assets/sounds/failure.wav')
+const gameCountriesSound = new Audio('assets/sounds/countries.wav')
+const gameCapitalsSound = new Audio('assets/sounds/capitals.wav')
+const gameFlagsSound = new Audio('assets/sounds/flag.wav')
+const gameExploreSound = new Audio('assets/sounds/explore.wav')
+
 // Score
 const percent = document.querySelector('.percent')
 
@@ -151,7 +161,7 @@ const start = () => {
 
 // Guess the country
 btnCountry.addEventListener('click', () => {
-
+  gameCountriesSound.play()
   _GAME_COUNTRIES = true
   setTimeout(() => {
     start()
@@ -161,7 +171,7 @@ btnCountry.addEventListener('click', () => {
 
 // Guess the capital city
 btnCapital.addEventListener('click', () => {
-
+  gameCapitalsSound.play()
   _GAME_COUNTRIES = true
   _GAME_CAPITALS = true
   setTimeout(() => {
@@ -172,7 +182,7 @@ btnCapital.addEventListener('click', () => {
 
 // Guess the flag
 btnFlag.addEventListener('click', () => {
-
+  gameFlagsSound.play()
   for (let flag of flags) {
     flag.style.display = 'inline-block'
   }
@@ -187,6 +197,7 @@ btnFlag.addEventListener('click', () => {
 // Explore countries
 btnExplore.addEventListener('click', () => {
 
+  gameExploreSound.play()
   searchTerm.innerHTML = 'COUNTRY'
   exploreBtns.style.display = 'block'
   start()
@@ -385,12 +396,14 @@ const correct = () => {
 
   let userAnswer = getSelected()
   if (userAnswer == correctAnswer) {
+    rigthAnswerSound.play()
     score++;
     odometer.innerHTML = score
     circles[_CIRCLE_INDEX].style.border = '3px solid #52E80C'
     resArray[correctAnswer].style.color = '#52E80C'
     resArray[correctAnswer].innerHTML += '✅'
   } else {
+    wrongAnswerSound.play()
     circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
     resArray[correctAnswer].style.color = '#52E80C'
     resArray[userAnswer].style.color = '#FF0000'
@@ -494,8 +507,6 @@ answerBtn.addEventListener('click', () => {
 
 })
 
-
-
 // Function which automaticly goes to the next question if player doesn't answer 
 // Timer is set to 10 seconds
 // 
@@ -547,11 +558,18 @@ const gameOver = () => {
     if (!S_America) {
       if (score >= 8) {
         goodScore.style.display = "block"
+        goodScoreSound.play()
+      } if(score <=3) {
+        failure.play()
       }
     }
     if (S_America) {
       if (score >= 4) {
         goodScore.style.display = "block"
+        goodScoreSound.play()
+      }
+      if(score <=1) {
+        failure.play()
       }
     }
 
@@ -578,7 +596,6 @@ const deselectAnswers = () => {
   radios.forEach(radio => radio.checked = false)
   resArray.forEach(res => res.style.color = '#555')
   resArray.forEach(res => res.innerHTML = '')
-
 
 }
 

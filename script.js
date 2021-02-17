@@ -70,6 +70,8 @@ const gameCountriesSound = new Audio('assets/sounds/countries.wav')
 const gameCapitalsSound = new Audio('assets/sounds/capitals.wav')
 const gameFlagsSound = new Audio('assets/sounds/flag.wav')
 const gameExploreSound = new Audio('assets/sounds/explore.wav')
+const countdownSound = new Audio('assets/sounds/countdown.wav')
+const highestScore = new Audio('assets/sounds/highest-score.wav')
 
 // Score
 const percent = document.querySelector('.percent')
@@ -556,19 +558,23 @@ const gameOver = () => {
       percent.innerHTML = `${score * 20} %`
     percent.style.animation = 'flash 2s infinite'
     if (!S_America) {
-      if (score >= 8) {
+      if (score == 10) highestScore.play()
+      goodScore.style.display = "block"
+      if (score >= 8 && score < 10) {
         goodScore.style.display = "block"
         goodScoreSound.play()
-      } if(score <=3) {
+      } if (score <= 3) {
         failure.play()
       }
     }
     if (S_America) {
-      if (score >= 4) {
+      if (score == 5) highestScore.play()
+      goodScore.style.display = "block"
+      if (score >= 4 && score < 5) {
         goodScore.style.display = "block"
         goodScoreSound.play()
       }
-      if(score <=1) {
+      if (score <= 1) {
         failure.play()
       }
     }
@@ -680,6 +686,7 @@ const getCountryData = (country) => {
       let arr = [_CORRECT, _RANDOM[rndNmb[0]], _RANDOM[rndNmb[1]], _RANDOM[rndNmb[2]]]
       shuffle(arr)
       correctAnswer = arr.indexOf(_CORRECT)
+      console.log(_CORRECT)
       if (!_GAME_FLAG) {
         resOne.innerHTML = arr[0]
         resTwo.innerHTML = arr[1]

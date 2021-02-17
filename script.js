@@ -398,6 +398,7 @@ const correct = () => {
     if (_GAME_FLAG) resArray[correctAnswer].innerHTML += '✅'
   }
   if (finished) {
+    counter.style.display = 'none'
     setTimeout(() => {
       countriesContainer.style.display = "none"
     }, 500);

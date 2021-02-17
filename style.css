@@ -40,15 +40,9 @@ body {
 .loading-page {
   position: relative;
   width: 30rem;
-  margin: 40vh auto;
+  margin: 35vh auto;
   z-index: 20;
 }
-
-/* .country__row{
-  word-spacing: 30px;
-  text-decoration: underline;
-}
- */
 
 .container-box {
   position: relative;
@@ -183,7 +177,7 @@ body {
   color: #888;
 }
 
-#regional-blocks{
+#regional-blocks {
   color: #850DFF;
 }
 
@@ -204,6 +198,17 @@ body {
 
 #exceed {
   word-wrap: break-word;
+}
+
+/* Flags */
+
+.flag-image {
+  margin: .5rem;
+  list-style-type: none;
+  vertical-align: middle;
+  width: 7rem;
+  height: 4rem;
+  cursor: pointer;
 }
 
 /*************************************** Counter ***************************************/
@@ -344,7 +349,6 @@ body {
   animation-fill-mode: backwards;
   position: relative;
   left: 57%;
-  
 }
 
 .explore-btn {
@@ -365,7 +369,7 @@ body {
   transform: scale(0.95);
 }
 
-#new-game{
+#new-game {
   margin-top: 4rem;
 }
 
@@ -407,11 +411,10 @@ ul li label {
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
 
-#good-score{
+#good-score {
   margin-top: 3rem;
   padding: 0;
 }
-
 
 .form-control {
   animation: flash 1s;
@@ -468,7 +471,7 @@ ul li label {
 }
 
 .percent {
-  color: #850DFF;
+  color: #b34180;
   font-size: 6rem;
   text-align: center;
 }
@@ -518,61 +521,6 @@ ul li label {
   animation-delay: .5s;
 }
 
-.zoomOut {
-  -webkit-animation-name: zoomOut;
-  animation-name: zoomOut;
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  animation-delay: 1s;
-}
-
-.zoomIn {
-  -webkit-animation-name: zoomIn;
-  animation-name: zoomIn;
-  -webkit-animation-duration: .6s;
-  animation-duration: .6s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  animation-delay: 1.2s;
-}
-
-.fadeInLeftBig {
-  -webkit-animation-name: fadeInLeftBig;
-  animation-name: fadeInLeftBig;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.fadeIn {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  animation-delay: 2s;
-}
-
-.fadeInSmall {
-  -webkit-animation-name: fadeInSmall;
-  animation-name: fadeInSmall;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.flash {
-  -webkit-animation-name: flash;
-  animation-name: flash;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
 @keyframes bounceInDown {
   0%, 60%, 75%, 90%, 100% {
     -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -602,6 +550,16 @@ ul li label {
   }
 }
 
+.zoomOut {
+  -webkit-animation-name: zoomOut;
+  animation-name: zoomOut;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+}
+
 @keyframes zoomOut {
   0% {
     opacity: 1;
@@ -616,6 +574,16 @@ ul li label {
   }
 }
 
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: .6s;
+  animation-duration: .6s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-delay: 1.2s;
+}
+
 @keyframes zoomIn {
   0% {
     opacity: 0;
@@ -627,33 +595,14 @@ ul li label {
   }
 }
 
-@keyframes animateText {
-  0% {
-    background-position: -400%;
-  }
-  100% {
-    background-position: 400%;
-  }
+.fadeInLeftBig {
+  -webkit-animation-name: fadeInLeftBig;
+  animation-name: fadeInLeftBig;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: .7;
-  }
-}
-
-@keyframes fadeInSmall {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 
 @keyframes fadeInLeftBig {
   0% {
@@ -668,6 +617,50 @@ ul li label {
   }
 }
 
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: .7;
+  }
+}
+
+.fadeInSmall {
+  -webkit-animation-name: fadeInSmall;
+  animation-name: fadeInSmall;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInSmall {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.flash {
+  -webkit-animation-name: flash;
+  animation-name: flash;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
 
 @keyframes flash {
   0%, 50%, 100% {
@@ -675,6 +668,16 @@ ul li label {
   }
   25%, 75% {
     opacity: 0;
+  }
+}
+
+
+@keyframes animateText {
+  0% {
+    background-position: -400%;
+  }
+  100% {
+    background-position: 400%;
   }
 }
 
@@ -752,8 +755,8 @@ ul li label {
     object-fit: cover;
   }
   .loading-page {
-    width: 30rem;
-    margin: 35vh auto;
+    width: 27rem;
+    margin: 30vh auto;
   }
   .counter {
     top: 14rem;

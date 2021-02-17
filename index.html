@@ -24,9 +24,10 @@
   </div>
   <div class="loading-page">
     <button class="btn-glow" id="btn-country">Guess the country <br>
-      <button class="btn-glow" id="btn-capital" style="animation-delay: 200ms;">Guess the capital <br>
-        <button class="btn-glow" disabled id="btn-hard" style="animation-delay: 400ms;">Hard mode<br>
-          <button class="btn-glow" id="btn-explore" style="animation-delay: 600ms;">Explore countries<br>
+      <button class="btn-glow" id="btn-capital" style="animation-delay: 150ms;">Guess the capital <br>
+        <button class="btn-glow" id="btn-flag" style="animation-delay: 300ms;">Guess the flag <br>
+          <button class="btn-glow" disabled id="btn-hard" style="animation-delay: 450ms;">Hard mode<br>
+            <button class="btn-glow" id="btn-explore" style="animation-delay: 600ms;">Explore countries<br>
   </div>
 
   <main class="container-box">
@@ -76,22 +77,26 @@
             <ul>
               <li>
                 <input type="radio" name="answer" id="0" class="answer">
-                <label for="0" id="res-1">Question</label>
+                <img class="flag-image" id="fl-1">
+                <label for="0" id="res-1"></label>
               </li>
 
               <li>
                 <input type="radio" name="answer" id="1" class="answer">
-                <label for="1" id="res-2">Question</label>
+                <img class="flag-image" id="fl-2">
+                <label for="1" id="res-2"></label>
               </li>
 
               <li>
                 <input type="radio" name="answer" id="2" class="answer">
-                <label for="2" id="res-3">Question</label>
+                <img class="flag-image" id="fl-3">
+                <label for="2" id="res-3"></label>
               </li>
 
               <li>
                 <input type="radio" name="answer" id="3" class="answer">
-                <label for="3" id="res-4">Question</label>
+                <img class="flag-image" id="fl-4">
+                <label for="3" id="res-4"></label>
               </li>
             </ul>
             <button id="answer-btn" class="btn">Answer

@@ -5,6 +5,7 @@ const newGame = document.getElementById('new-game')
 const answerBtn = document.getElementById('answer-btn')
 const btnCountry = document.getElementById('btn-country')
 const btnCapital = document.getElementById('btn-capital')
+const btnFlag = document.getElementById('btn-flag')
 const btnHard = document.getElementById('btn-hard')
 const btnExplore = document.getElementById('btn-explore')
 const search = document.querySelector('#search')
@@ -24,6 +25,7 @@ const goodScore = document.getElementById('good-score')
 const load = document.querySelector('.loading-page')
 const gameMode = document.getElementById('game-mode')
 const searchTerm = document.getElementById('search-term')
+const countryDiv = document.querySelector('.country-div')
 
 // Country data
 const countryData = document.querySelector('.country__data')
@@ -42,7 +44,7 @@ const exploreImg = document.getElementById('explore-img')
 const regionalBlock = document.getElementById('regional-blocks')
 const density = document.getElementById('density')
 
-
+// Countries and capitals elements
 const flag = document.getElementById('flag')
 const resOne = document.getElementById('res-1')
 const resTwo = document.getElementById('res-2')
@@ -51,6 +53,13 @@ const resFour = document.getElementById('res-4')
 const resArray = [resOne, resTwo, resThree, resFour]
 const result = document.getElementById('res')
 const video = document.querySelector('.bg-video')
+
+// Flags
+const flagOne = document.getElementById('fl-1')
+const flagTwo = document.getElementById('fl-2')
+const flagThree = document.getElementById('fl-3')
+const flagFour = document.getElementById('fl-4')
+const flags = document.querySelectorAll('.flag-image')
 
 // Score
 const percent = document.querySelector('.percent')
@@ -87,6 +96,7 @@ const counter = document.querySelector('.counter')
 
 let _GAME_COUNTRIES = false
 let _GAME_CAPITALS = false
+let _GAME_FLAG = false
 
 let timer
 let correctAnswer
@@ -104,7 +114,6 @@ let _CAPITALS_ARRAY = []
 //  Progress bar
 let _CIRCLE_INDEX = 0
 
-
 // On start
 countriesContainer.style.display = "none"
 countryList.style.display = "none"
@@ -121,12 +130,15 @@ newSearch.style.display = 'none'
 newRandom.style.display = 'none'
 newGame.style.display = 'none'
 
+for (let flag of flags) {
+  flag.style.display = 'none'
+}
+
 // Video load
 setTimeout(() => {
   video.style.display = 'block'
   video.classList.add("fadeIn")
 }, 500)
-
 
 const start = () => {
 
@@ -136,7 +148,6 @@ const start = () => {
   allContent.classList.add("bounceInDown")
 
 }
-
 
 // Guess the country
 btnCountry.addEventListener('click', () => {
@@ -157,6 +168,20 @@ btnCapital.addEventListener('click', () => {
     start()
   }, 500);
 
+})
+
+// Guess the flag
+btnFlag.addEventListener('click', () => {
+
+  for (let flag of flags) {
+    flag.style.display = 'inline-block'
+  }
+  countryDiv.style.backgroundColor = '#f2dcbb'
+  _GAME_COUNTRIES = true
+  _GAME_FLAG = true
+  setTimeout(() => {
+    start()
+  }, 500);
 })
 
 // Explore countries
@@ -192,15 +217,15 @@ btnExplore.addEventListener('click', () => {
         capitalCity.textContent = `🏙️ >  ${DATA.capital}`
         currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code} - 
           ${DATA.currencies[0].symbol})`
-        if(DATA.area == null) area.innerHTML = '📏 >'
+        if (DATA.area == null) area.innerHTML = '📏 >'
         else if (DATA.area < 1000) {
           area.innerHTML = `📏 > ${DATA.area} Km2`
 
         } else {
           area.innerHTML = `📏 > ${DATA.area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2`
         }
-        if(DATA.area == null || (DATA.population / DATA.area) < 1) density.innerHTML = '👥 >'
-        else density.innerHTML = `👥 > ${Math.round((DATA.population / DATA.area) * 10) / 10}🧍 per Km2 `
+        if (DATA.area == null || (DATA.population / DATA.area) < 1) density.innerHTML = '👥 >'
+        else density.innerHTML = `👥 > ${Math.round(DATA.population / DATA.area)}🧍 per Km2 `
         callCode.innerHTML = `☎️ > +${DATA.callingCodes}`
         for (let i = 0; i < DATA.languages.length; i++) {
           langArr.push(` ${DATA.languages[i].name}`)
@@ -214,7 +239,14 @@ btnExplore.addEventListener('click', () => {
       .catch(err => {
         console.log("error", err)
       })
+  }
 
+  const btnAppear = () => {
+
+    setTimeout(() => {
+      newSearch.style.display = 'inline-block'
+      newRandom.style.display = 'inline-block'
+    }, 2500)
 
   }
 
@@ -236,16 +268,6 @@ btnExplore.addEventListener('click', () => {
     countryList.style.display = 'none'
     search.style.display = 'none'
     rnd.style.display = 'none'
-
-  }
-
-
-  const btnAppear = () => {
-
-    setTimeout(() => {
-      newSearch.style.display = 'inline-block'
-      newRandom.style.display = 'inline-block'
-    }, 2500)
 
   }
 
@@ -278,7 +300,6 @@ btnExplore.addEventListener('click', () => {
 
   })
 
-
   rnd.addEventListener('click', () => {
 
     titleText.style.display = "none"
@@ -289,7 +310,6 @@ btnExplore.addEventListener('click', () => {
   })
 
 })
-
 
 // If South American region is chosen number of questions is 5
 regionEl.addEventListener('change', (e) => {
@@ -307,7 +327,7 @@ regionEl.addEventListener('change', (e) => {
 })
 
 
-// Reseting counter after click event on answer button or autoamticly
+// Reseting counter after click event on answer button or automaticly
 const resetCounter = () => {
 
   counter.classList.remove('hide')
@@ -317,7 +337,6 @@ const resetCounter = () => {
   nums[0].classList.add('in')
 
 }
-
 
 const runCounter = () => {
 
@@ -376,6 +395,7 @@ const correct = () => {
     resArray[correctAnswer].style.color = '#52E80C'
     resArray[userAnswer].style.color = '#FF0000'
     resArray[userAnswer].innerHTML += '❌'
+    if (_GAME_FLAG) resArray[correctAnswer].innerHTML += '✅'
   }
   if (finished) {
     setTimeout(() => {
@@ -386,6 +406,7 @@ const correct = () => {
 }
 
 // Buttons
+
 play.addEventListener('click', () => {
   odometer.style.display = 'inline-block'
   odometer.classList.add("zoomIn")
@@ -426,6 +447,52 @@ play.addEventListener('click', () => {
   }, 14000)
 
 })
+
+
+// Answer button
+// Dugme za odgovor
+answerBtn.addEventListener('click', () => {
+  // On every click, timer is reset to default value(10s)
+  clearInterval(timer)
+
+  setTimeout(() => {
+    counter.style.display = 'block'
+  }, 3000)
+
+  !S_America ? endGame(9) : endGame(4)
+  correct()
+  _CIRCLE_INDEX++
+  console.log(finished)
+  if (!finished) {
+    counter.style.display = 'none'
+    resetCounter()
+    runCounter()
+    timer = setInterval(() => {
+
+      noAnswer()
+    }, 14000)
+
+  }
+  if (finished) {
+    clearInterval(timer)
+    gameOver()
+  }
+
+  update()
+
+  countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
+    countriesContainer.className = 'zoomOut'
+  if (!finished) {
+    setTimeout(() => {
+      getCountryData(randomCountry())
+      deselectAnswers()
+      countriesContainer.classList.add("zoomIn")
+    }, 700)
+
+  }
+
+})
+
 
 
 // Function which automaticly goes to the next question if player doesn't answer 
@@ -474,7 +541,7 @@ const gameOver = () => {
   setTimeout(() => {
 
     !S_America ? percent.innerHTML = `${score * 10} %` :
-    percent.innerHTML = `${score * 20} %`
+      percent.innerHTML = `${score * 20} %`
     percent.style.animation = 'flash 2s infinite'
     if (!S_America) {
       if (score >= 8) {
@@ -503,56 +570,14 @@ radios.forEach(radio => radio.addEventListener('click', () =>
   answerBtn.style.pointerEvents = 'all'))
 
 
-// Answer button
-// Dugme za odgovor
-answerBtn.addEventListener('click', () => {
-  // On every click, timer is reset to default value(10s)
-  clearInterval(timer)
-
-  setTimeout(() => {
-    counter.style.display = 'block'
-  }, 3000)
-
-  !S_America ? endGame(9) : endGame(4)
-  correct()
-  _CIRCLE_INDEX++
-  console.log(finished)
-  if (!finished) {
-    counter.style.display = 'none'
-    resetCounter()
-    runCounter()
-    timer = setInterval(() => {
-
-      noAnswer()
-    }, 14000)
-
-  }
-  if (finished) {
-    clearInterval(timer)
-    gameOver()
-  }
-
-  update()
-
-  countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
-    countriesContainer.className = 'zoomOut'
-  if (!finished) {
-    setTimeout(() => {
-      getCountryData(randomCountry())
-      deselectAnswers()
-      countriesContainer.classList.add("zoomIn")
-    }, 700)
-
-  }
-
-})
-
 // Reset cheched field
 // Resetovanje oznacenog polja
 const deselectAnswers = () => {
 
   radios.forEach(radio => radio.checked = false)
   resArray.forEach(res => res.style.color = '#555')
+  resArray.forEach(res => res.innerHTML = '')
+
 
 }
 
@@ -610,32 +635,82 @@ const getCountryData = (country) => {
       rndNmb.push(number);
     }
   }
-  // console.log(rndNmb)
-  // console.log(_COUNTRIES_ARRAY.length)
-  // console.log(_CAPITALS_ARRAY.length)
 
   // Getting country name and flag from REST COUNTRIES API 
   axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
     .then(res => {
-      flag.src = res.data[0].flag
-      capital = res.data[0].capital
-      if (_GAME_CAPITALS) {
-        gameMode.innerHTML = `Capital of ${country}?`
-        _CORRECT = capital
-        _RANDOM = _CAPITALS_ARRAY
+      if (!_GAME_FLAG) {
+        flag.src = res.data[0].flag
+        capital = res.data[0].capital
+        if (_GAME_CAPITALS) {
+          gameMode.innerHTML = `Capital city of ${country}?`
+          _CORRECT = capital
+          _RANDOM = _CAPITALS_ARRAY
+        }
+        else {
+          gameMode.innerHTML = 'Name of the country?'
+          _CORRECT = country
+          _RANDOM = _COUNTRIES_ARRAY
+        }
       } else {
-        gameMode.innerHTML = 'Guess the country'
+        gameMode.innerHTML = `Flag of ${country}?`
         _CORRECT = country
         _RANDOM = _COUNTRIES_ARRAY
       }
 
+
       let arr = [_CORRECT, _RANDOM[rndNmb[0]], _RANDOM[rndNmb[1]], _RANDOM[rndNmb[2]]]
       shuffle(arr)
       correctAnswer = arr.indexOf(_CORRECT)
-      resOne.innerHTML = arr[0]
-      resTwo.innerHTML = arr[1]
-      resThree.innerHTML = arr[2]
-      resFour.innerHTML = arr[3]
+      if (!_GAME_FLAG) {
+        resOne.innerHTML = arr[0]
+        resTwo.innerHTML = arr[1]
+        resThree.innerHTML = arr[2]
+        resFour.innerHTML = arr[3]
+      }
+
+      const getJSON = function (url, errorMsg = 'Something went wrong') {
+        return fetch(url).then(response => {
+          if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+
+          return response.json();
+        });
+      };
+
+      const get3Countries = async function (fl_1, fl_2, fl_3, fl_4) {
+        try {
+          const [data1] = await getJSON(
+            `https://restcountries.eu/rest/v2/name/${fl_1}`
+          );
+          const [data2] = await getJSON(
+            `https://restcountries.eu/rest/v2/name/${fl_2}`
+          );
+          const [data3] = await getJSON(
+            `https://restcountries.eu/rest/v2/name/${fl_3}`
+          );
+          const [data4] = await getJSON(
+            `https://restcountries.eu/rest/v2/name/${fl_4}`
+          );
+          if (_GAME_FLAG) {
+            flagOne.src = data1.flag
+            flagTwo.src = data2.flag
+            flagThree.src = data3.flag
+            flagFour.src = data4.flag
+          }
+
+          const data = await Promise.all([
+            getJSON(`https://restcountries.eu/rest/v2/name/${fl_1}`),
+            getJSON(`https://restcountries.eu/rest/v2/name/${fl_2}`),
+            getJSON(`https://restcountries.eu/rest/v2/name/${fl_3}`),
+            getJSON(`https://restcountries.eu/rest/v2/name/${fl_4}`)
+          ])
+
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      get3Countries(arr[0], arr[1], arr[2], arr[3]);
+
     })
     .catch(err => {
       console.log("error", err)
@@ -645,11 +720,12 @@ const getCountryData = (country) => {
 
 
 
+// https://www.countryflags.io/
 
 // API key for Google mmaps
 // AIzaSyBXlnMA1W-LMjHEse9nTJnRpzt_onjgS_0
 
-/* 
+/*
 
 let map;
 

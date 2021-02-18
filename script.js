@@ -26,6 +26,8 @@ const load = document.querySelector('.loading-page')
 const gameMode = document.getElementById('game-mode')
 const searchTerm = document.getElementById('search-term')
 const countryDiv = document.querySelector('.country-div')
+const sign = document.querySelector('.signature')
+const signature = document.querySelector('.signature-box')
 
 // Country data
 const countryData = document.querySelector('.country__data')
@@ -81,7 +83,11 @@ gameExploreSound.volume = 0.4
 const countdownSound = new Audio('assets/sounds/countdown.wav')
 countdownSound.volume = 0.4
 const highestScore = new Audio('assets/sounds/highest-score.wav')
-highestScore.volume = 0.4
+highestScore.volume = 0.3
+const clickedSound = new Audio('assets/sounds/clicked.wav')
+clickedSound.volume = 0.4
+const randomSound = new Audio('assets/sounds/random.wav')
+randomSound.volume = 0.4
 
 // Score
 const percent = document.querySelector('.percent')
@@ -156,11 +162,16 @@ for (let flag of flags) {
   flag.style.display = 'none'
 }
 
-// Video load
+
+
+// Video and signature load
 setTimeout(() => {
   video.style.display = 'block'
   video.classList.add("fadeIn")
+  sign.style.display = "flex"
+  signature.classList.add("fadeIn")
 }, 500)
+
 
 const start = () => {
 
@@ -168,6 +179,7 @@ const start = () => {
   load.style.display = "none"
   allContent.style.display = "block"
   allContent.classList.add("bounceInDown")
+  signature.style.display = "none"
 
 }
 
@@ -274,7 +286,7 @@ btnExplore.addEventListener('click', () => {
   }
 
   newRandom.addEventListener('click', () => {
-
+    randomSound.play()
     card.style.display = 'none'
     newSearch.style.display = 'none'
     newRandom.style.display = 'none'
@@ -295,7 +307,7 @@ btnExplore.addEventListener('click', () => {
   }
 
   search.addEventListener('click', () => {
-
+    clickedSound.play()
     titleText.style.display = "none"
     const userCountry = countryList.value.toLowerCase();
     getCountry(userCountry)
@@ -305,7 +317,7 @@ btnExplore.addEventListener('click', () => {
   })
 
   newSearch.addEventListener('click', () => {
-
+    clickedSound.play()
     card.style.display = 'none'
     newSearch.style.display = 'none'
     newRandom.style.display = 'none'
@@ -324,7 +336,7 @@ btnExplore.addEventListener('click', () => {
   })
 
   rnd.addEventListener('click', () => {
-
+    randomSound.play()
     titleText.style.display = "none"
     removeEl()
     getCountry(getMeRandomCountry())
@@ -434,6 +446,7 @@ const correct = () => {
 // Buttons
 
 play.addEventListener('click', () => {
+  clickedSound.play()
   odometer.style.display = 'inline-block'
   odometer.classList.add("zoomIn")
   runCounter()
@@ -582,7 +595,7 @@ const gameOver = () => {
       if (score == 5) {
         highestScore.play()
         goodScore.style.display = "block"
-      }  else goodScore.style.display = "none"
+      } else goodScore.style.display = "none"
       if (score >= 4 && score < 5) {
         goodScoreSound.play()
       }

@@ -63,15 +63,25 @@ const flags = document.querySelectorAll('.flag-image')
 
 // Sounds
 const rigthAnswerSound = new Audio('assets/sounds/right.wav')
+rigthAnswerSound.volume = 0.4
 const wrongAnswerSound = new Audio('assets/sounds/wrong.wav')
+wrongAnswerSound.volume = 0.4
 const goodScoreSound = new Audio('assets/sounds/success.wav')
+goodScoreSound.volume = 0.4
 const failure = new Audio('assets/sounds/failure.wav')
+failure.volume = 0.4
 const gameCountriesSound = new Audio('assets/sounds/countries.wav')
+gameCountriesSound.volume = 0.4
 const gameCapitalsSound = new Audio('assets/sounds/capitals.wav')
+gameCapitalsSound.volume = 0.4
 const gameFlagsSound = new Audio('assets/sounds/flag.wav')
+gameFlagsSound.volume = 0.4
 const gameExploreSound = new Audio('assets/sounds/explore.wav')
+gameExploreSound.volume = 0.4
 const countdownSound = new Audio('assets/sounds/countdown.wav')
+countdownSound.volume = 0.4
 const highestScore = new Audio('assets/sounds/highest-score.wav')
+highestScore.volume = 0.4
 
 // Score
 const percent = document.querySelector('.percent')
@@ -558,20 +568,22 @@ const gameOver = () => {
       percent.innerHTML = `${score * 20} %`
     percent.style.animation = 'flash 2s infinite'
     if (!S_America) {
-      if (score == 10) highestScore.play()
-      goodScore.style.display = "block"
-      if (score >= 8 && score < 10) {
+      if (score == 10) {
+        highestScore.play()
         goodScore.style.display = "block"
+      } else goodScore.style.display = "none"
+      if (score >= 8 && score < 10) {
         goodScoreSound.play()
       } if (score <= 3) {
         failure.play()
       }
     }
     if (S_America) {
-      if (score == 5) highestScore.play()
-      goodScore.style.display = "block"
-      if (score >= 4 && score < 5) {
+      if (score == 5) {
+        highestScore.play()
         goodScore.style.display = "block"
+      }  else goodScore.style.display = "none"
+      if (score >= 4 && score < 5) {
         goodScoreSound.play()
       }
       if (score <= 1) {
@@ -693,49 +705,42 @@ const getCountryData = (country) => {
         resThree.innerHTML = arr[2]
         resFour.innerHTML = arr[3]
       }
-      if(_GAME_FLAG){
+      if (_GAME_FLAG) {
         const getJSON = function (url, errorMsg = 'Something went wrong') {
           return fetch(url).then(response => {
-            if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
-  
+            if (!response.ok) throw new Error(`${errorMsg} (${response.status})`)
+
             return response.json();
-          });
-        };
-  
-        const get3Countries = async function (fl_1, fl_2, fl_3, fl_4) {
+          })
+        }
+
+        const getFourFlags = async function (fl_1, fl_2, fl_3, fl_4) {
           try {
             const [data1] = await getJSON(
               `https://restcountries.eu/rest/v2/name/${fl_1}`
-            );
+            )
             const [data2] = await getJSON(
               `https://restcountries.eu/rest/v2/name/${fl_2}`
-            );
+            )
             const [data3] = await getJSON(
               `https://restcountries.eu/rest/v2/name/${fl_3}`
-            );
+            )
             const [data4] = await getJSON(
               `https://restcountries.eu/rest/v2/name/${fl_4}`
-            );
+            )
             flagOne.src = data1.flag
             flagTwo.src = data2.flag
             flagThree.src = data3.flag
             flagFour.src = data4.flag
-  
-            // const data = await Promise.all([
-            //   getJSON(`https://restcountries.eu/rest/v2/name/${fl_1}`),
-            //   getJSON(`https://restcountries.eu/rest/v2/name/${fl_2}`),
-            //   getJSON(`https://restcountries.eu/rest/v2/name/${fl_3}`),
-            //   getJSON(`https://restcountries.eu/rest/v2/name/${fl_4}`)
-            // ])
-  
+
           } catch (err) {
-            console.error(err);
+            console.error(err)
           }
-        };
-        get3Countries(arr[0], arr[1], arr[2], arr[3]);
-  
+        }
+        getFourFlags(arr[0], arr[1], arr[2], arr[3])
+
       }
-      
+
     })
     .catch(err => {
       console.log("error", err)

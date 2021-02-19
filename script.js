@@ -173,7 +173,7 @@ setTimeout(() => {
 setTimeout(() => {
   sign.style.display = "flex"
   signature.classList.add("fadeIn")
-}, 1000)
+}, 2000)
 
 const start = () => {
 

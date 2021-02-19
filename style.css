@@ -17,11 +17,6 @@ html {
   touch-action: manipulation;
 }
 
-/* button:disabled {
-  cursor: not-allowed;
-  pointer-events: all !important;
-} */
-
 body {
   -webkit-tap-highlight-color: transparent;
   background-image: url(./assets/images/world.jpg);
@@ -182,6 +177,7 @@ body {
   color: #850DFF;
 }
 
+
 .country__row:not(:last-child) {
   margin-bottom: .7rem;
 }
@@ -193,7 +189,7 @@ body {
 }
 
 .country-card {
-  margin-top: 2rem;
+  margin-top: 1rem;
   width: 46rem;
 }
 
@@ -519,7 +515,7 @@ ul li label {
   align-items: center;
   width: 50%;
   height: 50%;
-  background-image: radial-gradient( ellipse 50% 20% at 50% 50%, #f76da4a2, transparent);
+  background-image: radial-gradient( ellipse 50% 15% at 50% 50%, #f76da4a2, transparent);
   transform: translate(-50%, -50%);
   letter-spacing: 2;
   left: 50%;

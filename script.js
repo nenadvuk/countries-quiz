@@ -46,6 +46,7 @@ const exploreImg = document.getElementById('explore-img')
 const regionalBlock = document.getElementById('regional-blocks')
 const density = document.getElementById('density')
 const wiki = document.getElementById('wiki')
+const map = document.getElementById('map')
 
 // Countries and capitals elements
 const flag = document.getElementById('flag')
@@ -175,7 +176,7 @@ setTimeout(() => {
 setTimeout(() => {
   sign.style.display = 'flex'
   signature.classList.add('fadeIn')
-}, 2500)
+}, 2000)
 
 const start = () => {
   load.classList.add('zoomOut')
@@ -283,6 +284,7 @@ btnExplore.addEventListener('click', () => {
         language.innerHTML = `🗣️ > ${langArr}`
         internet.innerHTML = `🌐 > ${DATA.topLevelDomain[0]}`
         wiki.setAttribute("href", `https://en.wikipedia.org/wiki/${country}`,"_blank")
+        map.setAttribute("href", `https://www.google.rs/maps/place/@${DATA.latlng[0]},${DATA.latlng[1]},7z`,"_blank")
       })
       .catch(err => {
         console.log('error', err)

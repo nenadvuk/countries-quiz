@@ -279,6 +279,7 @@ body {
   overflow: hidden;
   outline: none;
   margin-bottom: 1rem;
+  
 }
 
 .btn:focus {
@@ -299,7 +300,6 @@ body {
   height: 4.5rem;
   border: none;
   outline: none;
-  color: #fff;
   background: orangered;
   color: #000;
   cursor: pointer;
@@ -509,16 +509,17 @@ ul li label {
 .odometer.odometer-auto-theme, .odometer.odometer-theme-car {
   vertical-align: unset;
 }
+
 /**************************************** Signature *****************************************/
 
-.signature{
+.signature {
   position: absolute;
   display: none;
   justify-content: center;
   align-items: center;
   width: 50%;
   height: 50%;
-  background-image: radial-gradient( ellipse 50% 20% at 50% 50%, #6b1839, transparent);
+  background-image: radial-gradient( ellipse 50% 20% at 50% 50%, #f76da4a2, transparent);
   transform: translate(-50%, -50%);
   letter-spacing: 2;
   left: 50%;
@@ -659,7 +660,6 @@ ul li label {
     opacity: 1;
   }
 }
-
 
 /**************************************** Animations ****************************************/
 
@@ -939,4 +939,3 @@ ul li label {
     left: 100%;
   }
 }
-

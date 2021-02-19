@@ -143,11 +143,11 @@ let _CAPITALS_ARRAY = []
 let _CIRCLE_INDEX = 0
 
 // On start
-countriesContainer.style.display = "none"
-countryList.style.display = "none"
-progressBox.style.display = "none"
-goodScore.style.display = "none"
-allContent.style.display = "none"
+countriesContainer.style.display = 'none'
+countryList.style.display = 'none'
+progressBox.style.display = 'none'
+goodScore.style.display = 'none'
+allContent.style.display = 'none'
 counter.style.display = 'none'
 odometer.style.display = 'none'
 video.style.display = 'none'
@@ -162,26 +162,24 @@ for (let flag of flags) {
   flag.style.display = 'none'
 }
 
-
-
 // Video and signature load
 setTimeout(() => {
   video.style.display = 'block'
-  video.classList.add("fadeIn")
+  video.classList.add('fadeIn')
 }, 500)
 
 setTimeout(() => {
-  sign.style.display = "flex"
-  signature.classList.add("fadeIn")
-}, 3000)
+  sign.style.display = 'flex'
+  signature.classList.add('fadeIn')
+}, 2500)
 
 const start = () => {
 
-  load.classList.add("zoomOut")
-  load.style.display = "none"
-  allContent.style.display = "block"
-  allContent.classList.add("bounceInDown")
-  signature.style.display = "none"
+  load.classList.add('zoomOut')
+  load.style.display = 'none'
+  allContent.style.display = 'block'
+  allContent.classList.add('bounceInDown')
+  signature.style.display = 'none'
 
 }
 
@@ -274,7 +272,7 @@ btnExplore.addEventListener('click', () => {
 
       })
       .catch(err => {
-        console.log("error", err)
+        console.log('error', err)
       })
   }
 
@@ -301,7 +299,7 @@ btnExplore.addEventListener('click', () => {
 
   const removeEl = () => {
 
-    card.classList.add("zoomIn")
+    card.classList.add('zoomIn')
     countryList.style.display = 'none'
     search.style.display = 'none'
     rnd.style.display = 'none'
@@ -310,7 +308,7 @@ btnExplore.addEventListener('click', () => {
 
   search.addEventListener('click', () => {
     clickedSound.play()
-    titleText.style.display = "none"
+    titleText.style.display = 'none'
     const userCountry = countryList.value.toLowerCase();
     getCountry(userCountry)
     removeEl()
@@ -323,12 +321,12 @@ btnExplore.addEventListener('click', () => {
     card.style.display = 'none'
     newSearch.style.display = 'none'
     newRandom.style.display = 'none'
-    countryList.classList.add("zoomIn")
-    search.classList.add("zoomIn")
-    rnd.classList.add("zoomIn")
+    countryList.classList.add('zoomIn')
+    search.classList.add('zoomIn')
+    rnd.classList.add('zoomIn')
     setTimeout(() => {
 
-      titleText.style.display = "block"
+      titleText.style.display = 'block'
       countryList.style.display = 'block'
       search.style.display = 'inline-block'
       rnd.style.display = 'inline-block'
@@ -339,7 +337,7 @@ btnExplore.addEventListener('click', () => {
 
   rnd.addEventListener('click', () => {
     randomSound.play()
-    titleText.style.display = "none"
+    titleText.style.display = 'none'
     removeEl()
     getCountry(getMeRandomCountry())
     btnAppear()
@@ -439,7 +437,7 @@ const correct = () => {
   if (finished) {
     counter.style.display = 'none'
     setTimeout(() => {
-      countriesContainer.style.display = "none"
+      countriesContainer.style.display = 'none'
     }, 500);
 
   }
@@ -450,7 +448,7 @@ const correct = () => {
 play.addEventListener('click', () => {
   clickedSound.play()
   odometer.style.display = 'inline-block'
-  odometer.classList.add("zoomIn")
+  odometer.classList.add('zoomIn')
   runCounter()
   setTimeout(() => {
     counter.style.display = 'block'
@@ -470,15 +468,15 @@ play.addEventListener('click', () => {
   _COUNTRIES_ARRAY = countries
   _CAPITALS_ARRAY = capitals
 
-  progressBox.style.display = "flex"
-  progressBox.classList.add("zoomIn")
-  progressBox.style.animationDuration = "1s";
-  countriesContainer.style.display = "block"
-  countriesContainer.classList.add("bounceInDown")
-  titleText.style.display = "none"
-  countryList.style.display = "none"
-  play.style.display = "none"
-  regionEl.style.display = "none"
+  progressBox.style.display = 'flex'
+  progressBox.classList.add('zoomIn')
+  progressBox.style.animationDuration = '1s';
+  countriesContainer.style.display = 'block'
+  countriesContainer.classList.add('bounceInDown')
+  titleText.style.display = 'none'
+  countryList.style.display = 'none'
+  play.style.display = 'none'
+  regionEl.style.display = 'none'
   getCountryData(randomCountry())
   // Counter is running until the end if player doesn't answer any question
   timer = setInterval(() => {
@@ -527,7 +525,7 @@ answerBtn.addEventListener('click', () => {
     setTimeout(() => {
       getCountryData(randomCountry())
       deselectAnswers()
-      countriesContainer.classList.add("zoomIn")
+      countriesContainer.classList.add('zoomIn')
     }, 700)
 
   }
@@ -555,7 +553,7 @@ const noAnswer = () => {
   }
   setTimeout(() => {
     if (!finished) {
-      countriesContainer.classList.add("zoomIn")
+      countriesContainer.classList.add('zoomIn')
       getCountryData(randomCountry())
     }
   }, 2000)
@@ -573,7 +571,7 @@ const gameOver = () => {
 
   clearInterval(timer)
   setTimeout(() => {
-    modal.style.opacity = "1"
+    modal.style.opacity = '1'
     modal.style.zIndex = '99'
   }, 1000)
 
@@ -585,8 +583,8 @@ const gameOver = () => {
     if (!S_America) {
       if (score == 10) {
         highestScore.play()
-        goodScore.style.display = "block"
-      } else goodScore.style.display = "none"
+        goodScore.style.display = 'block'
+      } else goodScore.style.display = 'none'
       if (score >= 8 && score < 10) {
         goodScoreSound.play()
       } if (score <= 3) {
@@ -596,8 +594,8 @@ const gameOver = () => {
     if (S_America) {
       if (score == 5) {
         highestScore.play()
-        goodScore.style.display = "block"
-      } else goodScore.style.display = "none"
+        goodScore.style.display = 'block'
+      } else goodScore.style.display = 'none'
       if (score >= 4 && score < 5) {
         goodScoreSound.play()
       }
@@ -671,7 +669,7 @@ const getCountryData = (country) => {
 
   if (finished) {
     setTimeout(() => {
-      countriesContainer.style.display = "none"
+      countriesContainer.style.display = 'none'
     }, 500);
 
   }
@@ -758,7 +756,7 @@ const getCountryData = (country) => {
 
     })
     .catch(err => {
-      console.log("error", err)
+      console.log('error', err)
     })
 
 }
@@ -775,7 +773,7 @@ const getCountryData = (country) => {
 let map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
   });

@@ -45,6 +45,7 @@ const language = document.getElementById('language')
 const exploreImg = document.getElementById('explore-img')
 const regionalBlock = document.getElementById('regional-blocks')
 const density = document.getElementById('density')
+const wiki = document.getElementById('wiki')
 
 // Countries and capitals elements
 const flag = document.getElementById('flag')
@@ -79,7 +80,7 @@ gameCapitalsSound.volume = 0.4
 const gameFlagsSound = new Audio('assets/sounds/flag.wav')
 gameFlagsSound.volume = 0.4
 const gameExploreSound = new Audio('assets/sounds/explore.wav')
-gameExploreSound.volume = 0.4
+gameExploreSound.volume = 0.2
 const countdownSound = new Audio('assets/sounds/countdown.wav')
 countdownSound.volume = 0.4
 const highestScore = new Audio('assets/sounds/highest-score.wav')
@@ -88,6 +89,8 @@ const clickedSound = new Audio('assets/sounds/clicked.wav')
 clickedSound.volume = 0.4
 const randomSound = new Audio('assets/sounds/random.wav')
 randomSound.volume = 0.4
+const gameHardSound = new Audio('assets/sounds/hard.wav')
+gameHardSound.volume = 0.1
 
 // Score
 const percent = document.querySelector('.percent')
@@ -125,6 +128,7 @@ const counter = document.querySelector('.counter')
 let _GAME_COUNTRIES = false
 let _GAME_CAPITALS = false
 let _GAME_FLAG = false
+let _GAME_HARD = false
 
 let timer
 let correctAnswer
@@ -174,7 +178,6 @@ setTimeout(() => {
 }, 2500)
 
 const start = () => {
-
   load.classList.add('zoomOut')
   load.style.display = 'none'
   allContent.style.display = 'block'
@@ -189,7 +192,7 @@ btnCountry.addEventListener('click', () => {
   _GAME_COUNTRIES = true
   setTimeout(() => {
     start()
-  }, 500);
+  }, 500)
 
 })
 
@@ -200,7 +203,7 @@ btnCapital.addEventListener('click', () => {
   _GAME_CAPITALS = true
   setTimeout(() => {
     start()
-  }, 500);
+  }, 500)
 
 })
 
@@ -215,12 +218,24 @@ btnFlag.addEventListener('click', () => {
   _GAME_FLAG = true
   setTimeout(() => {
     start()
-  }, 500);
+  }, 500)
 })
+
+
+// Hard mode
+btnHard.addEventListener('click', () => {
+  gameHardSound.play()
+  _GAME_COUNTRIES = true
+  _GAME_CAPITALS = true
+  _GAME_HARD = true
+  setTimeout(() => {
+    start()
+  }, 500)
+})
+
 
 // Explore countries
 btnExplore.addEventListener('click', () => {
-
   gameExploreSound.play()
   searchTerm.innerHTML = 'COUNTRY'
   exploreBtns.style.display = 'block'
@@ -255,7 +270,6 @@ btnExplore.addEventListener('click', () => {
         if (DATA.area == null) area.innerHTML = '📏 >'
         else if (DATA.area < 1000) {
           area.innerHTML = `📏 > ${DATA.area} Km2`
-
         } else {
           area.innerHTML = `📏 > ${DATA.area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2`
         }
@@ -268,8 +282,7 @@ btnExplore.addEventListener('click', () => {
         }
         language.innerHTML = `🗣️ > ${langArr}`
         internet.innerHTML = `🌐 > ${DATA.topLevelDomain[0]}`
-
-
+        wiki.setAttribute("href", `https://en.wikipedia.org/wiki/${country}`,"_blank")
       })
       .catch(err => {
         console.log('error', err)
@@ -650,7 +663,6 @@ const getSelected = () => {
 // Generating random country and deleting it from new array
 /* Generisanje nasumicne drzave i uklanjanje iste iz novog niza 
    da bi se izbeglo ponavljanje istog pitanja */
-
 const randomCountry = () => {
 
   if (finished) {
@@ -692,9 +704,13 @@ const getCountryData = (country) => {
         flag.src = res.data[0].flag
         capital = res.data[0].capital
         if (_GAME_CAPITALS) {
-          gameMode.innerHTML = `Capital city of ${country}?`
           _CORRECT = capital
           _RANDOM = _CAPITALS_ARRAY
+          if (!_GAME_HARD) {
+            gameMode.innerHTML = `Capital city of ${country}?`
+          } else {
+            gameMode.innerHTML = `Capital city of this country?`
+          }
         }
         else {
           gameMode.innerHTML = 'Name of the country?'
@@ -706,7 +722,6 @@ const getCountryData = (country) => {
         _CORRECT = country
         _RANDOM = _COUNTRIES_ARRAY
       }
-
 
       let arr = [_CORRECT, _RANDOM[rndNmb[0]], _RANDOM[rndNmb[1]], _RANDOM[rndNmb[2]]]
       shuffle(arr)

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link href="https://github.hubspot.com/odometer/themes/odometer-theme-car.css" rel="stylesheet">
-  <link rel="shortcut icon" href="assets/icon.png">
+  <link rel="shortcut icon" href="assets/images/icon.png">
   <script src="https://github.hubspot.com/odometer/odometer.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="style.css" />
@@ -17,7 +17,7 @@
 
   <div class="bg-video">
     <video class="bg-video-content" autoplay muted loop>
-      <source src="assets/video-earth.mp4" type="video/mp4">
+      <source src="assets/video/video-earth.mp4" type="video/mp4">
       <!--  <source src="" type="video/webm">
         Your browser is not supported! -->
     </video>
@@ -26,7 +26,7 @@
     <button class="btn-glow" id="btn-country">Guess the country <br>
       <button class="btn-glow" id="btn-capital" style="animation-delay: 80ms;">Guess the capital <br>
         <button class="btn-glow" id="btn-flag" style="animation-delay: 160ms;">Guess the flag <br>
-          <button class="btn-glow" disabled id="btn-hard" style="animation-delay: 240ms;">Hard mode<br>
+          <button class="btn-glow" id="btn-hard" style="animation-delay: 240ms;">Hard mode<br>
             <button class="btn-glow" id="btn-explore" style="animation-delay: 320ms;">Explore countries<br>
   </div>
 
@@ -374,6 +374,7 @@
                   <p class="country__row" title="Calling codes"><span id="calling-code"></span></p>
                   <p class="country__row" title="Internet domain"><span id="internet"></span></p>
                   <p class="country__row" title="Languages"><span id="language"></span></p>
+                  <p class="country__row" title="Wikipedia"><span ><a id="wiki" href="/" target="_blank">Wikipedia</a></span></p>
                 </div>
               </div>
             </article>

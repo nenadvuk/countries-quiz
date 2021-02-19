@@ -17,14 +17,14 @@ html {
   touch-action: manipulation;
 }
 
-button:disabled {
+/* button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;
-}
+} */
 
 body {
   -webkit-tap-highlight-color: transparent;
-  background-image: url(./assets/world.jpg);
+  background-image: url(./assets/images/world.jpg);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

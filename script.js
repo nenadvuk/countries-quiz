@@ -168,10 +168,12 @@ for (let flag of flags) {
 setTimeout(() => {
   video.style.display = 'block'
   video.classList.add("fadeIn")
-  sign.style.display = "flex"
-  signature.classList.add("fadeIn")
 }, 500)
 
+setTimeout(() => {
+  sign.style.display = "flex"
+  signature.classList.add("fadeIn")
+}, 1000)
 
 const start = () => {
 

@@ -162,6 +162,7 @@ card.style.display = 'none'
 newSearch.style.display = 'none'
 newRandom.style.display = 'none'
 newGame.style.display = 'none'
+sign.style.display = 'none'
 
 for (let flag of flags) {
   flag.style.display = 'none'
@@ -173,17 +174,16 @@ setTimeout(() => {
   video.classList.add('fadeIn')
 }, 500)
 
-setTimeout(() => {
-  sign.style.display = 'flex'
-  signature.classList.add('fadeIn')
-}, 2000)
+
 
 const start = () => {
   load.classList.add('zoomOut')
   load.style.display = 'none'
   allContent.style.display = 'block'
   allContent.classList.add('bounceInDown')
-  signature.style.display = 'none'
+  sign.style.display = 'flex'
+  signature.style.animation = 'fadeIn 2s'
+ 
 
 }
 
@@ -322,6 +322,7 @@ btnExplore.addEventListener('click', () => {
   }
 
   search.addEventListener('click', () => {
+    sign.style.display = 'none'
     clickedSound.play()
     titleText.style.display = 'none'
     const userCountry = countryList.value.toLowerCase();
@@ -351,6 +352,7 @@ btnExplore.addEventListener('click', () => {
   })
 
   rnd.addEventListener('click', () => {
+    sign.style.display = 'none'
     randomSound.play()
     titleText.style.display = 'none'
     removeEl()
@@ -461,6 +463,7 @@ const correct = () => {
 // Buttons
 
 play.addEventListener('click', () => {
+  sign.style.display = 'none'
   clickedSound.play()
   odometer.style.display = 'inline-block'
   odometer.classList.add('zoomIn')

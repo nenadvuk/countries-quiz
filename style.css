@@ -526,17 +526,17 @@ ul li label {
   font-family: 'Orbitron', sans-serif;
   font-size: 2em;
   color: #ffe6ff;
-  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem cyan, -0.2rem 0.1rem 1rem cyan, 0.2rem 0.1rem 1rem cyan, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem  rgb(64, 248, 248), -0.2rem 0.1rem 1rem  rgb(64, 248, 248), 0.2rem 0.1rem 1rem  rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
   animation: shine 2s forwards, flicker 3s infinite;
 }
 
 @keyframes blink {
   0%, 22%, 36%, 75% {
     color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem cyan, -0.2rem 0.1rem 1rem cyan, 0.2rem 0.1rem 1rem cyan, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem  rgb(64, 248, 248), -0.2rem 0.1rem 1rem  rgb(64, 248, 248), 0.2rem 0.1rem 1rem  rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
   }
   28%, 33% {
-    color: rgb(123, 255, 255);
+    color: rgb(64, 248, 248);
     text-shadow: none;
   }
   82%, 97% {
@@ -555,12 +555,12 @@ ul li label {
 
 @keyframes shine {
   0% {
-    color: #6b1839;
+    color: #0010f7;
     text-shadow: none;
   }
   100% {
     color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem cyan, -0.2rem 0.1rem 1rem cyan, 0.2rem 0.1rem 1rem cyan, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(64, 248, 248), -0.2rem 0.1rem 1rem rgb(64, 248, 248), 0.2rem 0.1rem 1rem rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
   }
 }
 

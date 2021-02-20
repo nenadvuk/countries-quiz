@@ -781,23 +781,3 @@ const getCountryData = (country) => {
 
 }
 
-
-
-// https://www.countryflags.io/
-
-// API key for Google mmaps
-// AIzaSyBXlnMA1W-LMjHEse9nTJnRpzt_onjgS_0
-
-/*
-
-let map;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-}
-
-
-*/

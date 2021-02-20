@@ -118,6 +118,7 @@ const odometer = document.getElementById('odometer')
 const explore = document.querySelector('.explore-container')
 const card = document.querySelector('.country-card')
 const exploreBtns = document.querySelector('.explore-btns')
+const tabTitle = document.getElementById('tab-title')
 
 // Preventing to go to next question without answer
 answerBtn.style.pointerEvents = 'none'
@@ -183,7 +184,7 @@ const start = () => {
   allContent.classList.add('bounceInDown')
   sign.style.display = 'flex'
   signature.style.animation = 'fadeIn 2s'
- 
+
 
 }
 
@@ -246,6 +247,7 @@ btnExplore.addEventListener('click', () => {
   play.style.display = 'none'
   const getMeRandomCountry = () => countryList[Math.floor(Math.random() * countryList.length)].value
   const getCountry = (country) => {
+    tabTitle.innerHTML = country
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
 
@@ -283,8 +285,8 @@ btnExplore.addEventListener('click', () => {
         }
         language.innerHTML = `🗣️ > ${langArr}`
         internet.innerHTML = `🌐 > ${DATA.topLevelDomain[0]}`
-        wiki.setAttribute("href", `https://en.wikipedia.org/wiki/${country}`,"_blank")
-        map.setAttribute("href", `https://www.google.rs/maps/place/@${DATA.latlng[0]},${DATA.latlng[1]},7z`,"_blank")
+        wiki.setAttribute("href", `https://en.wikipedia.org/wiki/${country}`, "_blank")
+        map.setAttribute("href", `https://www.google.rs/maps/place/@${DATA.latlng[0]},${DATA.latlng[1]},7z`, "_blank")
       })
       .catch(err => {
         console.log('error', err)
@@ -325,15 +327,17 @@ btnExplore.addEventListener('click', () => {
     sign.style.display = 'none'
     clickedSound.play()
     titleText.style.display = 'none'
-    const userCountry = countryList.value.toLowerCase();
+    const userCountry = countryList.value 
+    // tabTitle.innerHTML = userCountry
     getCountry(userCountry)
     removeEl()
     btnAppear()
-
+    tabTitle.innerHTML = userCountry
   })
 
   newSearch.addEventListener('click', () => {
     clickedSound.play()
+    tabTitle.innerHTML = 'Country quiz'
     card.style.display = 'none'
     newSearch.style.display = 'none'
     newRandom.style.display = 'none'
@@ -708,6 +712,7 @@ const getCountryData = (country) => {
       if (!_GAME_FLAG) {
         flag.src = res.data[0].flag
         capital = res.data[0].capital
+        // What is writen in question row, depending of chosen game
         if (_GAME_CAPITALS) {
           _CORRECT = capital
           _RANDOM = _CAPITALS_ARRAY
@@ -727,9 +732,11 @@ const getCountryData = (country) => {
         _CORRECT = country
         _RANDOM = _COUNTRIES_ARRAY
       }
-
+      // Array with answers, one is true, three are false
       let arr = [_CORRECT, _RANDOM[rndNmb[0]], _RANDOM[rndNmb[1]], _RANDOM[rndNmb[2]]]
+      // Function which positioning the right answer randomly
       shuffle(arr)
+      // Variable with positon of the correct answer for matching 
       correctAnswer = arr.indexOf(_CORRECT)
       console.log(_CORRECT)
       if (!_GAME_FLAG) {
@@ -738,6 +745,7 @@ const getCountryData = (country) => {
         resThree.innerHTML = arr[2]
         resFour.innerHTML = arr[3]
       }
+      // If player choses guess the flag game, we use other logic
       if (_GAME_FLAG) {
         const getJSON = function (url, errorMsg = 'Something went wrong') {
           return fetch(url).then(response => {

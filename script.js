@@ -12,6 +12,7 @@ const search = document.querySelector('#search')
 const rnd = document.querySelector('#random-country')
 const newSearch = document.getElementById('new-search')
 const newRandom = document.getElementById('new-random')
+const sideNEwGame = document.getElementById('side-new-game')
 
 // Containers
 const countriesContainer = document.querySelector('.countries')
@@ -64,6 +65,10 @@ const flagTwo = document.getElementById('fl-2')
 const flagThree = document.getElementById('fl-3')
 const flagFour = document.getElementById('fl-4')
 const flags = document.querySelectorAll('.flag-image')
+
+// Burger menu
+const sideBar = document.getElementById('sidebar')
+const burgerMenu = document.querySelector('.burger-menu')
 
 // Sounds
 const rigthAnswerSound = new Audio('assets/sounds/right.wav')
@@ -175,7 +180,16 @@ setTimeout(() => {
   video.classList.add('fadeIn')
 }, 500)
 
+// Back to loading page
+sideNEwGame.addEventListener('click', () => {
+  window.location.reload()
+})
 
+const burgerMenuFade = () => {
+  sideBar.style.display = 'none'
+  burgerMenu.style.display = 'none'
+
+}
 
 const start = () => {
   load.classList.add('zoomOut')
@@ -184,11 +198,13 @@ const start = () => {
   allContent.classList.add('bounceInDown')
   sign.style.display = 'flex'
   signature.style.animation = 'fadeIn 2s'
-
+  sideBar.style.display = 'block'
+  burgerMenu.style.display = 'block'
+  burgerMenu.style.animation = 'fadeInLeftBig 1s'
 
 }
 
-// Guess the country
+// Guess the country fadeInLeftBig
 btnCountry.addEventListener('click', () => {
   gameCountriesSound.play()
   _GAME_COUNTRIES = true
@@ -234,6 +250,8 @@ btnHard.addEventListener('click', () => {
     start()
   }, 500)
 })
+
+
 
 
 // Explore countries
@@ -327,8 +345,7 @@ btnExplore.addEventListener('click', () => {
     sign.style.display = 'none'
     clickedSound.play()
     titleText.style.display = 'none'
-    const userCountry = countryList.value 
-    // tabTitle.innerHTML = userCountry
+    const userCountry = countryList.value
     getCountry(userCountry)
     removeEl()
     btnAppear()
@@ -345,7 +362,6 @@ btnExplore.addEventListener('click', () => {
     search.classList.add('zoomIn')
     rnd.classList.add('zoomIn')
     setTimeout(() => {
-
       titleText.style.display = 'block'
       countryList.style.display = 'block'
       search.style.display = 'inline-block'
@@ -467,6 +483,8 @@ const correct = () => {
 // Buttons
 
 play.addEventListener('click', () => {
+  sideBar.style.display = 'none'
+  burgerMenu.style.display = 'none'
   sign.style.display = 'none'
   clickedSound.play()
   odometer.style.display = 'inline-block'
@@ -635,7 +653,6 @@ const gameOver = () => {
   })
 
 }
-
 
 // If radio button is checked answer button is no longer disabled
 radios.forEach(radio => radio.addEventListener('click', () =>

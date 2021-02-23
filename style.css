@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
 :root {
   --line-border-fill: #850DFF;
   --line-border-empty: gray;
@@ -35,7 +37,6 @@ body {
 
 #wiki {
   margin-left: 29rem;
- 
 }
 
 .loading-page {
@@ -193,7 +194,7 @@ body {
 }
 
 .country-card {
-  margin-top: 1rem;
+  margin-top: 3rem;
   width: 46rem;
 }
 
@@ -365,6 +366,18 @@ body {
   outline: none;
 }
 
+.side-btn{
+  font-size: 1.5rem;
+  margin-left: 2.5rem;
+  margin-top: 7rem;
+  width: 13rem;
+  
+}
+
+.side-btn:active{
+  transform: scale(0.95);
+}
+
 .explore-btn:active {
   transform: scale(0.95);
 }
@@ -512,13 +525,13 @@ ul li label {
 /**************************************** Signature *****************************************/
 
 .signature {
-  position: absolute;
+  position: fixed;
   display: none;
   justify-content: center;
   align-items: center;
   width: 50%;
   height: 50%;
-  background-image: radial-gradient( ellipse 50% 15% at 50% 50%,rgba(0, 255, 255, 0.377), transparent);
+  background-image: radial-gradient( ellipse 50% 15% at 50% 50%, rgba(0, 255, 255, 0.377), transparent);
   transform: translate(-50%, -50%);
   letter-spacing: 2;
   left: 50%;
@@ -526,21 +539,21 @@ ul li label {
   font-family: 'Orbitron', sans-serif;
   font-size: 2em;
   color: #ffe6ff;
-  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem  rgb(64, 248, 248), -0.2rem 0.1rem 1rem  rgb(64, 248, 248), 0.2rem 0.1rem 1rem  rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
+  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(64, 248, 248), -0.2rem 0.1rem 1rem rgb(64, 248, 248), 0.2rem 0.1rem 1rem rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
   animation: shine 2s forwards, flicker 3s infinite;
 }
 
 @keyframes blink {
   0%, 22%, 36%, 75% {
     color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem  rgb(64, 248, 248), -0.2rem 0.1rem 1rem  rgb(64, 248, 248), 0.2rem 0.1rem 1rem  rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(64, 248, 248), -0.2rem 0.1rem 1rem rgb(64, 248, 248), 0.2rem 0.1rem 1rem rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
   }
   28%, 33% {
     color: rgb(64, 248, 248);
     text-shadow: none;
   }
   82%, 97% {
-    color:cyan;
+    color: cyan;
     text-shadow: none;
   }
 }
@@ -659,6 +672,100 @@ ul li label {
     opacity: 1;
   }
 }
+
+
+/**************************************** Burger menu ***************************************/
+#sidebar{
+  display: none;
+  z-index: 1000;
+  overflow-x: hidden;
+  height: 18.5rem;
+  position: absolute;
+  left: 0;
+  width: 19rem;
+  margin-top: 5rem;
+  transform: translateX(-25rem);
+  transition: transform 400ms ease-in-out;
+  background: linear-gradient(150deg, #f88967c0 20%,rgb(0, 0, 0) 100%);
+}
+
+input[type="checkbox"]:checked~#sidebar {
+  transform: translateX(0);
+}
+
+input[type=checkbox] {
+  transition: all 0.4s;
+  box-sizing: border-box;
+  display: none;
+}
+
+.burger-menu {
+  display: none;
+  transition: all 0.4s;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  top: 3rem;
+  left: 3rem;
+  height: 3rem;
+  width: 2.5rem;
+}
+
+.spinner {
+  transition: all 0.4s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.horizontal {
+  transition: all 0.4s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
+
+.diagonal.part-1 {
+  position: relative;
+  transition: all 0.4s;
+  box-sizing: border-box;
+  float: left;
+}
+
+.diagonal.part-2 {
+  transition: all 0.4s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
+
+input[type=checkbox]:checked~.burger-menu>.horizontal {
+  transition: all 0.4s;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+input[type=checkbox]:checked~.burger-menu>.diagonal.part-1 {
+  transition: all 0.4s;
+  box-sizing: border-box;
+  transform: rotate(135deg);
+  margin-top: 8px;
+}
+
+input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
+  transition: all 0.4s;
+  box-sizing: border-box;
+  transform: rotate(-135deg);
+  margin-top: -9px;
+}
+
 
 /**************************************** Animations ****************************************/
 
@@ -873,6 +980,8 @@ ul li label {
   }
 }
 
+
+
 /**************************************** Mobile *******************************************/
 
 @media only screen and (max-width: 1024px) {
@@ -934,7 +1043,11 @@ ul li label {
   #wiki {
     margin-left: 23rem;
   }
-  
+  .signature {
+    width: 60%;
+    height: 40%;
+   
+  }
 }
 
 @media only screen and (max-width: 375px) {

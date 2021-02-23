@@ -14,7 +14,15 @@
 </head>
 
 <body>
-
+  <input type="checkbox" id="openSidebar">
+  <label for="openSidebar" class="burger-menu">
+    <div class="spinner diagonal part-1"></div>
+    <div class="spinner horizontal"></div>
+    <div class="spinner diagonal part-2"></div>
+  </label>
+  <div id="sidebar">
+    <button id="side-new-game" class="side-btn explore-btn">NEW GAME</button><br>
+  </div>
   <div class="bg-video">
     <video class="bg-video-content" autoplay muted loop>
       <source src="assets/video/video-earth.mp4" type="video/mp4">
@@ -210,7 +218,7 @@
           <option value="Guyana" class="south_america" id="Georgetown">Guyana</option>
           <option value="Haiti" class="north_america" id="Port-au-Prince">Haiti</option>
           <option value="Heard Island and Mcdonald Islands">Heard and Mcdonald Islands</option>
-          <option value="Vatican" >Vatican City State</option> <!-- class="europe" id="Rome" -->
+          <option value="Vatican">Vatican City State</option> <!-- class="europe" id="Rome" -->
           <option value="Honduras" class="north_america" id="Tegucigalpa">Honduras</option>
           <option value="Hong Kong" class="asia" id="City of Victoria">Hong Kong</option>
           <option value="Hungary" class="europe" id="Budapest">Hungary</option>
@@ -374,8 +382,10 @@
                   <p class="country__row" title="Calling codes"><span id="calling-code"></span></p>
                   <p class="country__row" title="Internet domain"><span id="internet"></span></p>
                   <p class="country__row" title="Languages"><span id="language"></span></p>
-                  <p class="country__row" title="Map location"><span>🗺️ > <a id="map" href="/" target="_blank">Show on map</a></span></p>
-                  <p class="country__row" title="Wikipedia"><span ><a id="wiki" href="/" target="_blank">Wikipedia</a></span></p>
+                  <p class="country__row" title="Map location"><span>🗺️ > <a id="map" href="/" target="_blank">Show on
+                        map</a></span></p>
+                  <p class="country__row" title="Wikipedia"><span><a id="wiki" href="/"
+                        target="_blank">Wikipedia</a></span></p>
                 </div>
               </div>
             </article>
@@ -394,7 +404,6 @@
       <div id="openModal" class="modalDialog">
         <div> <a href="#"></a>
           <h1 class="title-text">YOUR SCORE</h1>
-          <!-- <div id="odometer" class="odometer"></div> -->
           <span class="percent"></span><br><br>
           <h1 id="good-score" class="title-text">Congratulations</h1>
           <button id="new-game" class="btn">New Game</button>
@@ -411,10 +420,7 @@
       <span>s</span><span class="flicker">in</span><span>ovi</span><span class="flicker">c</span>
     </div>
   </div>
-  <!-- <div id="map"></div> -->
   <script src="script.js"></script>
-  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXlnMA1W-LMjHEse9nTJnRpzt_onjgS_0&callback=initMap"
-  type="text/javascript"></script> -->
 </body>
 
 </html>

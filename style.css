@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
-
 :root {
   --line-border-fill: #850DFF;
   --line-border-empty: gray;
@@ -194,7 +193,7 @@ body {
 }
 
 .country-card {
-  margin-top: 3rem;
+  margin-top: -5rem;
   width: 46rem;
 }
 
@@ -211,6 +210,50 @@ body {
   width: 7rem;
   height: 4rem;
   cursor: pointer;
+}
+
+.title-box {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.title-text {
+  padding: 2rem;
+  position: relative;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 2em;
+  letter-spacing: 4px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #000, #fff, #000);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animateText 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+#good-score {
+  margin-top: 3rem;
+  padding: 0;
+}
+
+.form-control {
+  animation: flash 1s;
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 4rem;
+  overflow: hidden;
+  animation-delay: 1.5s;
+}
+
+.form-control:focus {
+  outline: none;
+}
+
+.region-container {
+  width: 40rem;
+  margin: auto;
 }
 
 /*************************************** Counter ***************************************/
@@ -337,7 +380,6 @@ body {
 .new-s {
   margin-top: 1rem;
   animation: zoomIn 1s;
-  animation-delay: 1s;
   animation-fill-mode: backwards;
   position: relative;
   left: 7.3%;
@@ -346,7 +388,6 @@ body {
 .new-r {
   margin-top: 1rem;
   animation: zoomIn 1s;
-  animation-delay: 1.2s;
   animation-fill-mode: backwards;
   position: relative;
   left: 57%;
@@ -366,20 +407,43 @@ body {
   outline: none;
 }
 
-.side-btn{
+.side-btn {
   font-size: 1.5rem;
   margin-left: 2.5rem;
   margin-top: 7rem;
   width: 13rem;
-  
 }
 
-.side-btn:active{
+.side-btn:active {
   transform: scale(0.95);
 }
 
 .explore-btn:active {
   transform: scale(0.95);
+}
+
+.next-prev {
+  text-align: center;
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  background-color: greenyellow;
+  font-size: 6rem;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.next {
+  position: relative;
+  top: 33rem;
+  left: 37rem;
+}
+
+.previous {
+  position: relative;
+  top: 33rem;
+  left: -5.5rem;
 }
 
 #new-game {
@@ -401,50 +465,6 @@ ul li {
 ul li label {
   user-select: none;
   cursor: pointer;
-}
-
-.title-box {
-  margin-top: 5rem;
-  text-align: center;
-}
-
-.title-text {
-  padding: 2rem;
-  position: relative;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  font-size: 2em;
-  letter-spacing: 4px;
-  overflow: hidden;
-  background: linear-gradient(90deg, #000, #fff, #000);
-  background-repeat: no-repeat;
-  background-size: 80%;
-  animation: animateText 3s linear infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0);
-}
-
-#good-score {
-  margin-top: 3rem;
-  padding: 0;
-}
-
-.form-control {
-  animation: flash 1s;
-  margin-bottom: 2rem;
-  width: 100%;
-  height: 4rem;
-  overflow: hidden;
-  animation-delay: 1.5s;
-}
-
-.form-control:focus {
-  outline: none;
-}
-
-.region-container {
-  width: 40rem;
-  margin: auto;
 }
 
 /**************************************** Modal ****************************************/
@@ -511,6 +531,14 @@ ul li label {
 }
 
 .odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-car.odometer-animating-up .odometer-ribbon-inner {
+  -webkit-transition: -webkit-transform .4s;
+  -moz-transition: -moz-transform .4s;
+  -ms-transition: -ms-transform .4s;
+  -o-transition: -o-transform .4s;
+  transition: transform .4s;
+}
+
+.odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-car.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
   -webkit-transition: -webkit-transform .4s;
   -moz-transition: -moz-transform .4s;
   -ms-transition: -ms-transform .4s;
@@ -673,9 +701,9 @@ ul li label {
   }
 }
 
-
 /**************************************** Burger menu ***************************************/
-#sidebar{
+
+#sidebar {
   display: none;
   z-index: 1000;
   overflow-x: hidden;
@@ -686,7 +714,7 @@ ul li label {
   margin-top: 5rem;
   transform: translateX(-25rem);
   transition: transform 400ms ease-in-out;
-  background: linear-gradient(150deg, #f88967c0 20%,rgb(0, 0, 0) 100%);
+  background: linear-gradient(150deg, #f88967c0 20%, rgb(0, 0, 0) 100%);
 }
 
 input[type="checkbox"]:checked~#sidebar {
@@ -765,7 +793,6 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   transform: rotate(-135deg);
   margin-top: -9px;
 }
-
 
 /**************************************** Animations ****************************************/
 
@@ -853,11 +880,31 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   }
 }
 
+.zoomInNoDelay {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: .6s;
+  animation-duration: .6s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes zoomInNoDelay {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .fadeInLeftBig {
   -webkit-animation-name: fadeInLeftBig;
   animation-name: fadeInLeftBig;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: .7s;
+  animation-duration: .7s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -872,6 +919,99 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     opacity: 1;
     -webkit-transform: none;
     transform: none;
+  }
+}
+
+.fadeInRightBig {
+  -webkit-animation-name: fadeInRightBig;
+  animation-name: fadeInRightBig;
+  -webkit-animation-duration: .7s;
+  animation-duration: .7s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInRightBig {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeOutLeftBig {
+  -webkit-animation-name: fadeOutLeftBig;
+  animation-name: fadeOutLeftBig;
+  -webkit-animation-duration: .7s;
+  animation-duration: .7s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeOutLeftBig {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(-2000px, 0, 0);
+    transform: translate3d(-2000px, 0, 0);
+  }
+}
+
+.fadeOutLeft {
+  -webkit-animation-name: fadeOutLeft;
+  animation-name: fadeOutLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.fadeOutRightBig {
+  -webkit-animation-name: fadeOutRightBig;
+  animation-name: fadeOutRightBig;
+  -webkit-animation-duration: .7s;
+  animation-duration: .7s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeOutRightBig {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
   }
 }
 
@@ -980,13 +1120,20 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   }
 }
 
-
-
 /**************************************** Mobile *******************************************/
 
 @media only screen and (max-width: 1024px) {
   .odometer {
     left: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .next {
+    left: 36rem;
+  }
+  .previous {
+    left: -4.3rem;
   }
 }
 
@@ -1033,10 +1180,10 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   .country-card {
     width: 40rem;
   }
-  .next-prev {
+  /* .next-prev {
     top: -5rem;
     left: 65%;
-  }
+  } */
   .new-r {
     left: 42%;
   }
@@ -1046,7 +1193,17 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   .signature {
     width: 60%;
     height: 40%;
-   
+  }
+  .next {
+    left: 32rem;
+  }
+  .previous {
+    left: -2.3rem;
+  }
+  .next-prev {
+    font-size: 4rem;
+    height: 5rem;
+    width: 5rem;
   }
 }
 

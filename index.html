@@ -21,7 +21,7 @@
     <div class="spinner diagonal part-2"></div>
   </label>
   <div id="sidebar">
-    <button id="side-new-game" class="side-btn explore-btn">NEW GAME</button><br>
+    <button id="side-new-game" class="side-btn explore-btn">HOME</button><br>
   </div>
   <div class="bg-video">
     <video class="bg-video-content" autoplay muted loop>
@@ -366,37 +366,42 @@
           <option value="Zimbabwe" class="africa" id="Harare">Zimbabwe</option>
         </select>
         <div class="explore-container">
-          <div class="country-card">
-            <article class="country-div">
-              <img class="country__img" id="explore-img" src="" />
-              <div class="country__data">
-                <div class="first-page">
-                  <h2 class="country__name" id="country____name"></h2>
-                  <h3 class="country__region" title="Region/Subregion" id="country-region"></h3>
-                  <h3 class="country__region" title="Regional block" id="regional-blocks"></h3>
-                  <p class="country__row" title="Population"><span id="population"></span></p>
-                  <p class="country__row" title="Capital city"><span id="capital"></span></p>
-                  <p class="country__row" title="Currencie"><span id="currencie"></span></p>
-                  <p class="country__row" title="Area"><span id="area"></span></p>
-                  <p class="country__row" title="Population density"><span id="density"></span></p>
-                  <p class="country__row" title="Calling codes"><span id="calling-code"></span></p>
-                  <p class="country__row" title="Internet domain"><span id="internet"></span></p>
-                  <p class="country__row" title="Languages"><span id="language"></span></p>
-                  <p class="country__row" title="Map location"><span>🗺️ > <a id="map" href="/" target="_blank">Show on
-                        map</a></span></p>
-                  <p class="country__row" title="Wikipedia"><span><a id="wiki" href="/"
-                        target="_blank">Wikipedia</a></span></p>
-                </div>
+          <button title="Previos" id="previous-btn" class="next-prev previous">
+            < </button>
+              <button title="Next" id="next-btn" class="next-prev next"> > </button>
+              <div class="country-card">
+                <article class="country-div">
+                  <img class="country__img" id="explore-img" src="" />
+                  <div class="country__data">
+                    <div class="first-page">
+                      <h2 class="country__name" id="country____name"></h2>
+                      <h3 class="country__region" title="Region/Subregion" id="country-region"></h3>
+                      <h3 class="country__region" title="Regional block" id="regional-blocks"></h3>
+                      <p class="country__row" title="Population"><span id="population"></span></p>
+                      <p class="country__row" title="Capital city"><span id="capital"></span></p>
+                      <p class="country__row" title="Currencie"><span id="currencie"></span></p>
+                      <p class="country__row" title="Area"><span id="area"></span></p>
+                      <p class="country__row" title="Population density"><span id="density"></span></p>
+                      <p class="country__row" title="Calling codes"><span id="calling-code"></span></p>
+                      <p class="country__row" title="Internet domain"><span id="internet"></span></p>
+                      <p class="country__row" title="Languages"><span id="language"></span></p>
+                      <p class="country__row" title="Map location"><span>🗺️ > <a id="map" href="/" target="_blank">Show
+                            on
+                            map</a></span></p>
+                      <p class="country__row" title="Wikipedia"><span><a id="wiki" href="/"
+                            target="_blank">Wikipedia</a></span></p>
+                    </div>
+                  </div>
+                </article>
               </div>
-            </article>
-          </div>
-          <button id="new-search" class="new-s explore-btn">SEARCH</button>
-          <button id="new-random" class="new-r explore-btn">RANDOM</button>
-          <div class="explore-btns">
-            <button id="search" class="btn">Search</button><br>
-            <button id="random-country" class="btn">Random</button><br>
-          </div>
-
+              <div class="new-buttons">
+                <button id="new-search" class="new-s explore-btn">SEARCH</button>
+                <button id="new-random" class="new-r explore-btn">RANDOM</button>
+              </div>
+              <div class="explore-btns">
+                <button id="search" class="btn">Search</button><br>
+                <button id="random-country" class="btn">Random</button><br>
+              </div>
         </div>
         <button id="play" class="btn">Play</button><br>
       </div>
@@ -420,6 +425,7 @@
       <span>s</span><span class="flicker">in</span><span>ovi</span><span class="flicker">c</span>
     </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 

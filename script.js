@@ -12,7 +12,11 @@ const search = document.querySelector('#search')
 const rnd = document.querySelector('#random-country')
 const newSearch = document.getElementById('new-search')
 const newRandom = document.getElementById('new-random')
+const newBtns = document.querySelector('.new-buttons')
 const sideNEwGame = document.getElementById('side-new-game')
+const nextBtn = document.getElementById('next-btn')
+const prevBtn = document.getElementById('previous-btn')
+
 
 // Containers
 const countriesContainer = document.querySelector('.countries')
@@ -96,7 +100,7 @@ clickedSound.volume = 0.4
 const randomSound = new Audio('assets/sounds/random.wav')
 randomSound.volume = 0.4
 const gameHardSound = new Audio('assets/sounds/hard.wav')
-gameHardSound.volume = 0.1
+gameHardSound.volume = 0.3
 
 // Score
 const percent = document.querySelector('.percent')
@@ -136,15 +140,24 @@ let _GAME_COUNTRIES = false
 let _GAME_CAPITALS = false
 let _GAME_FLAG = false
 let _GAME_HARD = false
-
-let timer
-let correctAnswer
-let score = 0
 let finished = false
 let S_America = false
 let checkedField = false
 
+let timer
+let correctAnswer
+let score = 0
+
+// Index for next ore previous mode
+let _COUNTRIES_INDEX = 0
+
 /* let world = false */
+// All countries array
+allCountriesArr = []
+for (let country of countryList) {
+  allCountriesArr.push(country.value)
+
+}
 
 let countries = []
 let capitals = []
@@ -169,6 +182,8 @@ newSearch.style.display = 'none'
 newRandom.style.display = 'none'
 newGame.style.display = 'none'
 sign.style.display = 'none'
+nextBtn.style.display = 'none'
+prevBtn.style.display = 'none'
 
 for (let flag of flags) {
   flag.style.display = 'none'
@@ -204,7 +219,7 @@ const start = () => {
 
 }
 
-// Guess the country fadeInLeftBig
+// Guess the country
 btnCountry.addEventListener('click', () => {
   gameCountriesSound.play()
   _GAME_COUNTRIES = true
@@ -252,20 +267,24 @@ btnHard.addEventListener('click', () => {
 })
 
 
-
-
 // Explore countries
 btnExplore.addEventListener('click', () => {
   gameExploreSound.play()
+  start()
   searchTerm.innerHTML = 'COUNTRY'
   exploreBtns.style.display = 'block'
-  start()
   countryList.style.display = 'block'
   regionEl.style.display = 'none'
   play.style.display = 'none'
-  const getMeRandomCountry = () => countryList[Math.floor(Math.random() * countryList.length)].value
+
+  const getMeRandomCountry = () => countryList[Math.floor(Math.random()
+    * countryList.length)].value
+
   const getCountry = (country) => {
     tabTitle.innerHTML = country
+    _COUNTRIES_INDEX = allCountriesArr.indexOf(country)
+    console.log(_COUNTRIES_INDEX)
+
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
 
@@ -309,19 +328,147 @@ btnExplore.addEventListener('click', () => {
       .catch(err => {
         console.log('error', err)
       })
+    odometer.style.display = 'inline-block'
+    odometer.classList.add('zoomIn')
+    setTimeout(() => {
+      odometer.innerHTML = _COUNTRIES_INDEX
+
+    }, 700)
+
   }
 
-  const btnAppear = () => {
+  // Search button / Explore
+  search.addEventListener('click', () => {
+    sign.style.display = 'none'
+    removeClases()
+    clickedSound.play()
+    titleText.style.display = 'none'
+    const userCountry = countryList.value
+    getCountry(userCountry)
+    removeEl()
+    btnAppear()
+    tabTitle.innerHTML = userCountry
+    nextPrevOn()
 
+  })
+
+  // Random button / Explore
+  rnd.addEventListener('click', () => {
+    sign.style.display = 'none'
+    randomSound.play()
+    titleText.style.display = 'none'
+    removeEl()
+    getCountry(getMeRandomCountry())
+    btnAppear()
+
+  })
+
+  // Appearance of next-prev, new search and new random buttons
+  const btnAppear = () => {
     setTimeout(() => {
       newSearch.style.display = 'inline-block'
       newRandom.style.display = 'inline-block'
-    }, 2500)
+      nextPrevOn()
+    }, 1000)
 
   }
 
+  const nextPrevOn = () => {
+    nextBtn.style.display = 'inline-block'
+    prevBtn.style.display = 'inline-block'
+    nextBtn.classList.add('zoomInNoDelay')
+    prevBtn.classList.add('zoomInNoDelay')
+  }
+
+  const nextPrevOff = () => {
+    nextBtn.style.display = 'none'
+    prevBtn.style.display = 'none'
+  }
+
+  const removeClases = () => {
+    card.classList.add('zoomIn')
+    card.classList.remove('fadeInRightBig')
+    nextBtn.classList.remove('fadeInRightBig')
+    prevBtn.classList.remove('fadeInRightBig')
+    card.classList.remove('fadeInLeftBig')
+    nextBtn.classList.remove('fadeInLeftBig')
+    prevBtn.classList.remove('fadeInLeftBig')
+
+  }
+
+  const removeEl = () => {
+    card.classList.add('zoomIn')
+    countryList.style.display = 'none'
+    search.style.display = 'none'
+    rnd.style.display = 'none'
+
+  }
+
+  // Next country by alphabetical order
+  nextBtn.addEventListener('click', () => {
+    card.classList.remove('zoomIn')
+    card.classList.add('fadeOutLeftBig')
+    nextBtn.classList.add('fadeOutLeftBig')
+    prevBtn.classList.add('fadeOutLeftBig')
+    newBtns.classList.add('fadeOutLeftBig')
+
+    _COUNTRIES_INDEX++
+    if (_COUNTRIES_INDEX == countryList.length) _COUNTRIES_INDEX = 0
+
+    setTimeout(() => {
+      getCountry(countryList[_COUNTRIES_INDEX].value)
+
+    }, 1000);
+
+    setTimeout(() => {
+      card.classList.remove('fadeOutLeftBig')
+      card.classList.add('fadeInRightBig')
+      nextBtn.classList.remove('fadeOutLeftBig')
+      nextBtn.classList.add('fadeInRightBig')
+      prevBtn.classList.remove('fadeOutLeftBig')
+      prevBtn.classList.add('fadeInRightBig')
+      newBtns.classList.remove('fadeOutLeftBig')
+      newBtns.classList.add('fadeInRightBig')
+
+    }, 1500)
+
+  })
+
+  // Previous country by alphabetical order
+  prevBtn.addEventListener('click', () => {
+    card.classList.remove('zoomIn')
+    card.classList.add('fadeOutRightBig')
+    nextBtn.classList.add('fadeOutRightBig')
+    prevBtn.classList.add('fadeOutRightBig')
+    newBtns.classList.add('fadeOutRightBig')
+
+    if (_COUNTRIES_INDEX == 0) _COUNTRIES_INDEX = countryList.length
+    _COUNTRIES_INDEX--
+    setTimeout(() => {
+      getCountry(countryList[_COUNTRIES_INDEX].value)
+
+    }, 1000);
+    setTimeout(() => {
+      card.classList.remove('fadeOutRightBig')
+      card.classList.remove('fadeInRightBig')
+      card.classList.add('fadeInLeftBig')
+      nextBtn.classList.remove('fadeOutRightBig')
+      nextBtn.classList.remove('fadeInRightBig')
+      nextBtn.classList.add('fadeInLeftBig')
+      prevBtn.classList.remove('fadeOutRightBig')
+      prevBtn.classList.remove('fadeInRightBig')
+      prevBtn.classList.add('fadeInLeftBig')
+      newBtns.classList.remove('fadeOutRightBig')
+      newBtns.classList.remove('fadeInRightBig')
+      newBtns.classList.add('fadeInLeftBig')
+    }, 1500)
+
+  })
+
   newRandom.addEventListener('click', () => {
+    removeClases()
     randomSound.play()
+    nextPrevOff()
     card.style.display = 'none'
     newSearch.style.display = 'none'
     newRandom.style.display = 'none'
@@ -332,28 +479,10 @@ btnExplore.addEventListener('click', () => {
 
   })
 
-  const removeEl = () => {
-
-    card.classList.add('zoomIn')
-    countryList.style.display = 'none'
-    search.style.display = 'none'
-    rnd.style.display = 'none'
-
-  }
-
-  search.addEventListener('click', () => {
-    sign.style.display = 'none'
-    clickedSound.play()
-    titleText.style.display = 'none'
-    const userCountry = countryList.value
-    getCountry(userCountry)
-    removeEl()
-    btnAppear()
-    tabTitle.innerHTML = userCountry
-  })
-
   newSearch.addEventListener('click', () => {
     clickedSound.play()
+    nextPrevOff()
+    odometer.style.display = 'none'
     tabTitle.innerHTML = 'Country quiz'
     card.style.display = 'none'
     newSearch.style.display = 'none'
@@ -366,21 +495,9 @@ btnExplore.addEventListener('click', () => {
       countryList.style.display = 'block'
       search.style.display = 'inline-block'
       rnd.style.display = 'inline-block'
-
     }, 500)
 
   })
-
-  rnd.addEventListener('click', () => {
-    sign.style.display = 'none'
-    randomSound.play()
-    titleText.style.display = 'none'
-    removeEl()
-    getCountry(getMeRandomCountry())
-    btnAppear()
-
-  })
-
 })
 
 // If South American region is chosen number of questions is 5
@@ -541,20 +658,21 @@ answerBtn.addEventListener('click', () => {
   !S_America ? endGame(9) : endGame(4)
   correct()
   _CIRCLE_INDEX++
-  console.log(finished)
+ 
   if (!finished) {
     counter.style.display = 'none'
     resetCounter()
     runCounter()
     timer = setInterval(() => {
-
       noAnswer()
+
     }, 14000)
 
   }
   if (finished) {
     clearInterval(timer)
     gameOver()
+    
   }
 
   update()
@@ -567,9 +685,7 @@ answerBtn.addEventListener('click', () => {
       deselectAnswers()
       countriesContainer.classList.add('zoomIn')
     }, 700)
-
   }
-
 })
 
 // Function which automaticly goes to the next question if player doesn't answer 

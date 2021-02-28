@@ -143,9 +143,16 @@ body {
   box-shadow: 1rem 2rem 5rem 1rem rgba(0, 0, 0, 0.5);
   font-size: 1.8rem;
   width: 40rem;
-  border-radius: 0.7rem;
+  border-radius: 1rem;
   margin: 0 3rem;
   overflow: hidden;
+}
+
+.country-card{
+  margin-top: -5rem;
+}
+.explore-container {
+  position: fixed;
 }
 
 .first-page {
@@ -190,11 +197,6 @@ body {
   display: inline-block;
   margin-right: 2rem;
   font-size: 1.8rem;
-}
-
-.country-card {
-  margin-top: -5rem;
-  width: 46rem;
 }
 
 #exceed {
@@ -325,6 +327,13 @@ body {
   margin-bottom: 1rem;
 }
 
+#search{
+  width: 230%;
+}
+#random-country{
+  width: 230%;
+}
+
 .btn:focus {
   outline: none;
   background-color: orangered!important;
@@ -379,18 +388,14 @@ body {
 
 .new-s {
   margin-top: 1rem;
-  animation: zoomIn 1s;
-  animation-fill-mode: backwards;
   position: relative;
-  left: 7.3%;
+  left: 6.5%;
 }
 
 .new-r {
   margin-top: 1rem;
-  animation: zoomIn 1s;
-  animation-fill-mode: backwards;
   position: relative;
-  left: 57%;
+  left: 49.5%;
 }
 
 .explore-btn {
@@ -426,23 +431,22 @@ body {
   text-align: center;
   height: 7rem;
   width: 7rem;
-  border-radius: 50%;
+  border-radius: 40%;
   background-color: greenyellow;
   font-size: 6rem;
-  user-select: none;
   cursor: pointer;
   outline: none;
 }
 
 .next {
   position: relative;
-  top: 33rem;
+  top: 36rem;
   left: 37rem;
 }
 
 .previous {
   position: relative;
-  top: 33rem;
+  top: 36rem;
   left: -5.5rem;
 }
 
@@ -903,8 +907,8 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
 .fadeInLeftBig {
   -webkit-animation-name: fadeInLeftBig;
   animation-name: fadeInLeftBig;
-  -webkit-animation-duration: .7s;
-  animation-duration: .7s;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -912,21 +916,19 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
 @keyframes fadeInLeftBig {
   0% {
     opacity: 0;
-    -webkit-transform: translate3d(-2000px, 0, 0);
-    transform: translate3d(-2000px, 0, 0);
+    transform: translateX(-1500px);
   }
   100% {
     opacity: 1;
-    -webkit-transform: none;
-    transform: none;
+    transform: translateX(0);
   }
 }
 
 .fadeInRightBig {
   -webkit-animation-name: fadeInRightBig;
   animation-name: fadeInRightBig;
-  -webkit-animation-duration: .7s;
-  animation-duration: .7s;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -934,21 +936,19 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
 @keyframes fadeInRightBig {
   0% {
     opacity: 0;
-    -webkit-transform: translate3d(2000px, 0, 0);
-    transform: translate3d(2000px, 0, 0);
+    transform: translateX(1500px);
   }
   100% {
     opacity: 1;
-    -webkit-transform: none;
-    transform: none;
+    transform: translateX(0);
   }
 }
 
 .fadeOutLeftBig {
   -webkit-animation-name: fadeOutLeftBig;
   animation-name: fadeOutLeftBig;
-  -webkit-animation-duration: .7s;
-  animation-duration: .7s;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -956,50 +956,19 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
 @keyframes fadeOutLeftBig {
   0% {
     opacity: 1;
+    transform: translateX(0);
   }
   100% {
     opacity: 0;
-    -webkit-transform: translate3d(-2000px, 0, 0);
-    transform: translate3d(-2000px, 0, 0);
-  }
-}
-
-.fadeOutLeft {
-  -webkit-animation-name: fadeOutLeft;
-  animation-name: fadeOutLeft;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeOutLeft {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-@keyframes fadeOutLeft {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    transform: translateX(-1500px);
   }
 }
 
 .fadeOutRightBig {
   -webkit-animation-name: fadeOutRightBig;
   animation-name: fadeOutRightBig;
-  -webkit-animation-duration: .7s;
-  animation-duration: .7s;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
@@ -1007,19 +976,19 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
 @keyframes fadeOutRightBig {
   0% {
     opacity: 1;
+    transform: translateX(0);
   }
   100% {
     opacity: 0;
-    -webkit-transform: translate3d(2000px, 0, 0);
-    transform: translate3d(2000px, 0, 0);
+    transform: translateX(1500px);
   }
 }
 
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   animation-delay: 2s;
@@ -1148,6 +1117,9 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   .progress-container::before {
     height: 1px;
   }
+  /* .country-div {
+    width: 40rem;
+  } */
   .circle {
     height: 2.5rem;
     width: 2.5rem;
@@ -1170,22 +1142,16 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     height: 100%;
   }
   .odometer {
-    left: 90%;
+    left: 70%;
     font-size: 4rem;
     z-index: 100;
   }
   .current-score {
     margin-bottom: 1rem;
   }
-  .country-card {
-    width: 40rem;
-  }
-  /* .next-prev {
-    top: -5rem;
-    left: 65%;
-  } */
+
   .new-r {
-    left: 42%;
+    left: 43%;
   }
   #wiki {
     margin-left: 23rem;
@@ -1195,7 +1161,7 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     height: 40%;
   }
   .next {
-    left: 32rem;
+    left: 33rem;
   }
   .previous {
     left: -2.3rem;
@@ -1205,6 +1171,11 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     height: 5rem;
     width: 5rem;
   }
+  .country-explore{
+   
+    width: 35rem;
+  }
+  
 }
 
 @media only screen and (max-width: 375px) {

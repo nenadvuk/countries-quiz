@@ -12,7 +12,6 @@ const search = document.querySelector('#search')
 const rnd = document.querySelector('#random-country')
 const newSearch = document.getElementById('new-search')
 const newRandom = document.getElementById('new-random')
-const newBtns = document.querySelector('.new-buttons')
 const sideNEwGame = document.getElementById('side-new-game')
 const nextBtn = document.getElementById('next-btn')
 const prevBtn = document.getElementById('previous-btn')
@@ -101,6 +100,8 @@ const randomSound = new Audio('assets/sounds/random.wav')
 randomSound.volume = 0.4
 const gameHardSound = new Audio('assets/sounds/hard.wav')
 gameHardSound.volume = 0.3
+const swipe = new Audio('assets/sounds/swipe.wav')
+swipe.volume = 0.3
 
 // Score
 const percent = document.querySelector('.percent')
@@ -175,11 +176,11 @@ allContent.style.display = 'none'
 counter.style.display = 'none'
 odometer.style.display = 'none'
 video.style.display = 'none'
-exploreBtns.style.display = 'none'
 searchTerm.innerHTML = 'REGION'
 card.style.display = 'none'
 newSearch.style.display = 'none'
 newRandom.style.display = 'none'
+exploreBtns.style.display = 'none'
 newGame.style.display = 'none'
 sign.style.display = 'none'
 nextBtn.style.display = 'none'
@@ -187,17 +188,20 @@ prevBtn.style.display = 'none'
 
 for (let flag of flags) {
   flag.style.display = 'none'
+
 }
 
 // Video and signature load
 setTimeout(() => {
   video.style.display = 'block'
   video.classList.add('fadeIn')
+
 }, 500)
 
 // Back to loading page
 sideNEwGame.addEventListener('click', () => {
   window.location.reload()
+
 })
 
 const burgerMenuFade = () => {
@@ -252,6 +256,7 @@ btnFlag.addEventListener('click', () => {
   setTimeout(() => {
     start()
   }, 500)
+
 })
 
 
@@ -264,6 +269,7 @@ btnHard.addEventListener('click', () => {
   setTimeout(() => {
     start()
   }, 500)
+
 })
 
 
@@ -271,8 +277,8 @@ btnHard.addEventListener('click', () => {
 btnExplore.addEventListener('click', () => {
   gameExploreSound.play()
   start()
-  searchTerm.innerHTML = 'COUNTRY'
   exploreBtns.style.display = 'block'
+  searchTerm.innerHTML = 'COUNTRY'
   countryList.style.display = 'block'
   regionEl.style.display = 'none'
   play.style.display = 'none'
@@ -287,10 +293,9 @@ btnExplore.addEventListener('click', () => {
 
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
-
         let langArr = []
         const DATA = res.data[0]
-        card.style.display = 'flex'
+        card.style.display = 'block'
         console.log(res.data)
         exploreImg.src = DATA.flag
         countryName.innerHTML = `${DATA.name} - (${DATA.nativeName})`
@@ -330,17 +335,13 @@ btnExplore.addEventListener('click', () => {
       })
     odometer.style.display = 'inline-block'
     odometer.classList.add('zoomIn')
-    setTimeout(() => {
-      odometer.innerHTML = _COUNTRIES_INDEX
-
-    }, 700)
+    odometer.innerHTML = _COUNTRIES_INDEX
 
   }
 
   // Search button / Explore
   search.addEventListener('click', () => {
     sign.style.display = 'none'
-    removeClases()
     clickedSound.play()
     titleText.style.display = 'none'
     const userCountry = countryList.value
@@ -348,7 +349,7 @@ btnExplore.addEventListener('click', () => {
     removeEl()
     btnAppear()
     tabTitle.innerHTML = userCountry
-    nextPrevOn()
+
 
   })
 
@@ -366,35 +367,21 @@ btnExplore.addEventListener('click', () => {
   // Appearance of next-prev, new search and new random buttons
   const btnAppear = () => {
     setTimeout(() => {
-      newSearch.style.display = 'inline-block'
-      newRandom.style.display = 'inline-block'
-      nextPrevOn()
+      nextBtn.style.display = 'inline-block'
+      prevBtn.style.display = 'inline-block'
+
     }, 1000)
 
+    setTimeout(() => {
+      newSearch.style.display = 'inline-block'
+      newRandom.style.display = 'inline-block'
+      newSearch.classList.add('zoomInNoDelay')
+      newRandom.classList.add('zoomInNoDelay')
+
+    }, 2500)
   }
 
-  const nextPrevOn = () => {
-    nextBtn.style.display = 'inline-block'
-    prevBtn.style.display = 'inline-block'
-    nextBtn.classList.add('zoomInNoDelay')
-    prevBtn.classList.add('zoomInNoDelay')
-  }
 
-  const nextPrevOff = () => {
-    nextBtn.style.display = 'none'
-    prevBtn.style.display = 'none'
-  }
-
-  const removeClases = () => {
-    card.classList.add('zoomIn')
-    card.classList.remove('fadeInRightBig')
-    nextBtn.classList.remove('fadeInRightBig')
-    prevBtn.classList.remove('fadeInRightBig')
-    card.classList.remove('fadeInLeftBig')
-    nextBtn.classList.remove('fadeInLeftBig')
-    prevBtn.classList.remove('fadeInLeftBig')
-
-  }
 
   const removeEl = () => {
     card.classList.add('zoomIn')
@@ -404,84 +391,66 @@ btnExplore.addEventListener('click', () => {
 
   }
 
-  // Next country by alphabetical order
-  nextBtn.addEventListener('click', () => {
-    card.classList.remove('zoomIn')
-    card.classList.add('fadeOutLeftBig')
-    nextBtn.classList.add('fadeOutLeftBig')
-    prevBtn.classList.add('fadeOutLeftBig')
-    newBtns.classList.add('fadeOutLeftBig')
-
-    _COUNTRIES_INDEX++
-    if (_COUNTRIES_INDEX == countryList.length) _COUNTRIES_INDEX = 0
-
-    setTimeout(() => {
-      getCountry(countryList[_COUNTRIES_INDEX].value)
-
-    }, 1000);
-
-    setTimeout(() => {
-      card.classList.remove('fadeOutLeftBig')
-      card.classList.add('fadeInRightBig')
-      nextBtn.classList.remove('fadeOutLeftBig')
-      nextBtn.classList.add('fadeInRightBig')
-      prevBtn.classList.remove('fadeOutLeftBig')
-      prevBtn.classList.add('fadeInRightBig')
-      newBtns.classList.remove('fadeOutLeftBig')
-      newBtns.classList.add('fadeInRightBig')
-
-    }, 1500)
-
-  })
-
   // Previous country by alphabetical order
   prevBtn.addEventListener('click', () => {
-    card.classList.remove('zoomIn')
-    card.classList.add('fadeOutRightBig')
-    nextBtn.classList.add('fadeOutRightBig')
-    prevBtn.classList.add('fadeOutRightBig')
-    newBtns.classList.add('fadeOutRightBig')
-
+    swipe.play()
+    explore.className = 'explore-container'
+    explore.classList.add('fadeOutRightBig')
     if (_COUNTRIES_INDEX == 0) _COUNTRIES_INDEX = countryList.length
     _COUNTRIES_INDEX--
+    odometer.innerHTML = _COUNTRIES_INDEX
+    setTimeout(() => {
+      swipe.play()
+      explore.className = 'explore-container'
+      explore.classList.add('fadeInLeftBig')
+
+
+    }, 1500)
     setTimeout(() => {
       getCountry(countryList[_COUNTRIES_INDEX].value)
-
-    }, 1000);
-    setTimeout(() => {
-      card.classList.remove('fadeOutRightBig')
-      card.classList.remove('fadeInRightBig')
-      card.classList.add('fadeInLeftBig')
-      nextBtn.classList.remove('fadeOutRightBig')
-      nextBtn.classList.remove('fadeInRightBig')
-      nextBtn.classList.add('fadeInLeftBig')
-      prevBtn.classList.remove('fadeOutRightBig')
-      prevBtn.classList.remove('fadeInRightBig')
-      prevBtn.classList.add('fadeInLeftBig')
-      newBtns.classList.remove('fadeOutRightBig')
-      newBtns.classList.remove('fadeInRightBig')
-      newBtns.classList.add('fadeInLeftBig')
-    }, 1500)
+    }, 500);
 
   })
 
+
+  // Next country by alphabetical order
+  nextBtn.addEventListener('click', () => {
+    swipe.play()
+    explore.className = 'explore-container'
+    explore.classList.add('fadeOutLeftBig')
+    _COUNTRIES_INDEX++
+    odometer.innerHTML = _COUNTRIES_INDEX
+    if (_COUNTRIES_INDEX == countryList.length) _COUNTRIES_INDEX = 0
+    setTimeout(() => {
+      swipe.play()
+      explore.className = 'explore-container'
+      explore.classList.add('fadeInRightBig')
+
+    }, 1500)
+    setTimeout(() => {
+      getCountry(countryList[_COUNTRIES_INDEX].value)
+
+    }, 500);
+
+  })
+
+
+
   newRandom.addEventListener('click', () => {
-    removeClases()
     randomSound.play()
-    nextPrevOff()
     card.style.display = 'none'
     newSearch.style.display = 'none'
     newRandom.style.display = 'none'
     setTimeout(() => {
       getCountry(getMeRandomCountry())
       btnAppear()
-    }, 1000);
+    }, 400);
 
   })
 
+
   newSearch.addEventListener('click', () => {
     clickedSound.play()
-    nextPrevOff()
     odometer.style.display = 'none'
     tabTitle.innerHTML = 'Country quiz'
     card.style.display = 'none'
@@ -658,7 +627,7 @@ answerBtn.addEventListener('click', () => {
   !S_America ? endGame(9) : endGame(4)
   correct()
   _CIRCLE_INDEX++
- 
+
   if (!finished) {
     counter.style.display = 'none'
     resetCounter()
@@ -672,7 +641,7 @@ answerBtn.addEventListener('click', () => {
   if (finished) {
     clearInterval(timer)
     gameOver()
-    
+
   }
 
   update()
@@ -778,7 +747,6 @@ radios.forEach(radio => radio.addEventListener('click', () =>
 // Reset cheched field
 // Resetovanje oznacenog polja
 const deselectAnswers = () => {
-
   radios.forEach(radio => radio.checked = false)
   resArray.forEach(res => res.style.color = '#555')
   resArray.forEach(res => res.innerHTML = '')
@@ -791,7 +759,6 @@ const endGame = (questions) => _CIRCLE_INDEX === questions ? finished = true : f
 
 // Getting checked field 
 const getSelected = () => {
-
   let answer
   radios.forEach(radio => {
     if (radio.checked) {
@@ -806,7 +773,6 @@ const getSelected = () => {
 /* Generisanje nasumicne drzave i uklanjanje iste iz novog niza 
    da bi se izbeglo ponavljanje istog pitanja */
 const randomCountry = () => {
-
   if (finished) {
     clearInterval(timer)
 
@@ -820,7 +786,6 @@ const randomCountry = () => {
 }
 
 const getCountryData = (country) => {
-
   if (finished) {
     setTimeout(() => {
       countriesContainer.style.display = 'none'

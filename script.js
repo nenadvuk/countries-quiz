@@ -133,6 +133,8 @@ const tabTitle = document.getElementById('tab-title')
 // Preventing to go to next question without answer
 answerBtn.style.pointerEvents = 'none'
 
+// const height = card.offsetHeight
+
 // Counter variables
 const nums = document.querySelectorAll('.nums span')
 const counter = document.querySelector('.counter')
@@ -194,9 +196,9 @@ for (let flag of flags) {
 // Video and signature load
 setTimeout(() => {
   video.style.display = 'block'
-  video.classList.add('fadeIn')
+  video.style.animation = 'fadeIn 5s'
 
-}, 500)
+}, 300)
 
 // Back to loading page
 sideNEwGame.addEventListener('click', () => {
@@ -287,10 +289,10 @@ btnExplore.addEventListener('click', () => {
     * countryList.length)].value
 
   const getCountry = (country) => {
+    // countryDiv.style.height = '700px'
     tabTitle.innerHTML = country
     _COUNTRIES_INDEX = allCountriesArr.indexOf(country)
     console.log(_COUNTRIES_INDEX)
-
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
         let langArr = []
@@ -336,9 +338,8 @@ btnExplore.addEventListener('click', () => {
     odometer.style.display = 'inline-block'
     odometer.classList.add('zoomIn')
     odometer.innerHTML = _COUNTRIES_INDEX
-
+    
   }
-
   // Search button / Explore
   search.addEventListener('click', () => {
     sign.style.display = 'none'
@@ -349,8 +350,7 @@ btnExplore.addEventListener('click', () => {
     removeEl()
     btnAppear()
     tabTitle.innerHTML = userCountry
-
-
+    
   })
 
   // Random button / Explore
@@ -408,7 +408,7 @@ btnExplore.addEventListener('click', () => {
     }, 1500)
     setTimeout(() => {
       getCountry(countryList[_COUNTRIES_INDEX].value)
-    }, 500);
+    }, 300);
 
   })
 
@@ -430,7 +430,7 @@ btnExplore.addEventListener('click', () => {
     setTimeout(() => {
       getCountry(countryList[_COUNTRIES_INDEX].value)
 
-    }, 500);
+    }, 300);
 
   })
 

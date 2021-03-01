@@ -146,13 +146,20 @@ body {
   border-radius: 1rem;
   margin: 0 3rem;
   overflow: hidden;
+  
 }
 
 .country-card{
   margin-top: -5rem;
 }
+
 .explore-container {
   position: fixed;
+  
+}
+
+.country-explore{
+  min-height: 65rem;
 }
 
 .first-page {
@@ -389,7 +396,7 @@ body {
 .new-s {
   margin-top: 1rem;
   position: relative;
-  left: 6.5%;
+  left: 6.1%;
 }
 
 .new-r {
@@ -436,17 +443,16 @@ body {
   font-size: 6rem;
   cursor: pointer;
   outline: none;
+  top: 35rem;
 }
 
 .next {
   position: relative;
-  top: 36rem;
   left: 37rem;
 }
 
 .previous {
   position: relative;
-  top: 36rem;
   left: -5.5rem;
 }
 
@@ -1117,9 +1123,6 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   .progress-container::before {
     height: 1px;
   }
-  /* .country-div {
-    width: 40rem;
-  } */
   .circle {
     height: 2.5rem;
     width: 2.5rem;
@@ -1149,9 +1152,8 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   .current-score {
     margin-bottom: 1rem;
   }
-
   .new-r {
-    left: 43%;
+    left: 43.1%;
   }
   #wiki {
     margin-left: 23rem;
@@ -1172,10 +1174,11 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     width: 5rem;
   }
   .country-explore{
-   
     width: 35rem;
   }
-  
+  .country-card{
+    margin-left: -0.5rem;
+  }
 }
 
 @media only screen and (max-width: 375px) {

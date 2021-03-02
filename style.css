@@ -146,19 +146,21 @@ body {
   border-radius: 1rem;
   margin: 0 3rem;
   overflow: hidden;
-  
+  /* background: linear-gradient(230deg, rgba(255,255,255,1) 0%, rgba(204,204,230,1) 59%); */
+  /*   background: linear-gradient(230deg, rgba(255,255,255,1) 0%, rgba(249,214,182,1) 53%);*/
+  /* background: linear-gradient(230deg, rgba(255,255,255,1) 0%, rgba(249,214,182,1) 33%); */
+ /*  background: linear-gradient(230deg, rgba(255, 255, 255, 1) 0%, rgba(254, 199, 149, 1) 60%); */
 }
 
-.country-card{
+.country-card {
   margin-top: -5rem;
 }
 
 .explore-container {
   position: fixed;
-  
 }
 
-.country-explore{
+.country-explore {
   min-height: 65rem;
 }
 
@@ -334,10 +336,11 @@ body {
   margin-bottom: 1rem;
 }
 
-#search{
+#search {
   width: 230%;
 }
-#random-country{
+
+#random-country {
   width: 230%;
 }
 
@@ -1173,10 +1176,10 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     height: 5rem;
     width: 5rem;
   }
-  .country-explore{
+  .country-explore {
     width: 35rem;
   }
-  .country-card{
+  .country-card {
     margin-left: -0.5rem;
   }
 }

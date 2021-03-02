@@ -296,6 +296,7 @@ btnExplore.addEventListener('click', () => {
     axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
       .then(res => {
         let langArr = []
+        let zoomIndex = 7 // Index for zoom on Google maps depending on surface area od country
         const DATA = res.data[0]
         card.style.display = 'block'
         console.log(res.data)
@@ -314,9 +315,13 @@ btnExplore.addEventListener('click', () => {
         capitalCity.textContent = `🏙️ >  ${DATA.capital}`
         currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code} - 
           ${DATA.currencies[0].symbol})`
-        if (DATA.area == null) area.innerHTML = '📏 >'
+        if (DATA.area == null) {
+          area.innerHTML = '📏 >'
+          zoomIndex = 10
+        }
         else if (DATA.area < 1000) {
           area.innerHTML = `📏 > ${DATA.area} Km2`
+          zoomIndex = 10
         } else {
           area.innerHTML = `📏 > ${DATA.area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2`
         }
@@ -327,10 +332,13 @@ btnExplore.addEventListener('click', () => {
           langArr.push(` ${DATA.languages[i].name}`)
 
         }
+        if (DATA.area > 1000000 && DATA.area < 2000000) zoomIndex = 6
+        if (DATA.area > 2000000) zoomIndex = 5
         language.innerHTML = `🗣️ > ${langArr}`
         internet.innerHTML = `🌐 > ${DATA.topLevelDomain[0]}`
         wiki.setAttribute("href", `https://en.wikipedia.org/wiki/${country}`, "_blank")
-        map.setAttribute("href", `https://www.google.rs/maps/place/@${DATA.latlng[0]},${DATA.latlng[1]},7z`, "_blank")
+        map.setAttribute("href", `https://www.google.rs/maps/place/${country}
+        /@${DATA.latlng[0]},${DATA.latlng[1]},${zoomIndex}z`, "_blank")
       })
       .catch(err => {
         console.log('error', err)
@@ -338,7 +346,7 @@ btnExplore.addEventListener('click', () => {
     odometer.style.display = 'inline-block'
     odometer.classList.add('zoomIn')
     odometer.innerHTML = _COUNTRIES_INDEX
-    
+
   }
   // Search button / Explore
   search.addEventListener('click', () => {
@@ -350,7 +358,7 @@ btnExplore.addEventListener('click', () => {
     removeEl()
     btnAppear()
     tabTitle.innerHTML = userCountry
-    
+
   })
 
   // Random button / Explore
@@ -381,8 +389,6 @@ btnExplore.addEventListener('click', () => {
     }, 2500)
   }
 
-
-
   const removeEl = () => {
     card.classList.add('zoomIn')
     countryList.style.display = 'none'
@@ -404,10 +410,10 @@ btnExplore.addEventListener('click', () => {
       explore.className = 'explore-container'
       explore.classList.add('fadeInLeftBig')
 
-
     }, 1500)
     setTimeout(() => {
       getCountry(countryList[_COUNTRIES_INDEX].value)
+
     }, 300);
 
   })
@@ -444,6 +450,7 @@ btnExplore.addEventListener('click', () => {
     setTimeout(() => {
       getCountry(getMeRandomCountry())
       btnAppear()
+
     }, 400);
 
   })
@@ -464,6 +471,7 @@ btnExplore.addEventListener('click', () => {
       countryList.style.display = 'block'
       search.style.display = 'inline-block'
       rnd.style.display = 'inline-block'
+      
     }, 500)
 
   })

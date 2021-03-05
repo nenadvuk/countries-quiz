@@ -335,12 +335,11 @@ btnExplore.addEventListener('click', () => {
         if (DATA.area > 250000 && DATA.area < 500000) zoomIndex = 6.5
         if (DATA.area > 500000 && DATA.area < 1500000) zoomIndex = 6
         if (DATA.area > 1500000 && DATA.area < 2000000) zoomIndex = 5
-        if (DATA.area > 2000000)zoomIndex = 4
-          language.innerHTML = `🗣️ > ${langArr}`
+        if (DATA.area > 2000000) zoomIndex = 4
+        language.innerHTML = `🗣️ > ${langArr}`
         internet.innerHTML = `🌐 > ${DATA.topLevelDomain[0]}`
         wiki.setAttribute("href", `https://en.wikipedia.org/wiki/${country}`, "_blank")
-        map.setAttribute("href", `https://www.google.rs/maps/place/${country}
-        /@${DATA.latlng[0]},${DATA.latlng[1]},${zoomIndex}z`, "_blank")
+        map.setAttribute("href", `https://www.google.rs/maps/place/${country}/@${DATA.latlng[0]},${DATA.latlng[1]},${zoomIndex}z`, "_blank")
       })
       .catch(err => {
         console.log('error', err)
@@ -442,8 +441,6 @@ btnExplore.addEventListener('click', () => {
 
   })
 
-
-
   newRandom.addEventListener('click', () => {
     randomSound.play()
     card.style.display = 'none'
@@ -456,7 +453,6 @@ btnExplore.addEventListener('click', () => {
     }, 400);
 
   })
-
 
   newSearch.addEventListener('click', () => {
     clickedSound.play()

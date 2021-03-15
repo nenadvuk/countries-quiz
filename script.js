@@ -615,7 +615,7 @@ play.addEventListener('click', () => {
     if (!finished) {
       noAnswer()
     }
-  }, 14000)
+  }, 15000)
 
 })
 
@@ -641,7 +641,7 @@ answerBtn.addEventListener('click', () => {
     timer = setInterval(() => {
       noAnswer()
 
-    }, 14000)
+    }, 14500)
 
   }
   if (finished) {
@@ -659,7 +659,7 @@ answerBtn.addEventListener('click', () => {
       getCountryData(randomCountry())
       deselectAnswers()
       countriesContainer.classList.add('zoomIn')
-    }, 700)
+    }, 400)
   }
 })
 

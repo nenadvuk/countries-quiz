@@ -151,7 +151,7 @@ body {
   /* background: linear-gradient(230deg, rgba(255,255,255,1) 0%, rgba(204,204,230,1) 59%); */
   /*   background: linear-gradient(230deg, rgba(255,255,255,1) 0%, rgba(249,214,182,1) 53%);*/
   /* background: linear-gradient(230deg, rgba(255,255,255,1) 0%, rgba(249,214,182,1) 33%); */
- /*  background: linear-gradient(230deg, rgba(255, 255, 255, 1) 0%, rgba(254, 199, 149, 1) 60%); */
+  /*  background: linear-gradient(230deg, rgba(255, 255, 255, 1) 0%, rgba(254, 199, 149, 1) 60%); */
 }
 
 .country-card {
@@ -462,8 +462,10 @@ body {
   left: -5.5rem;
 }
 
-#new-game {
-  margin-top: 4rem;
+#next-game {
+  position: absolute;
+  width: 87%;
+  top: 24rem;
 }
 
 ul {
@@ -497,9 +499,9 @@ ul li label {
   background: rgba(0, 0, 0, 0.8);
   z-index: -2;
   opacity: 0;
-  -webkit-transition: opacity 600ms ease-in;
-  -moz-transition: opacity 600ms ease-in;
-  transition: opacity 600ms ease-in;
+  -webkit-transition: opacity 500ms ease-in;
+  -moz-transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-in;
 }
 
 .modalDialog:target {

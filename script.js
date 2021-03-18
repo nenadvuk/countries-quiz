@@ -3,19 +3,16 @@
 const play = document.querySelector('#play')
 const newGame = document.getElementById('new-game')
 const answerBtn = document.getElementById('answer-btn')
-const btnCountry = document.getElementById('btn-country')
 const btnCapital = document.getElementById('btn-capital')
 const btnFlag = document.getElementById('btn-flag')
 const btnHard = document.getElementById('btn-hard')
-const btnExplore = document.getElementById('btn-explore')
+const btnCountry = document.getElementById('btn-country')
 const search = document.querySelector('#search')
 const rnd = document.querySelector('#random-country')
-const newSearch = document.getElementById('new-search')
-const newRandom = document.getElementById('new-random')
-const sideNEwGame = document.getElementById('side-new-game')
-const nextBtn = document.getElementById('next-btn')
-const prevBtn = document.getElementById('previous-btn')
 
+const sideNEwGame = document.getElementById('side-new-game')
+
+const nextGame = document.getElementById('next-game')
 
 // Containers
 const countriesContainer = document.querySelector('.countries')
@@ -35,22 +32,6 @@ const signature = document.querySelector('.signature-box')
 
 // Country data
 const countryData = document.querySelector('.country__data')
-const countryName = document.getElementById('country____name')
-const countryRegion = document.getElementById('country-region')
-const population = document.getElementById('population')
-const capitalCity = document.getElementById('capital')
-const currencie = document.getElementById('currencie')
-const area = document.getElementById('area')
-const callCode = document.getElementById('calling-code')
-const internet = document.getElementById('internet')
-const nativeName = document.getElementById('native-name')
-const subregion = document.getElementById('subregion')
-const language = document.getElementById('language')
-const exploreImg = document.getElementById('explore-img')
-const regionalBlock = document.getElementById('regional-blocks')
-const density = document.getElementById('density')
-const wiki = document.getElementById('wiki')
-const map = document.getElementById('map')
 
 // Countries and capitals elements
 const flag = document.getElementById('flag')
@@ -88,20 +69,16 @@ const gameCapitalsSound = new Audio('assets/sounds/capitals.wav')
 gameCapitalsSound.volume = 0.4
 const gameFlagsSound = new Audio('assets/sounds/flag.wav')
 gameFlagsSound.volume = 0.4
-const gameExploreSound = new Audio('assets/sounds/explore.wav')
-gameExploreSound.volume = 0.2
 const countdownSound = new Audio('assets/sounds/countdown.wav')
 countdownSound.volume = 0.4
 const highestScore = new Audio('assets/sounds/highest-score.wav')
 highestScore.volume = 0.3
 const clickedSound = new Audio('assets/sounds/clicked.wav')
 clickedSound.volume = 0.4
-const randomSound = new Audio('assets/sounds/random.wav')
-randomSound.volume = 0.4
+
 const gameHardSound = new Audio('assets/sounds/hard.wav')
 gameHardSound.volume = 0.3
-const swipe = new Audio('assets/sounds/swipe.wav')
-swipe.volume = 0.3
+
 
 // Score
 const percent = document.querySelector('.percent')
@@ -119,21 +96,14 @@ const africa = document.querySelectorAll('.africa')
 const northAmerica = document.querySelectorAll('.north_america')
 const southAmerica = document.querySelectorAll('.south_america')
 const oceania = document.querySelectorAll('.oceania')
+const regionNames = ['Europe', 'Asia', 'Africa', 'North America', 'South America', 'Oceania']
+
 // Regions array
 let regionArr = [europe, asia, africa, northAmerica, southAmerica, oceania]
-
 const odometer = document.getElementById('odometer')
-
-// Explore countries
-const explore = document.querySelector('.explore-container')
-const card = document.querySelector('.country-card')
-const exploreBtns = document.querySelector('.explore-btns')
-const tabTitle = document.getElementById('tab-title')
 
 // Preventing to go to next question without answer
 answerBtn.style.pointerEvents = 'none'
-
-// const height = card.offsetHeight
 
 // Counter variables
 const nums = document.querySelectorAll('.nums span')
@@ -143,29 +113,28 @@ let _GAME_COUNTRIES = false
 let _GAME_CAPITALS = false
 let _GAME_FLAG = false
 let _GAME_HARD = false
-let finished = false
+let finished_REGION = false
 let S_America = false
 let checkedField = false
+
+// Defautl region
+let chosenRegion = 'Europe'
 
 let timer
 let correctAnswer
 let score = 0
+// For leaderboard
+let overallScore = 0
 
-// Index for next ore previous mode
-let _COUNTRIES_INDEX = 0
 
 /* let world = false */
-// All countries array
-allCountriesArr = []
-for (let country of countryList) {
-  allCountriesArr.push(country.value)
-
-}
 
 let countries = []
 let capitals = []
 let _COUNTRIES_ARRAY = []
 let _CAPITALS_ARRAY = []
+let _CHOSEN = []
+
 //  Progress bar
 let _CIRCLE_INDEX = 0
 
@@ -179,14 +148,9 @@ counter.style.display = 'none'
 odometer.style.display = 'none'
 video.style.display = 'none'
 searchTerm.innerHTML = 'REGION'
-card.style.display = 'none'
-newSearch.style.display = 'none'
-newRandom.style.display = 'none'
-exploreBtns.style.display = 'none'
-newGame.style.display = 'none'
+// newGame.style.display = 'none'
+nextGame.style.display = 'none'
 sign.style.display = 'none'
-nextBtn.style.display = 'none'
-prevBtn.style.display = 'none'
 
 for (let flag of flags) {
   flag.style.display = 'none'
@@ -227,6 +191,7 @@ const start = () => {
 
 // Guess the country
 btnCountry.addEventListener('click', () => {
+  chosenGame = 'Guess the country'
   gameCountriesSound.play()
   _GAME_COUNTRIES = true
   setTimeout(() => {
@@ -237,6 +202,7 @@ btnCountry.addEventListener('click', () => {
 
 // Guess the capital city
 btnCapital.addEventListener('click', () => {
+  chosenGame = 'Guess the capital'
   gameCapitalsSound.play()
   _GAME_COUNTRIES = true
   _GAME_CAPITALS = true
@@ -248,6 +214,7 @@ btnCapital.addEventListener('click', () => {
 
 // Guess the flag
 btnFlag.addEventListener('click', () => {
+  chosenGame = 'Guess the flag'
   gameFlagsSound.play()
   for (let flag of flags) {
     flag.style.display = 'inline-block'
@@ -262,8 +229,10 @@ btnFlag.addEventListener('click', () => {
 })
 
 
+
 // Hard mode
 btnHard.addEventListener('click', () => {
+  chosenGame = 'Hard mode'
   gameHardSound.play()
   _GAME_COUNTRIES = true
   _GAME_CAPITALS = true
@@ -275,219 +244,21 @@ btnHard.addEventListener('click', () => {
 })
 
 
-// Explore countries
-btnExplore.addEventListener('click', () => {
-  gameExploreSound.play()
-  start()
-  exploreBtns.style.display = 'block'
-  searchTerm.innerHTML = 'COUNTRY'
-  countryList.style.display = 'block'
-  regionEl.style.display = 'none'
-  play.style.display = 'none'
-
-  const getMeRandomCountry = () => countryList[Math.floor(Math.random()
-    * countryList.length)].value
-
-  const getCountry = (country) => {
-    // countryDiv.style.height = '700px'
-    tabTitle.innerHTML = country
-    _COUNTRIES_INDEX = allCountriesArr.indexOf(country)
-    console.log(_COUNTRIES_INDEX)
-    axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
-      .then(res => {
-        let langArr = []
-        let zoomIndex = 7 // Index for zoom on Google maps depending on surface area od country
-        const DATA = res.data[0]
-        card.style.display = 'block'
-        console.log(res.data)
-        exploreImg.src = DATA.flag
-        countryName.innerHTML = `${DATA.name} - (${DATA.nativeName})`
-        if (DATA.regionalBlocs.length == 0) {
-          regionalBlock.innerHTML = ''
-        } else {
-          regionalBlock.innerHTML = `${DATA.regionalBlocs[0].name} - 
-          "${DATA.regionalBlocs[0].acronym}"`
-
-        }
-        countryRegion.innerHTML = `${DATA.region} - (${DATA.subregion})`
-        population.innerHTML = `👫 >   
-           ${DATA.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} people`
-        capitalCity.textContent = `🏙️ >  ${DATA.capital}`
-        currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code} - 
-          ${DATA.currencies[0].symbol})`
-        if (DATA.area == null) {
-          area.innerHTML = '📏 >'
-          zoomIndex = 10
-        }
-        else if (DATA.area < 1000) {
-          area.innerHTML = `📏 > ${DATA.area} Km2`
-          zoomIndex = 10
-        } else {
-          area.innerHTML = `📏 > ${DATA.area.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Km2`
-        }
-        if (DATA.area == null || (DATA.population / DATA.area) < 1) density.innerHTML = '👥 >'
-        else density.innerHTML = `👥 > ${Math.round(DATA.population / DATA.area)}🧍 per Km2 `
-        callCode.innerHTML = `☎️ > +${DATA.callingCodes}`
-        for (let i = 0; i < DATA.languages.length; i++) {
-          langArr.push(` ${DATA.languages[i].name}`)
-
-        }
-        if (DATA.area > 250000 && DATA.area < 500000) zoomIndex = 6.5
-        if (DATA.area > 500000 && DATA.area < 1500000) zoomIndex = 6
-        if (DATA.area > 1500000 && DATA.area < 2000000) zoomIndex = 5
-        if (DATA.area > 2000000) zoomIndex = 4
-        language.innerHTML = `🗣️ > ${langArr}`
-        internet.innerHTML = `🌐 > ${DATA.topLevelDomain[0]}`
-        wiki.setAttribute("href", `https://en.wikipedia.org/wiki/${country}`, "_blank")
-        map.setAttribute("href", `https://www.google.rs/maps/place/${country}/@${DATA.latlng[0]},${DATA.latlng[1]},${zoomIndex}z`, "_blank")
-      })
-      .catch(err => {
-        console.log('error', err)
-      })
-    odometer.style.display = 'inline-block'
-    odometer.classList.add('zoomIn')
-    odometer.innerHTML = _COUNTRIES_INDEX
-
-  }
-  // Search button / Explore
-  search.addEventListener('click', () => {
-    sign.style.display = 'none'
-    clickedSound.play()
-    titleText.style.display = 'none'
-    const userCountry = countryList.value
-    getCountry(userCountry)
-    removeEl()
-    btnAppear()
-    tabTitle.innerHTML = userCountry
-
-  })
-
-  // Random button / Explore
-  rnd.addEventListener('click', () => {
-    sign.style.display = 'none'
-    randomSound.play()
-    titleText.style.display = 'none'
-    removeEl()
-    getCountry(getMeRandomCountry())
-    btnAppear()
-
-  })
-
-  // Appearance of next-prev, new search and new random buttons
-  const btnAppear = () => {
-    setTimeout(() => {
-      nextBtn.style.display = 'inline-block'
-      prevBtn.style.display = 'inline-block'
-
-    }, 1000)
-
-    setTimeout(() => {
-      newSearch.style.display = 'inline-block'
-      newRandom.style.display = 'inline-block'
-      newSearch.classList.add('zoomInNoDelay')
-      newRandom.classList.add('zoomInNoDelay')
-
-    }, 2500)
-  }
-
-  const removeEl = () => {
-    card.classList.add('zoomIn')
-    countryList.style.display = 'none'
-    search.style.display = 'none'
-    rnd.style.display = 'none'
-
-  }
-
-  // Previous country by alphabetical order
-  prevBtn.addEventListener('click', () => {
-    swipe.play()
-    explore.className = 'explore-container'
-    explore.classList.add('fadeOutRightBig')
-    if (_COUNTRIES_INDEX == 0) _COUNTRIES_INDEX = countryList.length
-    _COUNTRIES_INDEX--
-    odometer.innerHTML = _COUNTRIES_INDEX
-    setTimeout(() => {
-      swipe.play()
-      explore.className = 'explore-container'
-      explore.classList.add('fadeInLeftBig')
-
-    }, 1500)
-    setTimeout(() => {
-      getCountry(countryList[_COUNTRIES_INDEX].value)
-
-    }, 300);
-
-  })
-
-
-  // Next country by alphabetical order
-  nextBtn.addEventListener('click', () => {
-    swipe.play()
-    explore.className = 'explore-container'
-    explore.classList.add('fadeOutLeftBig')
-    _COUNTRIES_INDEX++
-    odometer.innerHTML = _COUNTRIES_INDEX
-    if (_COUNTRIES_INDEX == countryList.length) _COUNTRIES_INDEX = 0
-    setTimeout(() => {
-      swipe.play()
-      explore.className = 'explore-container'
-      explore.classList.add('fadeInRightBig')
-
-    }, 1500)
-    setTimeout(() => {
-      getCountry(countryList[_COUNTRIES_INDEX].value)
-
-    }, 300);
-
-  })
-
-  newRandom.addEventListener('click', () => {
-    randomSound.play()
-    card.style.display = 'none'
-    newSearch.style.display = 'none'
-    newRandom.style.display = 'none'
-    setTimeout(() => {
-      getCountry(getMeRandomCountry())
-      btnAppear()
-
-    }, 400);
-
-  })
-
-  newSearch.addEventListener('click', () => {
-    clickedSound.play()
-    odometer.style.display = 'none'
-    tabTitle.innerHTML = 'Country quiz'
-    card.style.display = 'none'
-    newSearch.style.display = 'none'
-    newRandom.style.display = 'none'
-    countryList.classList.add('zoomIn')
-    search.classList.add('zoomIn')
-    rnd.classList.add('zoomIn')
-    setTimeout(() => {
-      titleText.style.display = 'block'
-      countryList.style.display = 'block'
-      search.style.display = 'inline-block'
-      rnd.style.display = 'inline-block'
-
-    }, 500)
-
-  })
-})
-
+// document.getElementById('elementId').selectedOptions[0].value
 // If South American region is chosen number of questions is 5
 regionEl.addEventListener('change', (e) => {
+
+  play.disabled = false
+  chosenRegion = regionNames[regionEl.value]
+  console.log(chosenRegion)
 
   if (e.target.value == 4) {
     S_America = true
     for (let i = 5; i < circles.length; i++) {
-      circles[i].remove()
-      endGame(4)
-    }
-  } /* else if (e.target.value == 6) {
-    world = true
-  } */
+      circles[i].style.display = "none";
 
+    }
+  }
 })
 
 
@@ -522,7 +293,7 @@ const runCounter = () => {
 
 
 // funcion which changing style of circles and progress bar
-const update = () => {
+const updateProgress = () => {
 
   answerBtn.style.pointerEvents = 'none'
   circles.forEach((circle, idx) => {
@@ -563,7 +334,7 @@ const correct = () => {
     resArray[userAnswer].innerHTML += '❌'
     if (_GAME_FLAG) resArray[correctAnswer].innerHTML += '✅'
   }
-  if (finished) {
+  if (finished_REGION) {
     counter.style.display = 'none'
     setTimeout(() => {
       countriesContainer.style.display = 'none'
@@ -572,9 +343,10 @@ const correct = () => {
   }
 }
 
-// Buttons
+// Play 
 
 play.addEventListener('click', () => {
+
   sideBar.style.display = 'none'
   burgerMenu.style.display = 'none'
   sign.style.display = 'none'
@@ -582,20 +354,25 @@ play.addEventListener('click', () => {
   odometer.style.display = 'inline-block'
   odometer.classList.add('zoomIn')
   runCounter()
+
   setTimeout(() => {
     counter.style.display = 'block'
   }, 2000);
+
   // Chosen region
   _CHOSEN = regionArr[regionEl.value]
+
   // Creating an array of countries
   for (let country of _CHOSEN) {
     countries.push(country.value)
 
   }
+
   // Creating an array of capitals
   for (let country of _CHOSEN) {
     capitals.push(country.id)
   }
+
   // New arrays for manipulating
   _COUNTRIES_ARRAY = countries
   _CAPITALS_ARRAY = capitals
@@ -609,10 +386,12 @@ play.addEventListener('click', () => {
   countryList.style.display = 'none'
   play.style.display = 'none'
   regionEl.style.display = 'none'
+
   getCountryData(randomCountry())
+
   // Counter is running until the end if player doesn't answer any question
   timer = setInterval(() => {
-    if (!finished) {
+    if (!finished_REGION) {
       noAnswer()
     }
   }, 15000)
@@ -625,16 +404,16 @@ play.addEventListener('click', () => {
 answerBtn.addEventListener('click', () => {
   // On every click, timer is reset to default value(10s)
   clearInterval(timer)
-
+  console.log(_CIRCLE_INDEX)
   setTimeout(() => {
     counter.style.display = 'block'
-  }, 3000)
+  }, 2600)
 
-  !S_America ? endGame(9) : endGame(4)
+  !S_America ? endRegionGame(9) : endRegionGame(4)
   correct()
   _CIRCLE_INDEX++
 
-  if (!finished) {
+  if (!finished_REGION) {
     counter.style.display = 'none'
     resetCounter()
     runCounter()
@@ -644,17 +423,17 @@ answerBtn.addEventListener('click', () => {
     }, 14500)
 
   }
-  if (finished) {
+  if (finished_REGION) {
     clearInterval(timer)
-    gameOver()
+    regionGameOver()
 
   }
 
-  update()
+  updateProgress()
 
   countriesContainer.className == 'zoomIn' ? countriesContainer.className = 'zoomOut' :
     countriesContainer.className = 'zoomOut'
-  if (!finished) {
+  if (!finished_REGION) {
     setTimeout(() => {
       getCountryData(randomCountry())
       deselectAnswers()
@@ -669,27 +448,27 @@ answerBtn.addEventListener('click', () => {
 const noAnswer = () => {
 
   countriesContainer.className = 'zoomOut'
-  if (!finished) {
+  if (!finished_REGION) {
     circles[_CIRCLE_INDEX].style.border = '3px solid #FF0000'
 
   }
   counter.style.display = 'none'
   resetCounter()
-  !S_America ? endGame(9) : endGame(4)
+  !S_America ? endRegionGame(9) : endRegionGame(4)
   _CIRCLE_INDEX++
-  update()
-  if (finished) {
+  updateProgress()
+  if (finished_REGION) {
     clearInterval(timer)
-    gameOver()
+    regionGameOver()
   }
   setTimeout(() => {
-    if (!finished) {
+    if (!finished_REGION) {
       countriesContainer.classList.add('zoomIn')
       getCountryData(randomCountry())
     }
   }, 2000)
   setTimeout(() => {
-    if (!finished) {
+    if (!finished_REGION) {
       runCounter()
       counter.style.display = 'block'
     }
@@ -697,11 +476,32 @@ const noAnswer = () => {
 
 }
 
+
 // Activating modal with score and percent of accuracy
-const gameOver = () => {
+const regionGameOver = () => {
+
+  overallScore += score
+
+  // Saving users score to local storage
+  localStorage.setItem(chosenRegion, score)
+  localStorage.setItem('user', overallScore)
+
+  // Preventing current region from selection
+  regionEl[regionEl.value].disabled = true;
+  regionEl[regionEl.value].style.color = 'green';
+  regionEl[regionEl.value].innerHTML += '    ✅'
+  regionEl[0].selected = 'selected'
+
+
+  if (regionEl[regionEl.value].disabled === true) {
+    play.disabled = true
+
+  } else play.disabled = false
+
 
   clearInterval(timer)
   setTimeout(() => {
+    modal.style.display = 'block'
     modal.style.opacity = '1'
     modal.style.zIndex = '99'
   }, 1000)
@@ -734,21 +534,66 @@ const gameOver = () => {
         failure.play()
       }
     }
-
-    newGame.classList.add('zoomIn')
-    newGame.style.display = 'block'
+    nextGame.classList.add('zoomIn')
+    nextGame.style.display = 'block'
+    
   }, 1500)
 
-  newGame.addEventListener('click', () => {
-    window.location.reload()
-  })
+  setTimeout(() => {
+    score = 0
+
+  }, 2000);
 
 }
+
+// Next region game play button
+nextGame.addEventListener('click', () => {
+
+  odometer.innerHTML = 0
+  odometer.style.display = 'none'
+  finished_REGION = false
+  modal.style.opacity = '0'
+  modal.style.zIndex = '-99'
+
+  resetCounter()
+
+  progressBox.classList.add('zoomOut')
+  progressBox.style.display = 'none'
+  regionEl.style.display = 'block'
+  play.style.display = 'block'
+  regionEl.classList.add('bounceInDown')
+  play.classList.add('bounceInDown')
+
+  circles.forEach(circle => {
+    circle.style.display = "flex";
+    circle.style.border = ''
+    circle.classList.remove('active')
+  })
+
+  progress.style.border = ''
+  _CIRCLE_INDEX = 0
+
+  deselectAnswers()
+  
+  countriesContainer.classList.remove('zoomOut')
+  countriesContainer.classList.remove('zoomIn')
+  countriesContainer.classList.add('countries')
+  
+  S_America = false
+  countries = []
+  capitals = []
+  _CHOSEN = []
+
+  progress.style.width = '0%'
+  console.log(_CHOSEN)
+  console.log(regionEl.length)
+
+})
+
 
 // If radio button is checked answer button is no longer disabled
 radios.forEach(radio => radio.addEventListener('click', () =>
   answerBtn.style.pointerEvents = 'all'))
-
 
 // Reset cheched field
 // Resetovanje oznacenog polja
@@ -760,8 +605,7 @@ const deselectAnswers = () => {
 }
 
 // Funkcija za prekid dalje igre nakon 5/10 pitanja
-const endGame = (questions) => _CIRCLE_INDEX === questions ? finished = true : false
-
+const endRegionGame = (questions) => _CIRCLE_INDEX === questions ? finished_REGION = true : false
 
 // Getting checked field 
 const getSelected = () => {
@@ -779,7 +623,7 @@ const getSelected = () => {
 /* Generisanje nasumicne drzave i uklanjanje iste iz novog niza 
    da bi se izbeglo ponavljanje istog pitanja */
 const randomCountry = () => {
-  if (finished) {
+  if (finished_REGION) {
     clearInterval(timer)
 
   }
@@ -792,7 +636,7 @@ const randomCountry = () => {
 }
 
 const getCountryData = (country) => {
-  if (finished) {
+  if (finished_REGION) {
     setTimeout(() => {
       countriesContainer.style.display = 'none'
     }, 500);
@@ -802,12 +646,13 @@ const getCountryData = (country) => {
   // Niz od 4 nasumicna broja koja korisitim za nasumicne odgovore iz niza _COUNTRIES_ARRAY
   // koji se svakim klikom smanjuje za jednu drzavu koja je bila u prethodnom pitanju
   let rndNmb = [];
-  for (let i = 0; i <= 3; i++) {
+  for (let i = 0; i <= 4; i++) {
     let number = Math.floor(Math.random() * _COUNTRIES_ARRAY.length);
     let genNumber = rndNmb.indexOf(number);
     if (genNumber === -1) {
       rndNmb.push(number);
     }
+
   }
 
   // Getting country name and flag from REST COUNTRIES API 
@@ -825,8 +670,7 @@ const getCountryData = (country) => {
           } else {
             gameMode.innerHTML = `Capital city of this country?`
           }
-        }
-        else {
+        } else {
           gameMode.innerHTML = 'Name of the country?'
           _CORRECT = country
           _RANDOM = _COUNTRIES_ARRAY

@@ -123,6 +123,9 @@ let chosenRegion = 'Europe'
 let timer
 let correctAnswer
 let score = 0
+let counterDelay
+let modalDelay
+let scoreDelay
 // For leaderboard
 let overallScore = 0
 
@@ -181,6 +184,11 @@ const start = () => {
   load.style.display = 'none'
   allContent.style.display = 'block'
   allContent.classList.add('bounceInDown')
+  signSideBarToggle()
+
+}
+
+const signSideBarToggle = () => {
   sign.style.display = 'flex'
   signature.style.animation = 'fadeIn 2s'
   sideBar.style.display = 'block'
@@ -242,7 +250,6 @@ btnHard.addEventListener('click', () => {
   }, 500)
 
 })
-
 
 // document.getElementById('elementId').selectedOptions[0].value
 // If South American region is chosen number of questions is 5
@@ -343,21 +350,22 @@ const correct = () => {
   }
 }
 
-// Play 
+// Play
 
+// let playTimer;
 play.addEventListener('click', () => {
-
+  
   sideBar.style.display = 'none'
   burgerMenu.style.display = 'none'
   sign.style.display = 'none'
   clickedSound.play()
   odometer.style.display = 'inline-block'
   odometer.classList.add('zoomIn')
-  runCounter()
 
   setTimeout(() => {
     counter.style.display = 'block'
-  }, 2000);
+    runCounter()
+  }, 1500);
 
   // Chosen region
   _CHOSEN = regionArr[regionEl.value]
@@ -379,7 +387,7 @@ play.addEventListener('click', () => {
 
   progressBox.style.display = 'flex'
   progressBox.classList.add('zoomIn')
-  progressBox.style.animationDuration = '1s';
+  // progressBox.style.animationDuration = '1s';
   countriesContainer.style.display = 'block'
   countriesContainer.classList.add('bounceInDown')
   titleText.style.display = 'none'
@@ -398,14 +406,13 @@ play.addEventListener('click', () => {
 
 })
 
-
 // Answer button
 // Dugme za odgovor
 answerBtn.addEventListener('click', () => {
   // On every click, timer is reset to default value(10s)
   clearInterval(timer)
   console.log(_CIRCLE_INDEX)
-  setTimeout(() => {
+  counterDelay = setTimeout(() => {
     counter.style.display = 'block'
   }, 2600)
 
@@ -476,15 +483,34 @@ const noAnswer = () => {
 
 }
 
-
+let objectLclStorage
 // Activating modal with score and percent of accuracy
 const regionGameOver = () => {
 
   overallScore += score
+  clearTimeout(counterDelay)
+  clearInterval(timer)
 
   // Saving users score to local storage
-  localStorage.setItem(chosenRegion, score)
-  localStorage.setItem('user', overallScore)
+  // localStorage.setItem(chosenRegion, score)
+  // localStorage.setItem('user', overallScore)
+  let playerData = {
+
+    'chosen-game': chosenGame,
+    'chosen-region': chosenRegion,
+    'chosen-region-score': [chosenRegion, score],
+    'overall-score': overallScore
+
+  }
+
+  localStorage.setItem('nenad', JSON.stringify(playerData));
+
+  objectLclStorage = localStorage.getItem('nenad');
+
+  // console.log('Results: ', JSON.parse(objectLclStorage));
+
+  // localStorage.setItem(chosenRegion, score)
+  // localStorage.setItem('user', overallScore)
 
   // Preventing current region from selection
   regionEl[regionEl.value].disabled = true;
@@ -492,21 +518,18 @@ const regionGameOver = () => {
   regionEl[regionEl.value].innerHTML += '    ✅'
   regionEl[0].selected = 'selected'
 
-
   if (regionEl[regionEl.value].disabled === true) {
     play.disabled = true
 
   } else play.disabled = false
 
-
-  clearInterval(timer)
-  setTimeout(() => {
+  modalDelay = setTimeout(() => {
     modal.style.display = 'block'
     modal.style.opacity = '1'
     modal.style.zIndex = '99'
   }, 1000)
 
-  setTimeout(() => {
+  scoreDelay = setTimeout(() => {
 
     !S_America ? percent.innerHTML = `${score * 10} %` :
       percent.innerHTML = `${score * 20} %`
@@ -536,7 +559,7 @@ const regionGameOver = () => {
     }
     nextGame.classList.add('zoomIn')
     nextGame.style.display = 'block'
-    
+
   }, 1500)
 
   setTimeout(() => {
@@ -546,15 +569,23 @@ const regionGameOver = () => {
 
 }
 
+
 // Next region game play button
 nextGame.addEventListener('click', () => {
-
-  odometer.innerHTML = 0
+  // console.log('Results: ', JSON.parse(objectLclStorage));
+  // let abc = ('Results: ', JSON.parse(objectLclStorage));
+  // alert(abc["chosen-game"])
+  odometer.innerHTML = '1'
+  odometer.innerHTML = '0'
   odometer.style.display = 'none'
   finished_REGION = false
   modal.style.opacity = '0'
   modal.style.zIndex = '-99'
 
+  clearTimeout(modalDelay)
+  clearTimeout(scoreDelay)
+
+  signSideBarToggle()
   resetCounter()
 
   progressBox.classList.add('zoomOut')
@@ -563,6 +594,7 @@ nextGame.addEventListener('click', () => {
   play.style.display = 'block'
   regionEl.classList.add('bounceInDown')
   play.classList.add('bounceInDown')
+  titleText.style.display = 'block'
 
   circles.forEach(circle => {
     circle.style.display = "flex";
@@ -574,19 +606,19 @@ nextGame.addEventListener('click', () => {
   _CIRCLE_INDEX = 0
 
   deselectAnswers()
-  
+
   countriesContainer.classList.remove('zoomOut')
   countriesContainer.classList.remove('zoomIn')
   countriesContainer.classList.add('countries')
-  
+
   S_America = false
   countries = []
   capitals = []
   _CHOSEN = []
+  // Default region
+  chosenRegion = 'Europe'
 
   progress.style.width = '0%'
-  console.log(_CHOSEN)
-  console.log(regionEl.length)
 
 })
 

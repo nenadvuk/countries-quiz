@@ -182,27 +182,28 @@ body {
 }
 
 .country__data {
-  padding: 2.5rem 1.75rem 1rem 2rem;
+  margin-left: 1rem;
+  padding: .5rem;
 }
 
 .country__name {
   font-size: 2.3rem;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
 }
 
 .country__region {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
   text-transform: uppercase;
   color: #888;
 }
 
 #regional-blocks {
-  color: #850DFF;
+  color: var(--line-border-fill);
 }
 
 .country__row:not(:last-child) {
-  margin-bottom: .7rem;
+  margin-bottom: .5rem;
 }
 
 .country__row span {
@@ -499,9 +500,9 @@ ul li label {
   background: rgba(0, 0, 0, 0.8);
   z-index: -2;
   opacity: 0;
-  -webkit-transition: opacity 500ms ease-in;
-  -moz-transition: opacity 500ms ease-in;
-  transition: opacity 500ms ease-in;
+  -webkit-transition: opacity 700ms ease-in;
+  -moz-transition: opacity 700ms ease-in;
+  transition: opacity 700ms ease-in;
 }
 
 .modalDialog:target {
@@ -523,7 +524,7 @@ ul li label {
 }
 
 .percent {
-  color: #b34180;
+  color: var(--line-border-fill);
   font-size: 6rem;
   text-align: center;
 }
@@ -899,9 +900,9 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
   }
 }
 
-.zoomInNoDelay {
-  -webkit-animation-name: zoomIn;
-  animation-name: zoomIn;
+/* .zoomInNoDelay {
+  -webkit-animation-name: zoomInNoDelay;
+  animation-name: zoomInNoDelay;
   -webkit-animation-duration: .6s;
   animation-duration: .6s;
   -webkit-animation-fill-mode: both;
@@ -918,7 +919,7 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     opacity: 1;
   }
 }
-
+ */
 .fadeInLeftBig {
   -webkit-animation-name: fadeInLeftBig;
   animation-name: fadeInLeftBig;
@@ -1154,7 +1155,7 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     height: 100%;
   }
   .odometer {
-    left: 70%;
+    left: 80%;
     font-size: 4rem;
     z-index: 100;
   }

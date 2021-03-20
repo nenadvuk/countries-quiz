@@ -174,7 +174,8 @@ body {
 .country__img {
   border-bottom: 1px solid;
   width: 40rem;
-  max-height: 24rem;
+  min-height: 23rem;
+  max-height: 25rem;
   object-fit: cover;
   background-color: #eee;
   border-top-left-radius: 0.7rem;
@@ -1055,10 +1056,10 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
 
 @keyframes animateText {
   0% {
-    background-position: -400%;
+    background-position: -500%;
   }
   100% {
-    background-position: 400%;
+    background-position: 500%;
   }
 }
 

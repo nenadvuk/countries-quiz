@@ -79,7 +79,6 @@ clickedSound.volume = 0.4
 const gameHardSound = new Audio('assets/sounds/hard.wav')
 gameHardSound.volume = 0.3
 
-
 // Score
 const percent = document.querySelector('.percent')
 
@@ -163,9 +162,9 @@ for (let flag of flags) {
 // Video and signature load
 setTimeout(() => {
   video.style.display = 'block'
-  video.style.animation = 'fadeIn 5s'
 
 }, 300)
+video.style.animation = 'fadeIn 5s'
 
 // Back to loading page
 sideNEwGame.addEventListener('click', () => {
@@ -223,6 +222,7 @@ btnCapital.addEventListener('click', () => {
 // Guess the flag
 btnFlag.addEventListener('click', () => {
   chosenGame = 'Guess the flag'
+  document.querySelector('.country__img').style.minHeight = "0";
   gameFlagsSound.play()
   for (let flag of flags) {
     flag.style.display = 'inline-block'
@@ -518,6 +518,7 @@ const regionGameOver = () => {
     modal.style.display = 'block'
     modal.style.opacity = '1'
     modal.style.zIndex = '99'
+    percent.style.display = 'block'
   }, 1000)
 
   scoreDelay = setTimeout(() => {
@@ -569,6 +570,8 @@ nextGame.addEventListener('click', () => {
   odometer.innerHTML = '1'
   odometer.innerHTML = '0'
   odometer.style.display = 'none'
+  goodScore.style.display = 'none'
+  percent.style.display = 'none'
   finished_REGION = false
   modal.style.opacity = '0'
   modal.style.zIndex = '-99'

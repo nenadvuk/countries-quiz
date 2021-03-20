@@ -354,7 +354,7 @@ const correct = () => {
 
 // let playTimer;
 play.addEventListener('click', () => {
-  
+
   sideBar.style.display = 'none'
   burgerMenu.style.display = 'none'
   sign.style.display = 'none'
@@ -483,34 +483,25 @@ const noAnswer = () => {
 
 }
 
-let objectLclStorage
+class Player {
+  constructor(username, chosenGame, chosenRegion, score, overallScore) {
+    this.username = username;
+    this.chosenGame = chosenGame;
+    this.chosenRegion = chosenRegion;
+    this.score = score;
+    this.overallScore = overallScore
+  }
+  currentScore() {
+    // alert(`Chosen region: ${chosenRegion}, score: ${score}`)
+  }
+}
+
 // Activating modal with score and percent of accuracy
 const regionGameOver = () => {
 
   overallScore += score
   clearTimeout(counterDelay)
   clearInterval(timer)
-
-  // Saving users score to local storage
-  // localStorage.setItem(chosenRegion, score)
-  // localStorage.setItem('user', overallScore)
-  let playerData = {
-
-    'chosen-game': chosenGame,
-    'chosen-region': chosenRegion,
-    'chosen-region-score': [chosenRegion, score],
-    'overall-score': overallScore
-
-  }
-
-  localStorage.setItem('nenad', JSON.stringify(playerData));
-
-  objectLclStorage = localStorage.getItem('nenad');
-
-  // console.log('Results: ', JSON.parse(objectLclStorage));
-
-  // localStorage.setItem(chosenRegion, score)
-  // localStorage.setItem('user', overallScore)
 
   // Preventing current region from selection
   regionEl[regionEl.value].disabled = true;
@@ -557,24 +548,24 @@ const regionGameOver = () => {
         failure.play()
       }
     }
+
     nextGame.classList.add('zoomIn')
     nextGame.style.display = 'block'
 
-  }, 1500)
-
-  setTimeout(() => {
+    const player1 = new Player('nenad', chosenGame, chosenRegion, score, overallScore)
+    localStorage.setItem('nenad', JSON.stringify(player1));
+    console.log(player1)
+    // player1.currentScore()
     score = 0
 
-  }, 2000);
+  }, 1500)
 
 }
 
 
 // Next region game play button
 nextGame.addEventListener('click', () => {
-  // console.log('Results: ', JSON.parse(objectLclStorage));
-  // let abc = ('Results: ', JSON.parse(objectLclStorage));
-  // alert(abc["chosen-game"])
+
   odometer.innerHTML = '1'
   odometer.innerHTML = '0'
   odometer.style.display = 'none'
@@ -637,7 +628,8 @@ const deselectAnswers = () => {
 }
 
 // Funkcija za prekid dalje igre nakon 5/10 pitanja
-const endRegionGame = (questions) => _CIRCLE_INDEX === questions ? finished_REGION = true : false
+const endRegionGame = (questions) => _CIRCLE_INDEX === questions ?
+  finished_REGION = true : false
 
 // Getting checked field 
 const getSelected = () => {

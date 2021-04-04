@@ -6,3 +6,8 @@ https://nenadvuk.github.io/countries-quiz/
 
 ### API source:
 *REST Countries https://restcountries.eu/*
+
+### Used Technologies:
+-HTML
+-CSS
+-JAVASCRIPT

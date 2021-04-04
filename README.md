@@ -11,3 +11,6 @@ https://nenadvuk.github.io/countries-quiz/
 - HTML
 - CSS
 - JAVASCRIPT
+- FONT AWESOME
+- ANIMATE.CSS
+- AXIOS

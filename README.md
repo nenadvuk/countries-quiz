@@ -8,6 +8,6 @@ https://nenadvuk.github.io/countries-quiz/
 *REST Countries https://restcountries.eu/*
 
 ### Used Technologies:
--HTML
--CSS
--JAVASCRIPT
+- HTML
+- CSS
+- JAVASCRIPT

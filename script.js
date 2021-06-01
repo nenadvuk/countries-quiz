@@ -160,11 +160,12 @@ for (let flag of flags) {
 }
 
 // Video and signature load
-setTimeout(() => {
-  video.style.display = 'block'
+// setTimeout(() => {
+//   video.style.display = 'block'
 
-}, 300)
-video.style.animation = 'fadeIn 5s'
+// }, 300)
+// video.style.animation = 'fadeIn 5s'
+
 
 // Back to loading page
 sideNEwGame.addEventListener('click', () => {

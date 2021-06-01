@@ -580,7 +580,7 @@ ul li label {
   align-items: center;
   width: 50%;
   height: 50%;
-  background-image: radial-gradient( ellipse 50% 15% at 50% 50%, rgba(0, 255, 255, 0.377), transparent);
+  background-image: radial-gradient( ellipse 50% 15% at 50% 50%, rgba(255, 0, 64, 0.644), transparent);
   transform: translate(-50%, -50%);
   letter-spacing: 2;
   left: 50%;
@@ -588,21 +588,21 @@ ul li label {
   font-family: 'Orbitron', sans-serif;
   font-size: 2em;
   color: #ffe6ff;
-  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(64, 248, 248), -0.2rem 0.1rem 1rem rgb(64, 248, 248), 0.2rem 0.1rem 1rem rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
+  text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(227, 64, 248), -0.2rem 0.1rem 1rem rgb(227, 64, 248), 0.2rem 0.1rem 1rem rgb(227, 64, 248), 0 -0.5rem 2rem rgb(234, 0, 255), 0 0.5rem 3rem rgb(234, 0, 255);
   animation: shine 2s forwards, flicker 3s infinite;
 }
 
 @keyframes blink {
   0%, 22%, 36%, 75% {
     color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(64, 248, 248), -0.2rem 0.1rem 1rem rgb(64, 248, 248), 0.2rem 0.1rem 1rem rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(227, 64, 248), -0.2rem 0.1rem 1rem rgb(227, 64, 248), 0.2rem 0.1rem 1rem rgb(227, 64, 248), 0 -0.5rem 2rem rgb(234, 0, 255), 0 0.5rem 3rem rgb(234, 0, 255);
   }
   28%, 33% {
-    color: rgb(64, 248, 248);
+    color: rgb(227, 64, 248);
     text-shadow: none;
   }
   82%, 97% {
-    color: cyan;
+    color: rgb(255, 0, 234);
     text-shadow: none;
   }
 }
@@ -617,12 +617,12 @@ ul li label {
 
 @keyframes shine {
   0% {
-    color: #0010f7;
+    color: #f70000;
     text-shadow: none;
   }
   100% {
     color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(64, 248, 248), -0.2rem 0.1rem 1rem rgb(64, 248, 248), 0.2rem 0.1rem 1rem rgb(64, 248, 248), 0 -0.5rem 2rem cyan, 0 0.5rem 3rem cyan;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem rgb(227, 64, 248), -0.2rem 0.1rem 1rem rgb(227, 64, 248), 0.2rem 0.1rem 1rem rgb(227, 64, 248), 0 -0.5rem 2rem rgb(234, 0, 255), 0 0.5rem 3rem rgb(234, 0, 255);
   }
 }
 

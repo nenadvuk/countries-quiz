@@ -72,17 +72,17 @@ btnExplore.addEventListener('click', () => {
     const getCountry = (country) => {
       tabTitle.innerHTML = country
       _COUNTRIES_INDEX = allCountriesArr.indexOf(country)
-      axios.get(`https://restcountries.eu/rest/v2/name/${country}`)
+      axios.get(`https://restcountries.com/v2/name/${country}`)
         .then(res => {
           let langArr = []
           let zoomIndex = 7 // Index for zoom on Google maps depending on surface area od country
           const DATA = res.data[0]
           card.style.display = 'block'
-          console.log(res.data)
-          exploreImg.src = DATA.flag
+          console.log(DATA)
+          exploreImg.src = DATA.flags.png
           countryName.innerHTML = `${DATA.name} - (${DATA.nativeName})`
 
-          if (DATA.regionalBlocs.length == 0) {
+          if (!DATA.regionalBlocs) {
             regionalBlock.innerHTML = ''
           } else {
             regionalBlock.innerHTML = `${DATA.regionalBlocs[0].name} - 
@@ -94,7 +94,7 @@ btnExplore.addEventListener('click', () => {
              ${DATA.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} people`
           capitalCity.textContent = `🏙️ >  ${DATA.capital}`
           currencie.innerHTML = `💶 > ${DATA.currencies[0].name} (${DATA.currencies[0].code} - 
-            ${DATA.currencies[0].symbol})`
+            ${DATA.currencies[0].symbol})` /* [0].currencies.EUR */
 
           if (DATA.area == null) {
             area.innerHTML = '📏 >'

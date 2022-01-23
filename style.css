@@ -276,7 +276,7 @@ body {
 
 .counter {
   position: fixed;
-  top: 16rem;
+  top: -2.5rem;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -1148,9 +1148,9 @@ input[type=checkbox]:checked~.burger-menu>.diagonal.part-2 {
     width: 27rem;
     margin: 30vh auto;
   }
-  .counter {
-    top: 14rem;
-  }
+   /* .counter {
+    top: -2rem;
+  } */
   .bg-video {
     width: 100%;
     height: 100%;
